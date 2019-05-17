@@ -1,0 +1,87 @@
+package com.digital.dl2.business.core.obj;
+
+import com.digital.dl2.business.net.obj.NetBookCategoryData;
+import com.digital.dl2.business.net.obj.NetOrderListBookData;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by digital.dl2 on 15/9/22.
+ */
+public class PgBookCategory {
+    private int categoryId;//类别ID
+    private String categoryName;//类别名字
+    private int categoryNumber;//数量
+
+    public static List<PgBookCategory> getPgListByNetList(NetBookCategoryData[] netList) {
+        List<PgBookCategory> pgList = new ArrayList<>();
+
+        for (NetBookCategoryData net : netList) {
+            PgBookCategory pg = new PgBookCategory();
+
+            pg.setCategoryId(net.getTypeid());
+            pg.setCategoryName(net.getName());
+            pg.setCategoryNumber(net.getNumber());
+
+            pgList.add(pg);
+        }
+        return pgList;
+    }
+
+    public static PgBookCategory getPgByNet(NetOrderListBookData net) {
+        PgBookCategory pg = new PgBookCategory();
+
+        pg.setCategoryName(net.getGoods_name());
+        pg.setCategoryNumber(net.getNumber());
+
+        return pg;
+    }
+
+    public static List<PgBookCategory> getPgListByNetList(NetOrderListBookData[] netList) {
+        List<PgBookCategory> pgList = new ArrayList<>();
+
+        for (NetOrderListBookData net : netList) {
+            PgBookCategory pg = new PgBookCategory();
+
+            pg.setCategoryName(net.getGoods_name());
+            pg.setCategoryNumber(net.getNumber());
+
+            pgList.add(pg);
+        }
+        return pgList;
+    }
+
+    @Override
+    public String toString() {
+        return "PgBookCategory{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryNumber=" + categoryNumber +
+                '}';
+    }
+
+    public int getCategoryNumber() {
+        return categoryNumber;
+    }
+
+    public void setCategoryNumber(int categoryNumber) {
+        this.categoryNumber = categoryNumber;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+}

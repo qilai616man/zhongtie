@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.crphdm.dl2.libraryui.activity.CloudBookMarketActivity">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_cloud_book_market_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        app:tabIndicatorColor="@color/color_blue_bg"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/color_blue_bg"
+        app:tabTextColor="#999999" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_cloud_book_market_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

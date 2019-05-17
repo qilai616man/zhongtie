@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.crphdm.dl2.activity.personal.PickDetailActivity">
+    <item
+        android:id="@+id/action_menu_pick_history"
+        android:orderInCategory="100"
+        android:title="@string/menu_pick_detail_history"
+        app:showAsAction="ifRoom" />
+</menu>

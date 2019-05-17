@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:autolabel="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activity.cloud_bookstore.ClassifyDetailActivity">
+
+    <ScrollView
+        android:id="@+id/sv_classify_detail"
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+        <me.next.tagview.TagCloudView
+            android:id="@+id/label_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tcvTagResId="@layout/custom_text_view"
+            app:tcvItemBorderHorizontal="8dp"
+            app:tcvItemBorderVertical="6dp"
+            app:tcvBorder="8dp"
+            app:paddingStart="5dp"
+            app:paddingEnd="5dp"
+            app:tcvTextColor="@color/color_text_5f646e"
+            app:tcvCanTagClick="true" />
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_indicator_divider" />
+
+    <View
+        android:id="@+id/view_classify_detail"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/color_gray_bg" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_classify_detail_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"/>
+
+        <include layout="@layout/layout_loading" />
+
+        <LinearLayout
+            android:id="@+id/lLError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/error_cloud" />
+
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="该分类暂无资源"
+                android:textColor="#ffbbbbbb" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

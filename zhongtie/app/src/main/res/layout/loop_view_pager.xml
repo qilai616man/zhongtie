@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:datumRatio="datumWidth"
+        app:heightRatio="6.0"
+        app:widthRatio="16.0">
+
+        <!--<com.jiuwei.loopviewpager.library.viewpager.EndlessViewPager-->
+            <!--android:id="@+id/viewPager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+        <com.github.why168.LoopViewPagerLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+        <ImageView
+            android:id="@+id/iv_advertisement_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/drw_advertisement_default"
+            android:visibility="gone"/>
+
+        <!--<com.jiuwei.loopviewpager.library.viewpager.EndlessCirclePageIndicator-->
+            <!--android:id="@+id/viewPagerIndicator"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:padding="5dp"-->
+            <!--app:fillColor="#ffffff"-->
+            <!--app:pageColor="#88ffffff"-->
+            <!--app:radius="3dp"-->
+            <!--app:strokeColor="#00000000"-->
+            <!--app:strokeWidth="1dp" />-->
+
+    </net.soulwolf.widget.ratiolayout.widget.RatioFrameLayout>
+
+    <include layout="@layout/item_bookcase_my_book" />
+
+</LinearLayout>

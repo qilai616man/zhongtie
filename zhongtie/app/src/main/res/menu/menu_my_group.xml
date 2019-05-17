@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.crphdm.dl2.activity.personal.PickDetailActivity">
+    <item
+        android:id="@+id/action_create_group"
+        android:orderInCategory="100"
+        android:title="创建分组"
+        app:showAsAction="ifRoom" />
+</menu>

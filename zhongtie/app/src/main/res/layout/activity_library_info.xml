@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.crphdm.dl2.activity.library.LibraryInfoActivity">
+
+
+    <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:layout_gravity="center_horizontal|top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv_press_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="60dp"
+                    android:layout_marginTop="28dp"
+                    android:clickable="false"/>
+
+            </RelativeLayout>
+
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:id="@+id/iv_press_logo"-->
+                <!--android:layout_width="77dp"-->
+                <!--android:layout_height="77dp"-->
+                <!--android:layout_marginLeft="23dp"-->
+                <!--android:layout_marginTop="28dp"-->
+                <!--android:layout_marginBottom="60dp"-->
+                <!--android:clickable="true"-->
+                <!--android:src="@drawable/user_face_icon" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="14dp">
+
+                <TextView
+                    android:id="@+id/tv_press_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="32dp"
+                    android:maxLines="5"
+                    android:text="南京铁道出版社"
+                    android:textColor="@color/color_5f646e"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_press_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_999999"
+                    android:text="介绍文字" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top" />
+
+    <include layout="@layout/layout_loading" />
+
+</RelativeLayout>

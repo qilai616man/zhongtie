@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4c8afb</color>
+    <color name="colorPrimaryDark">#3f71cd</color>
+    <color name="colorPrimaryDisable">#90b6f9</color>
+    <color name="colorAccent">#62af67</color>
+    <color name="dividerGray">#dcdcdc</color>
+    <color name="lightGray">#eee</color>
+    <color name="darkGray">#5f646e</color>
+    <color name="textLightGray">#c8c8c8</color>
+    <drawable name="placeHolderGray">#c8c8c8</drawable>
+    <color name="textMidGray">#999999</color>
+    <color name="textDarkGray">#5f646e</color>
+    <color name="headIconBorderColor">#afcaf7</color>
+    <color name="greenColor">#6eba78</color>
+    <color name="orangeColor">#ff6244</color>
+    <color name="transparentDark">#88000000</color>
+    <color name="transparentWhite">#88ffffff</color>
+
+
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_5f646e">#5f646e</color>
+    <color name="color_4c8afb">#4c8afb</color>
+    <color name="color_598aff">#598aff</color>
+    <color name="color_dcdcdc">#dcdcdc</color>
+    <color name="color_54c25b">#54c25b</color>
+    <color name="color_f04243">#f04243</color>
+
+    <drawable name="drawable_ffffff">#ffffff</drawable>
+
+    <color name="color_indicator">#ff2951</color>
+    <color name="color_indicator_divider">#dcdcdc</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_gray_bg">#f7f7f7</color>
+    <color name="color_blue_bg">#4c8afb</color>
+    <color name="color_blue_bg_deep">#3a63bd</color>
+    <color name="color_text_5f646e">#5f646e</color>
+    <color name="color_fafafa">#fafafa</color>
+    <color name="color_price">#ff5938</color>
+    <color name="color_old_price">#bfbfbf</color>
+    <color name="color_text_54c25b">#54c25b</color>
+    <color name="color_back_gray">#448d8d8d</color>
+    <color name="transparent">#00000000</color>
+    <color name="color_click_bg">#f4f4f4</color>
+    <color name="frame_bg">#7bbababa</color>
+
+    <color name="canvas">#FF404040</color>
+    <color name="bar">#C0202020</color>
+
+    <color name="smallCircleColor">#FFDF8D81</color>
+    <color name="largeCircleColor">#FFAF3854</color>
+    <color name="outerCircleColor">#FF533456</color>
+
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="light_blue">#d7e5ff</color>
+</resources>

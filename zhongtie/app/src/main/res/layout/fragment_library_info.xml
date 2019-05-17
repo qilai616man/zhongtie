@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f7f7f7"
+    tools:context="com.crphdm.dl2.fragment.LibraryInfoFragment">
+
+
+
+    <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:background="@android:color/white"
+        android:layout_gravity="center_horizontal|top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_press_logo"
+                android:layout_width="77dp"
+                android:layout_height="77dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="60dp"
+                android:clickable="true"
+                android:src="@drawable/user_face_icon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="14dp">
+
+
+                <TextView
+                    android:id="@+id/tv_press_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="38dp"
+                    android:text="南京铁道出版社"
+                    android:textColor="@color/color_5f646e"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_press_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="28dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_999999"
+                    android:text="介绍文字" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:layout_gravity="center_horizontal|top" />
+</FrameLayout>

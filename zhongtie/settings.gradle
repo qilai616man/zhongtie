@@ -1,0 +1,1 @@
+include ':app', ':usermodule', ':business', ':upgrade', ':fbreader', ':pdflib', ':ziputil', ':pagerview', ':gdownloader'

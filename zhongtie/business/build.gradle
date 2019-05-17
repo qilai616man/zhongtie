@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25+'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    //    compile 'com.jiuwei.android:ln:1.0.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    //    compile 'com.jiuwei.android:file_helper_lib:1.1.0'
+    compile 'com.loopj.android:android-async-http:1.4.6'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile project(':gdownloader')
+    //compile files('libs/ln.jar')
+}

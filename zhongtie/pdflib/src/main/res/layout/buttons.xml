@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="false"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="100dp" >
+
+        <TextView
+            android:id="@+id/textViewTips"
+            android:layout_width="wrap_content"
+            android:layout_height="204dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_weight="1"
+            android:background="@drawable/ic_tips_bg"
+            android:fitsSystemWindows="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="5dp"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:text=""
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:src="@drawable/annotation_mark" />
+    </LinearLayout>
+
+    <ViewAnimator
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#FFF" >
+
+        <RelativeLayout
+            android:id="@+id/topBar0Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF"
+            android:gravity="center_vertical" >
+
+            <ImageButton
+                android:id="@+id/outlineButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/backButton"
+                android:background="#FFF"
+                android:contentDescription="@string/outline_title"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fb_dictionary" />
+            <ImageButton
+                android:id="@+id/copyButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="#FFF"
+                android:contentDescription="@string/copy_text_to_the_clipboard"
+                android:onClick="OnCopyTextButtonClick"
+                android:src="@drawable/copy_active" />
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/bookmarkButton"
+                android:background="#FFF"
+                android:contentDescription="@string/search_document"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fb_search" />
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/goback"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fb_back" />
+
+            <ImageButton
+                android:id="@+id/bookmarkButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/copyButton"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/bookmark"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fb_annotation" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/copyButton"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:background="#FFF"-->
+                <!--android:contentDescription="@string/bookcopy"-->
+                <!--android:scaleType="centerInside"-->
+                <!--android:src="@drawable/copy_active" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar1Search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#242424"
+            android:gravity="center_vertical" >
+
+            <ImageButton
+                android:id="@+id/cancelSearch"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#0000"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelSearchButtonClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cancel" />
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/searchBack"
+                android:layout_toRightOf="@+id/cancelSearch"
+                android:background="@drawable/edit4search"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:singleLine="true" />
+
+            <ImageButton
+                android:id="@+id/searchBack"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchForward"
+                android:background="#0000"
+                android:contentDescription="@string/search_backwards"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_left" />
+
+            <ImageButton
+                android:id="@+id/searchForward"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#0000"
+                android:contentDescription="@string/search_forwards"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_right" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar2Annot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar"  >
+
+            <ImageButton
+                android:id="@+id/cancelAnnotButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#fff"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelAnnotButtonClick"
+                android:src="@drawable/ic_cancel" />
+
+            <ImageButton
+                android:id="@+id/highlightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/underlineButton"
+                android:background="#fff"
+                android:contentDescription="@string/highlight"
+                android:onClick="OnHighlightButtonClick"
+                android:src="@drawable/ic_highlight" />
+
+            <ImageButton
+                android:id="@+id/underlineButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/strikeOutButton"
+                android:background="#fff"
+                android:contentDescription="@string/underline"
+                android:onClick="OnUnderlineButtonClick"
+                android:src="@drawable/ic_underline" />
+
+            <ImageButton
+                android:id="@+id/strikeOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/inkButton"
+                android:background="#fff"
+                android:contentDescription="@string/strike_out"
+                android:onClick="OnStrikeOutButtonClick"
+                android:src="@drawable/ic_strike" />
+
+            <ImageButton
+                android:id="@+id/inkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#fff"
+                android:contentDescription="@string/ink"
+                android:onClick="OnInkButtonClick"
+                android:src="@drawable/ic_pen" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar3Delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelDeleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelDeleteButtonClick"
+                android:src="@drawable/ic_cancel" />
+
+            <TextView
+                android:id="@+id/deleteLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/deleteButton"
+                android:layout_toRightOf="@+id/cancelDeleteButton"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/delete"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/delete"
+                android:onClick="OnDeleteButtonClick"
+                android:src="@drawable/ic_trash" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar4More"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelMoreButtonClick"
+                android:src="@drawable/ic_cancel" />
+
+            <ImageButton
+                android:id="@+id/printButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/copyTextButton"
+                android:background="#FFF"
+                android:contentDescription="@string/print"
+                android:onClick="OnPrintButtonClick"
+                android:src="@drawable/ic_print" />
+
+            <ImageButton
+                android:id="@+id/copyTextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/editAnnotButton"
+                android:background="#FFF"
+                android:contentDescription="@string/copy_text_to_the_clipboard"
+                android:onClick="OnCopyTextButtonClick"
+                android:src="@drawable/ic_clipboard" />
+
+            <ImageButton
+                android:id="@+id/editAnnotButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#FFF"
+                android:contentDescription="@string/edit_annotations"
+                android:onClick="OnEditAnnotButtonClick"
+                android:src="@drawable/ic_annotation" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar5Accept"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelAcceptButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelAcceptButtonClick"
+                android:src="@drawable/ic_cancel" />
+
+            <TextView
+                android:id="@+id/annotType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/acceptButton"
+                android:layout_toRightOf="@+id/cancelAcceptButton"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/acceptButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/accept"
+                android:onClick="OnAcceptButtonClick"
+                android:src="@drawable/ic_check" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#A58D6B" />
+        </RelativeLayout>
+    </ViewAnimator>
+
+    <LinearLayout
+        android:id="@+id/lowerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSeekBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#242424"
+            android:clipChildren="false"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A58D6B" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:clipChildren="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <SeekBar
+                    android:id="@+id/pageSlider"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:maxHeight="10dp"
+                    android:progressDrawable="@drawable/seek_drawable"
+                    android:thumb="@drawable/ic_progress_btn"
+                    android:thumbOffset="10dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonPageGoback"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#FFF"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:longClickable="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pageNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="#242424"
+                android:ellipsize="end"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:singleLine="true"
+                android:textColor="#FFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/page_num"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF" 
+    tools:context=".OutLookActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTop"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/func_toc_show"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/tab_catalog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0000"
+            android:text="目录"
+            android:textColor="@color/func_toc_active"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/tab_annotate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0000"
+            android:text="批注"
+            android:textColor="@color/func_toc_normal"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayoutTop"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/listCatalog"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="#E0E0E0"
+            android:dividerHeight="1px"
+            android:paddingBottom="10dp" >
+        </ListView>
+        <!-- android:divider="@drawable/list_split" -->
+
+        <ListView
+            android:id="@+id/listAnnotate"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:divider="#E0E0E0"
+            android:dividerHeight="1px"
+            android:paddingBottom="10dp" >
+        </ListView>
+    </RelativeLayout>
+    
+    <ImageButton
+        android:id="@+id/imageButtonGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="#0000"
+        android:scaleType="center"
+        android:src="@drawable/c_back" />
+
+</RelativeLayout>

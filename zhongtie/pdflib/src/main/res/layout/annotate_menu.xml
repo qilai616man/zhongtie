@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50F0FDE8"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/cancelView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#FFF"
+        android:fillViewport="false"
+        android:scrollbars="vertical|horizontal" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D1D1C9" />
+
+            <TextView
+                android:id="@+id/textViewAnnotate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="添加批注"
+                android:textColor="#3F3F3F"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10" >
+
+                <EditText
+                    android:id="@+id/editTextAnnotate"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edit_rect_input"
+                    android:gravity="center_vertical|left|top"
+                    android:hint="请输入批注"
+                    android:inputType="textMultiLine"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:singleLine="true"
+                    android:textColor="#404D4D"
+                    android:textColorHint="#666666"
+                    android:textCursorDrawable="@null"
+                    android:textSize="14sp"
+                    android:windowSoftInputMode="stateVisible|adjustPan" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10" >
+
+                <Button
+                    android:id="@+id/imageButtonAnnotateCancel"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:background="@drawable/btn_menu_cancel"
+                    android:text="取消"
+                    android:textColor="#836D3C"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/imageButtonAnnotateOk"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/btn_menu_confirm"
+                    android:text="确定"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

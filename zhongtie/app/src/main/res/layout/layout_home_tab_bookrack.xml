@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.crphdm.dl2.views.TintableImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitCenter"
+        app:normal="@drawable/tab_bookrack"
+        app:select="@drawable/tab_bookrack_select"
+        app:tint="@color/custom_tab_icon" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:text="书架"
+        android:textColor="@color/custom_tab_icon"
+        android:textSize="12dp" />
+</LinearLayout>

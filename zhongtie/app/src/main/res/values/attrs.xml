@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TintableImageView">
+        <attr name="tint" format="reference|color" />
+        <attr name="normal" format="reference|color" />
+        <attr name="select" format="reference|color" />
+    </declare-styleable>
+    <declare-styleable name="ClearEditText">
+        <!-- 清除按钮的图标 -->
+        <attr name="iconClear" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="BeautifulProgressbar">
+        <attr name="progress_color" format="color" />
+        <attr name="progress_size" format="dimension" />
+    </declare-styleable>
+</resources>

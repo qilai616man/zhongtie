@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="45dp"
+    android:layout_height="match_parent"
+    android:gravity="left|center_vertical"
+    android:background="?selectableItemBackground">
+    <RelativeLayout
+        android:layout_width="35dp"
+        android:layout_height="35dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_action_search"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/menu_pick_count"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="10sp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/color_white"
+            android:visibility="invisible"
+            android:background="@drawable/shape_count_red"/>
+    </RelativeLayout>
+
+</RelativeLayout>

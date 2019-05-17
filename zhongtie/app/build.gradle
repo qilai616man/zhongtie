@@ -1,0 +1,139 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        applicationId "com.crphdm.dl2"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 9
+        versionName "1.1.0"
+        multiDexEnabled true
+
+        ndk{
+            abiFilters "armeabi","armeabi-v7a"
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+        release {
+            storeFile file("panming-release-key.keystore")
+            keyAlias "panming"
+            storePassword "huaeros123"
+            keyPassword "huaeros123"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+
+        release {
+            debuggable false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+//    dexOptions {
+//        incremental true
+//    }
+//
+//    dexOptions {
+//        javaMaxHeapSize "4g"
+//    }
+
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+
+dependencies {
+    //classpath 'com.android.tools.build:gradle:2.4'
+    provided fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support:appcompat-v7:25+'
+    compile 'com.android.support:design:25+'
+    compile 'com.android.support:recyclerview-v7:25+'
+    compile 'com.android.support:cardview-v7:25+'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //循环滚动ViewPager
+
+    //    compile 'com.jiuwei.android:loop_view_pager:1.0.1'
+
+    //    compile 'com.github.why168:LoopViewPagerLayout:2.1.5'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    //比例布局
+    compile 'net.soulwolf.widget:ratiolayout:1.0.0'
+    //    compile 'io.reactivex:rxandroid:1.0.1'
+
+    //    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    //圆形头像
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.3'
+    //    compile 'com.jiuwei.android:simple_crop_image_lib:0.1.+'
+
+    //compile 'com.jiuwei.android:multi-image-selector:1.0.2'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.2'
+    compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.4.0'
+    compile 'com.github.davidpizarro:autolabelui:1.0.0'
+    //    compile 'com.jiuwei.android:ln:1.0.0'
+    compile 'io.paperdb:paperdb:1.0'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'ch.acra:acra:4.6.2'
+    //流式布局
+    compile 'com.github.kingideayou:tagcloudview:1.0.2'
+    compile project(':usermodule')
+    compile project(':business')
+    compile project(':upgrade')
+    //compile project(':gdownloader')
+    compile project(':fbreader')
+    compile project(':pdflib')
+    compile project(':ziputil')
+    compile files('libs/simple_crop_image_lib.jar')
+    compile files('libs/zxing.jar')
+    compile files('libs/jpush-sdk-release1.8.2.jar')
+    compile files('libs/alipaySDK-20150818.jar')
+    //compile files('src/main/jniLibs/acra-4.5.0.jar')
+//        compile(name: 'fbreader-debug', ext: 'aar')
+//
+//        compile(name: 'pdflib-debug', ext: 'aar')
+//
+//        compile(name: 'ziputil-debug', ext: 'aar')
+
+    //    compile files('libs/acra-4.5.0.jar')
+    compile files('libs/umeng-analytics-v5.4.1.jar')
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile project(':pagerview')
+}
+

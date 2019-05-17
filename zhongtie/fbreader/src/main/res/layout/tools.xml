@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ViewAnimator
+        android:id="@+id/top_tools"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#FFF" >
+
+        <RelativeLayout
+            android:id="@+id/topBar0Main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_back" />
+
+            <ImageView
+                android:id="@+id/split"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/btn_back"
+                android:src="@drawable/icon_fb_split" />
+
+            <ImageView
+                android:id="@+id/btn_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_annotation" />
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/btn_bookmark"
+                android:background="@drawable/button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_search" />
+
+            <ImageView
+                android:id="@+id/btn_minify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/btn_search"
+                android:background="@drawable/button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_minify" />
+
+            <ImageView
+                android:id="@+id/btn_enlarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/btn_minify"
+                android:background="@drawable/button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_enlarge" />
+
+            <ImageView
+                android:id="@+id/btn_directory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/split"
+                android:background="@drawable/button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_fb_dictionary" />
+        </RelativeLayout>
+    </ViewAnimator>
+    <!-- android:layout_above="@+id/pageSlider" -->
+
+</RelativeLayout>

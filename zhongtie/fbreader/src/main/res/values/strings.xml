@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="empty_string"></string>
+	<string name="addmark_title">添加批注</string>
+	<string name="updmark_title">修改批注</string>
+	<string name="mark_hint">请输入批注</string>
+	<string name="btn_ok">确定</string>
+	<string name="btn_cancel">取消</string>
+	<string name="btn_back">返回</string>
+</resources>
