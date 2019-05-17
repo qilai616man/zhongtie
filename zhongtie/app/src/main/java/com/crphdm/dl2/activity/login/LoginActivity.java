@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+Toast.makeText(LoginActivity.this, "test git", Toast.LENGTH_SHORT).show();
         ButterKnife.bind(this);
 
         initPermissions();
