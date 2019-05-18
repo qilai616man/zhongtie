@@ -162,12 +162,12 @@ public class DatabaseManager {
         String sqlStr = "select * from " + Constant.TABLE_EXCEEDTIME; //+" where username = '" + username + "'"; //" + user_id +" and
         Cursor cursor = mDb.rawQuery(sqlStr,null);
 
-//        Cursor cursor=mDb.query(Constant.TABLE_EXCEEDTIME,new String[]{"id","username","time"},"username=?",new String[]{username},null,null,null);
+
         if (cursor.moveToNext()) {
             time=cursor.getInt(cursor.getColumnIndex("time"));
             String name=cursor.getString(cursor.getColumnIndex("username"));
             Log.i("name==========",name+"=="+ cursor.getCount());
-//            Toast.makeText(mContext, "name=========="+name+"=="+ cursor.getCount(), Toast.LENGTH_SHORT).show();
+
         }
         while (cursor.moveToNext()){
             time=cursor.getInt(cursor.getColumnIndex("time"));
@@ -191,7 +191,7 @@ public class DatabaseManager {
             Cursor cursor = mDb.rawQuery(sqlStr, null);
             if(!cursor.moveToNext()){
                 insertExceedTime(user_id,username,time);
-//                Toast.makeText(mContext, "time==" + time, Toast.LENGTH_SHORT).show();
+
             }
             while (cursor.moveToNext()){
                 String name=cursor.getString(cursor.getColumnIndex("username"));
@@ -199,18 +199,14 @@ public class DatabaseManager {
                     int oldtime = cursor.getInt(cursor.getColumnIndex("time"));
                     if (oldtime != time) {
                        int updataCount= mDb.update(Constant.TABLE_EXCEEDTIME, initialValues, "username=?", new String[]{username});
-//                        Toast.makeText(mContext, "oldtime==+oldtime" + oldtime+"updataCount=="+updataCount, Toast.LENGTH_SHORT).show();
                     }
                     return;
                 }
             }
             int res= (int) mDb.insert(Constant.TABLE_EXCEEDTIME,null,initialValues);
-//            Toast.makeText(mContext,"res=="+res,Toast.LENGTH_SHORT).show();
             cursor.close();
         }catch(Exception e){
-//            Toast.makeText(mContext,"insert"+e.getMessage(),Toast.LENGTH_SHORT).show();
             int res= (int) mDb.insert(Constant.TABLE_EXCEEDTIME,null,initialValues);
-//            Toast.makeText(mContext,"res=="+res,Toast.LENGTH_SHORT).show();
         }
 
 
@@ -223,7 +219,6 @@ public class DatabaseManager {
      */
     public void insertUserJson(List<String> userjsons) {
         long t1 = System.currentTimeMillis();
-//        Toast.makeText(mContext,"size=="+jsobs.size()+"==time=="+time+"mHelper=="+mHelper,Toast.LENGTH_SHORT).show();
         mDb = mHelper.getWritableDatabase();
         for(String userjson :userjsons){
             ContentValues initialValues = new ContentValues();
@@ -231,7 +226,6 @@ public class DatabaseManager {
             Ln.d("MonitorModule:向数据库中插入监测人" + (System.currentTimeMillis() - t1) + "毫秒");
             int id = (int) mDb.insert(Constant.TABLE_USERJSON, null, initialValues);
 
-//            Toast.makeText(mContext,"id=="+id,Toast.LENGTH_SHORT).show();
         }
     }
     public boolean queryuserjson(String username) {
@@ -275,15 +269,13 @@ public class DatabaseManager {
             Ln.d("MonitorModule:向数据库中插入监测人" + (System.currentTimeMillis() - t1) + "毫秒");
             int id = (int) mDb.insert(Constant.TABLE_TYPE, null, initialValues);
 
-//            Toast.makeText(mContext,"id=="+id,Toast.LENGTH_SHORT).show();
         }
     }
     public void deletejsob() {
         mDb = mHelper.getWritableDatabase();
 
         int b = mDb.delete(Constant.TABLE_TYPE,null,null);
-//        Toast.makeText(mContext,"int b=="+b,Toast.LENGTH_SHORT).show();
-    }
+   }
     public int queryjsobById(String id) {
         Ln.d("queryBookById:id:" + id);
         mDb = mHelper.getWritableDatabase();

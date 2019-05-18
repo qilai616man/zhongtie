@@ -18,7 +18,7 @@ import com.crphdm.dl2.utils.Constant;
 import com.goyourfly.gdownloader.utils.Ln;
 import com.umeng.analytics.MobclickAgent;
 
-import cn.jpush.android.api.JPushInterface;
+//import cn.jpush.android.api.JPushInterface;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -43,7 +43,7 @@ public class WelcomeActivity extends Activity {
 
     @Override
     protected void onResume() {
-        JPushInterface.onResume(this);
+//        JPushInterface.onResume(this);
         MobclickAgent.onPageStart("欢迎页");
         MobclickAgent.onResume(this);
         super.onResume();
@@ -51,7 +51,7 @@ public class WelcomeActivity extends Activity {
 
     @Override
     protected void onPause() {
-        JPushInterface.onPause(this);
+//        JPushInterface.onPause(this);
         MobclickAgent.onPageEnd("欢迎页");
         MobclickAgent.onPause(this);
         super.onPause();

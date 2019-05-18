@@ -120,7 +120,7 @@ dependencies {
     compile project(':ziputil')
     compile files('libs/simple_crop_image_lib.jar')
     compile files('libs/zxing.jar')
-    compile files('libs/jpush-sdk-release1.8.2.jar')
+//    compile files('libs/jpush-sdk-release1.8.2.jar')
     compile files('libs/alipaySDK-20150818.jar')
     //compile files('src/main/jniLibs/acra-4.5.0.jar')
 //        compile(name: 'fbreader-debug', ext: 'aar')

@@ -176,7 +176,6 @@ public class NetHelper {
             inputStream = connection.getInputStream();
         }else {
             inputStream = connection.getErrorStream();
-//            throw new IOException("Response Code:" + response);
         }
 
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
