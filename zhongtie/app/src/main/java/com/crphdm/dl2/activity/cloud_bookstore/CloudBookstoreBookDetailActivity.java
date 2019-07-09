@@ -181,6 +181,10 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.ll_like)
     void like() {
+        if(mBookDetail == null){
+            Toast.makeText(this,"找不到图书信息",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
             Toast.makeText(this,"此用户为临时用户",Toast.LENGTH_SHORT).show();
         }else{
@@ -347,6 +351,10 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
     //采选按钮
     @OnClick(R.id.ll_pick)
     void pick() {
+        if(mBookDetail == null){
+            Toast.makeText(this,"找不到图书信息",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
             Toast.makeText(this,"此用户为临时用户",Toast.LENGTH_SHORT).show();
         }else{
@@ -437,6 +445,10 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
     //推荐采选
     @OnClick(R.id.ll_recommend_pick)
     void recommendPick() {
+        if(mBookDetail == null){
+            Toast.makeText(this,"找不到图书信息",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
             Toast.makeText(this,"此用户为临时用户",Toast.LENGTH_SHORT).show();
         }else{
@@ -967,6 +979,14 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
                     //设置书籍信息
                     setupBookInfo(book);
                 }
+//                else{//helong
+//                    PgBookForBookstoreDetail book = mListData.get(3);
+//                    Ln.d("CloudBookstoreBookDetailActivity:setupBookTypeGroup:mEBookFour:" + book.toString());
+//                    //设置书籍信息
+//                    setupBookInfo(book);
+//                }
+
+
             }
         });
     }
@@ -987,6 +1007,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
 
 //        mPreviewListAdapter.setData(mBookDetail.getProbationImages());
         mPreviewListAdapter.setData(imageUrlList);
+
         mPreviewList.setAdapter(mPreviewListAdapter);
     }
 
