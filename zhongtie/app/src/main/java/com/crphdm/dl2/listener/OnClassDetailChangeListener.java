@@ -1,7 +1,8 @@
 package com.crphdm.dl2.listener;
 
 /**
- * Created by sunbaochun on 15/10/8.
+ * Modify by songzixuan on 19/07/04.
+ * 类详细信息改变监听器
  */
 public interface OnClassDetailChangeListener {
     void onSelect(int position,int id,int type);

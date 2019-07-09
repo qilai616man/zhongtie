@@ -40,18 +40,25 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 登录页
+ */
 public class LoginActivity extends AppCompatActivity {
+    //
     public static final String ACTIVITY_FROM = "ACTIVITY_FROM";
-    public static final int ACTIVITY_FROM_WELCOME_ACTIVITY = 1;
-    public static final int ACTIVITY_FROM_MAIN_ACTIVITY = 2;
 
+    public static final int ACTIVITY_FROM_WELCOME_ACTIVITY = 1;
     private static final int ACCESS_COARSE_LOCATION_REQUEST_CODE = 1;
     private static final int READ_PHONE_STATE_REQUEST_CODE = 2;
     private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 3;
 
+    //位置信息权限
     private boolean isAccessCoarseLocation = false;
+    //读取手机状态权限
     private boolean isReadPhoneState = false;
+    //存储空间权限
     private boolean isReadExternalStorage = false;
+
 
     @Bind(R.id.username)
     ClearEditTextNew username;
@@ -71,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
         initPermissions();
     }
-
+    //读取手机权限
     private void initPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -100,12 +107,12 @@ public class LoginActivity extends AppCompatActivity {
             isReadExternalStorage = true;
         }
     }
-
+    //点击登录
     @OnClick(R.id.login)
     void onLoginClick() {
         getOnLogin();
     }
-
+    //点击注册
     @OnClick(R.id.bind)
     void onRegisterClick() {
         if (UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_FIRST_LEVEL ||
@@ -116,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //在查找密码单击
     @OnClick(R.id.forget_password)
     void onFindPasswordClick() {
         if (UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_FIRST_LEVEL ||
@@ -126,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //请求权限结果
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -159,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
+   //选择项目选项
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -173,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
 //        super.onBackPressed();
     }
-
+  //恢复
     public void onResume() {
         super.onResume();
 
@@ -182,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
         MobclickAgent.onPageStart("登录页");
 
     }
-
+//暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

@@ -50,7 +50,7 @@ public class ImageViewDisplayNewActivity extends AppCompatActivity{
         mViewPager.setCurrentItem(mPosition);
 
     }
-
+        //销毁
     @Override
     protected void onDestroy() {
         mImageList.clear();
@@ -89,23 +89,23 @@ public class ImageViewDisplayNewActivity extends AppCompatActivity{
 
             return photoView;
         }
-
+        //销毁
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
         }
-
+        //获取数目
         @Override
         public int getCount() {
             return mPhotos.size();
         }
-
+        //判断view是不是和object相关
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
     }
-
+        //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -116,13 +116,13 @@ public class ImageViewDisplayNewActivity extends AppCompatActivity{
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("试读列表页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("试读列表页");

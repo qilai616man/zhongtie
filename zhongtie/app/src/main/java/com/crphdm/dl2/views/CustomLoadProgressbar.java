@@ -12,11 +12,12 @@ import com.crphdm.dl2.R;
 
 
 /**
- * Created by gaoyf on 14/12/17.
+ * Modify by songzixuan on 19/07/04.
+ * 自定义加载进度条
  */
 public class CustomLoadProgressbar extends ProgressBar {
     private Drawable drawable;
-
+            //自定义加载进度条
     public CustomLoadProgressbar(Context context) {
         super(context);
         drawable = getResources().getDrawable(R.drawable.gray_sun);
@@ -37,7 +38,7 @@ public class CustomLoadProgressbar extends ProgressBar {
         setIndeterminateDrawable(drawable);
         rotate();
     }
-
+               //旋转
     private void rotate() {
 
         RotateAnimation rotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

@@ -1,7 +1,8 @@
 package com.crphdm.dl2.utils;
 
 /**
- * Created by sunbaochun on 15/9/26.
+ * Modify by songzixuan on 19/07/02.
+ * 声明项目使用到的常量
  */
 public class Constant {
 

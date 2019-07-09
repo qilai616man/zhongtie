@@ -102,8 +102,6 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class ServiceExhibition extends Service implements DownloadHelper.DownloadListener {
-    public static final String ACTIVITY_FROM = "ACTIVITY_FROM";
-    public static final int ACTIVITY_FROM_WELCOME_ACTIVITY = 1;
 
     public static final String INTENT_CMD = "INTENT_CMD";
     public static final String CMD_UN_ZIP_FILE = "CMD_UN_ZIP_FILE";
@@ -142,14 +140,14 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
             }
         }
     };
-
+        //当另一个组件通过调用bindService()与服务绑定时，系统将调用此方法
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
 //        return null;
     }
-
+        //首次创建服务时，系统将调用此方法
     @Override
     public void onCreate() {
         super.onCreate();
@@ -201,7 +199,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
                 });
 
     }
-
+                //开始服务
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Ln.d("MyService:onStartCommand");
@@ -230,7 +228,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
 
         return super.onStartCommand(intent, flags, startId);
     }
-
+            //准备开始
     @Override
     public void onPreStart(String url) {
         Ln.d("MyService:onPreStart:url:" + url);
@@ -240,7 +238,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.state = DbDownloadExt.DOWNLOAD_STATE_PREPARING;
         EventBus.getDefault().post(event);
     }
-
+            //界面被显示出来的时候执行
     @Override
     public void onStart(String url, long totalLength, long localLength) {
         Ln.d("MyService:onStart:url:" + localLength + "/" + totalLength);
@@ -250,7 +248,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.state = DbDownloadExt.DOWNLOAD_STATE_DOWNLOADING;
         EventBus.getDefault().post(event);
     }
-
+            //下载时触发
     @Override
     public void onProgress(String url, long totalLength, long downloadedBytes) {
         Ln.d("MyService:onProgress:" + downloadedBytes + "/" + totalLength);
@@ -263,7 +261,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.totalLength = totalLength;
         EventBus.getDefault().post(event);
     }
-
+            //暂停
     @Override
     public void onPause(String url) {
         Ln.d("MyService:onPause:url:" + url);
@@ -274,7 +272,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         EventBus.getDefault().post(event);
 
     }
-
+        //视频由于要播放下一帧而需要缓冲时触发
     @Override
     public void onWaiting(String url) {
         Ln.d("MyService:onWaiting:url:" + url);
@@ -284,7 +282,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+        //关闭对话框
     @Override
     public void onCancel(String url) {
         Ln.d("MyService:onCancel:url:" + url);
@@ -295,7 +293,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+        //关闭当前界面
     @Override
     public void onFinish(final String url) {
         Ln.d("MyService:onFinish:url:" + url);
@@ -334,7 +332,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+            //错误
     @Override
     public void onError(final String url, String err) {
         Ln.d("MyService:onError:url:" + url);
@@ -362,7 +360,7 @@ public class ServiceExhibition extends Service implements DownloadHelper.Downloa
         EventBus.getDefault().post(event);
 
     }
-
+            //刷新网络状态
     private void refreshNetState() {
         UserModuleImpl.getInstance().getNetState()
                 .observeOn(AndroidSchedulers.mainThread())

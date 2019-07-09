@@ -191,43 +191,6 @@ public class NetHelper {
         return sb.toString();
     }
 
-//
-//    /**
-//     * 只有这里没有使用异步，但是OkHttpClient也是非常的简单明了
-//     *
-//     * @param urlString
-//     * @return
-//     * @throws IOException
-//     */
-//    public static String getContent5Second(String urlString) throws IOException {
-//        Ln.d("NetHelper:getContent:Request:" + urlString);
-//        time = System.currentTimeMillis();
-//
-//        OkHttpClient client = new OkHttpClient();
-////        client.setConnectTimeout(TIME_OUT * 1000, TimeUnit.MILLISECONDS);
-////        client.setReadTimeout(TIME_OUT * 1000, TimeUnit.MILLISECONDS);
-////        client.setWriteTimeout(TIME_OUT * 1000,TimeUnit.MILLISECONDS);
-//        client.setConnectTimeout(TIME_OUT, TimeUnit.SECONDS); // connect timeout
-//        client.setReadTimeout(TIME_OUT, TimeUnit.SECONDS);    // socket timeout
-//        client.setWriteTimeout(TIME_OUT,TimeUnit.SECONDS);
-//
-//        Request request = new Request.Builder()
-//                .url(urlString)
-//                .build();
-//
-//        Ln.d("NetHelper:getContent:request:" + request);
-//        Response response = client.newCall(request).execute();
-//
-//        Ln.d("NetHelper:getContent:response:" + response);
-//        String result = response.body().string();
-//        Ln.d("NetHelper:getContent:Response:" + result);
-//
-//        long t1 = System.currentTimeMillis() - time;
-//        Ln.d("NetHelper:getContent:t1:" + t1);
-//
-//        return result;
-//    }
-
     /**
      * 只有这里没有使用异步，但是OkHttpClient也是非常的简单明了
      *

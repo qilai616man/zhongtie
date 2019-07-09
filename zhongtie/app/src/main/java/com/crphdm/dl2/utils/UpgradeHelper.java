@@ -25,13 +25,14 @@ import com.jiuwei.upgrade_package_new.lib.obj.KbAppResult;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by gaoyf on 15/6/13.
+ * Modify by songzixuan on 19/07/04.
+ * 版本升级
  */
 public class UpgradeHelper {
     private static boolean downloadFileIsSuccess = false;
     private static String mPackageName = "com.crphdm.dl2";
     private static String mUrl = "http://222.35.26.200:7090/djcp/product/upgrade.action";
-
+            //检查升级
     public static void checkUpgrade(final Activity activity, final boolean silence, final int dialogStyle) {
         UpgradeModule.getInstance().autoInstall(true)
                 .autoInstall(true)
@@ -40,17 +41,19 @@ public class UpgradeHelper {
                 .url(mUrl)
 //                .url("http://115.28.43.225:8080/d/device/GetApplicationInfo.json")
                 .checkNewVersion(new UpgradeModule.OnCheckListener() {
+
+                   //检查开始
                     @Override
                     public void checkStart() {
 
                     }
-
+                    //检查错误
                     @Override
                     public void checkError(String s) {
                         if (!silence)
                             Toast.makeText(activity, "检查版本出错", Toast.LENGTH_SHORT).show();
                     }
-
+                    //新版本
                     @Override
                     public void newVersion(final KbAppResult kbAppObject) {
                         switch (dialogStyle) {
@@ -69,7 +72,7 @@ public class UpgradeHelper {
                                 break;
                         }
                     }
-
+                            //没有新版本
                     @Override
                     public void noNewVersion(KbAppResult kbAppObject) {
                         if (!silence)
@@ -77,33 +80,34 @@ public class UpgradeHelper {
                     }
                 });
     }
-
+                        //下载
     private static void download(KbAppResult kbAppObject) {
         UpgradeModule.getInstance().download(kbAppObject, true,
                 new UpgradeModule.OnDownloadListener() {
+                    //下载开始
                     @Override
                     public void downloadStart() {
 //                        Toast.makeText(getClass(), "开始下载", Toast.LENGTH_SHORT).show();
                     }
-
+                    //有下载
                     @Override
                     public void haveDownloading() {
 
                     }
-
+                    //下载成功
                     @Override
                     public void downloadSuccess(String s) {
                         Ln.d("UpgradeHelper:downloadSuccess");
                         UpgradeModule.getInstance().installFile();
                     }
-
+                    //下载失败
                     @Override
                     public void downloadError(String s) {
 
                     }
                 });
     }
-
+            //通过Wifi检查升级
     public static void checkUpgradeByWifi(final Activity activity, final boolean silence, final int dialogStyle) {
         if (getNetWorkType(activity) == Constant.NETWORKTYPE_WIFI) {
             Ln.d("UpgradeHelper:wifi");
@@ -112,33 +116,35 @@ public class UpgradeHelper {
                     .packageName(mPackageName)
                     .url(mUrl)
                     .checkNewVersion(new UpgradeModule.OnCheckListener() {
+                        //检查开始
                         @Override
                         public void checkStart() {
 
                         }
-
+                        //检查失败
                         @Override
                         public void checkError(String s) {
                             if (!silence)
                                 Toast.makeText(activity, "检查版本出错", Toast.LENGTH_SHORT).show();
                         }
-
+                        //新版本
                         @Override
                         public void newVersion(final KbAppResult kbAppObject) {
                             Ln.d("UpgradeHelper:kbAppObject.getPackageName：" + kbAppObject.getVersionName());
                             Toast.makeText(activity, "有新版本", Toast.LENGTH_SHORT).show();
                             UpgradeModule.getInstance().download(kbAppObject, false,
                                     new UpgradeModule.OnDownloadListener() {
+                                        //开始下载
                                         @Override
                                         public void downloadStart() {
 
                                         }
-
+                                        //有下载
                                         @Override
                                         public void haveDownloading() {
 
                                         }
-
+                                        //下载成功
                                         @Override
                                         public void downloadSuccess(String s) {
                                             Ln.d("UpgradeHelper:downloadSuccess");
@@ -159,14 +165,14 @@ public class UpgradeHelper {
                                                     break;
                                             }
                                         }
-
+                                        //下载失败
                                         @Override
                                         public void downloadError(String s) {
 
                                         }
                                     });
                         }
-
+                        //没有新版本
                         @Override
                         public void noNewVersion(KbAppResult kbAppObject) {
                             if (!silence)
@@ -177,7 +183,7 @@ public class UpgradeHelper {
             Ln.d("UpgradeHelper:other");
         }
     }
-
+    //显示升级对话框到系统
     private static void showUpgradeDialogToSystem(Activity activity, KbAppResult kbAppObject) {
         final StringBuffer desc = new StringBuffer(
                 Html.fromHtml(kbAppObject.getVersionDescription()))
@@ -198,7 +204,7 @@ public class UpgradeHelper {
                 .setNegativeButton("取消", null).show();
 
     }
-
+                //显示升级对话
     private static void showUpgradeDialogToElderlyAssistant(Activity activity, final KbAppResult kbAppObject) {
         final AlertDialog dialog = new AlertDialog.Builder(activity).create();
         Window window = dialog.getWindow();

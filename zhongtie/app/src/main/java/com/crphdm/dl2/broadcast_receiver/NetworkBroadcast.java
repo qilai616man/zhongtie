@@ -14,13 +14,15 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by gaoyufei on 16/3/1.
+ * Modify by songzixuan on 19/07/04.
+ * 网络广播接收器
  */
 public class NetworkBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (!UserModule.getInstance().isLogin())
             return;
+        //网络状态变化
 //        Toast.makeText(context, "网络状态变化", Toast.LENGTH_SHORT).show();
         final int loginType = UserModule.getInstance().getLoginType();
         final int netType = (loginType == UserModule.NET_STATE_ALL ? UserModule.NET_STATE_FIRST_LEVEL : loginType);

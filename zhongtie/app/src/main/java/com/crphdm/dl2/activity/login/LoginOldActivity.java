@@ -62,25 +62,25 @@ public class LoginOldActivity extends AppCompatActivity implements
             }
         });
     }
-
+        //邮箱登录
     @Override
     public void onEmailLoginOk() {
         Ln.d("LoginActivity:邮箱登录");
         onBackPressed();
     }
-
+        //手机号登陆
     @Override
     public void onPhoneLoginOk() {
         Ln.d("LoginActivity:手机号登陆");
         onBackPressed();
     }
-
+        //工号登录
     @Override
     public void onWorkNumberLoginOk() {
         Ln.d("LoginActivity:工号登录");
         onBackPressed();
     }
-
+     //张杰适配器
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -117,7 +117,7 @@ public class LoginOldActivity extends AppCompatActivity implements
             return null;
         }
     }
-
+    //选择项目选项
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
@@ -129,12 +129,12 @@ public class LoginOldActivity extends AppCompatActivity implements
     public void onBackPressed() {
         super.onBackPressed();
     }
-
+ //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
+//暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by qinqi on 15/12/25.
+ * Modify by songzixuan on 19/07/04.
  */
 public class Util {
     public static int getBookIdByUrl(String url){

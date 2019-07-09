@@ -17,7 +17,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by samsung on 14-11-19.
+ * Modify by songzixuan on 19/07/04.
+ * 裁剪图像
  */
 public class CropImage {
     public static final int REQUEST_CODE_GALLERY = 0x1;
@@ -33,14 +34,14 @@ public class CropImage {
         public void onCropOk(File file);
         public void onCancel();
     }
-
+            //裁剪图像
     public CropImage(Activity activity) {
         mActivity = activity;
 
 
 
     }
-
+            //设置监听
     public void setCropListener(OnCropImageListener cropImageListener){
         mListener = cropImageListener;
     }
@@ -53,11 +54,11 @@ public class CropImage {
             mFileTemp = new File(mActivity.getFilesDir(), getFileName());
         }
     }
-
+            //获取文件名
     private String getFileName(){
         return "ICON_" + System.currentTimeMillis() + ".jpg";
     }
-
+            //开始裁切
     public void startCropImage() {
         Intent intent = new Intent(mActivity, eu.janmuller.android.simplecropimage.CropImage.class);
         intent.putExtra(eu.janmuller.android.simplecropimage.CropImage.IMAGE_PATH, mFileTemp.getPath());
@@ -78,7 +79,7 @@ public class CropImage {
 
         fragment.startActivityForResult(intent, REQUEST_CODE_CROP_IMAGE);
     }
-
+            //复制
     public static void copyStream(InputStream input, OutputStream output)
             throws IOException {
 
@@ -88,7 +89,7 @@ public class CropImage {
             output.write(buffer, 0, bytesRead);
         }
     }
-
+        //打开图片
     public void openGallery() {
         initFile();
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -101,7 +102,7 @@ public class CropImage {
         photoPickerIntent.setType("image/*");
         fragment.startActivityForResult(photoPickerIntent, REQUEST_CODE_GALLERY);
     }
-
+         //拿图片
     public void takePicture(Uri takePicUri) {
         initFile();
 
@@ -148,7 +149,7 @@ public class CropImage {
             Ln.d("cannot take picture");
         }
     }
-
+            //在页面的显示结果
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != mActivity.RESULT_OK) {
             return;

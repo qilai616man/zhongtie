@@ -18,46 +18,51 @@ import com.crphdm.dl2.utils.Constant;
 import com.goyourfly.gdownloader.utils.Ln;
 import com.umeng.analytics.MobclickAgent;
 
-//import cn.jpush.android.api.JPushInterface;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by qinqi on 15/11/19.
+ * Modify by 宋子轩 on 19/07/02.
+ * 欢迎页面
  */
+
 public class WelcomeActivity extends Activity {
+    //登录状态
     private static final int ACTIVITY_REQUEST_CODE_LOGIN_ACTIVITY = 1;
     private Integer mNetState;
     private boolean isExhibition;
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
+        //刷新
         refreshNetState();
-//        getNetExhibition();
     }
 
-
+    //继续，重新开始
     @Override
     protected void onResume() {
-//        JPushInterface.onResume(this);
+        //统计页面跳转
         MobclickAgent.onPageStart("欢迎页");
+        //统计应用时长
         MobclickAgent.onResume(this);
         super.onResume();
     }
 
+    //暂停
     @Override
     protected void onPause() {
-//        JPushInterface.onPause(this);
+        //统计页面跳转
         MobclickAgent.onPageEnd("欢迎页");
+        //统计应用时长
         MobclickAgent.onPause(this);
         super.onPause();
     }
 
-
+    //获取登录状态
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
@@ -65,10 +70,9 @@ public class WelcomeActivity extends Activity {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+    //用户按下屏幕时发生
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -77,7 +81,7 @@ public class WelcomeActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
+        //刷新网络状态
     private void refreshNetState() {
         UserModuleImpl.getInstance().getNetState()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,7 +98,6 @@ public class WelcomeActivity extends Activity {
                     @Override
                     public void call(Throwable throwable) {
                         Ln.d("WelcomeActivity:getNetState:error");
-
                     }
                 }, new Action0() {
                     @Override
@@ -123,7 +126,6 @@ public class WelcomeActivity extends Activity {
                     @Override
                     public void call(Boolean aBoolean) {
                         isExhibition = aBoolean;
-
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -142,7 +144,8 @@ public class WelcomeActivity extends Activity {
                 });
 
     }
-    private void getExhibition(){
+    //判断是否是展示版
+   private void getExhibition(){
         Intent serviceIntent = new Intent(WelcomeActivity.this, MyService.class);
         startService(serviceIntent);
 
@@ -158,7 +161,6 @@ public class WelcomeActivity extends Activity {
             new CountDownTimer(1 * 1000, 1000) {
                 @Override
                 public void onTick(long l) {
-
                 }
 
                 @Override
@@ -170,7 +172,6 @@ public class WelcomeActivity extends Activity {
                         finish();
                     } else {
                         final String username = "t200100001";
-//                        final String username = "t232100001";
                         String password = "123456";
 
                         final String md5Password = new MD5().md5(password);
@@ -212,13 +213,12 @@ public class WelcomeActivity extends Activity {
             }.start();
         }
     }
+    //是否正常
     private void getNarmal(){
         Intent serviceIntent = new Intent(WelcomeActivity.this, MyService.class);
         startService(serviceIntent);
-
         String showWelcome = getIntent().getStringExtra(Constant.NOT_SHOW_WELCOME);
         if(!TextUtils.isEmpty(showWelcome)){
-
             if (!UserModuleImpl.getInstance().isLogin()) {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 intent.putExtra(LoginActivity.ACTIVITY_FROM,LoginActivity.ACTIVITY_FROM_WELCOME_ACTIVITY);
@@ -228,9 +228,7 @@ public class WelcomeActivity extends Activity {
             new CountDownTimer(1 * 1000, 1000) {
                 @Override
                 public void onTick(long l) {
-
                 }
-
                 @Override
                 public void onFinish() {
                     if (UserModuleImpl.getInstance().isLogin()) {
@@ -241,7 +239,6 @@ public class WelcomeActivity extends Activity {
                         intent.putExtra(LoginActivity.ACTIVITY_FROM,LoginActivity.ACTIVITY_FROM_WELCOME_ACTIVITY);
                         startActivityForResult(intent, ACTIVITY_REQUEST_CODE_LOGIN_ACTIVITY);
                     }
-
                 }
             }.start();
         }

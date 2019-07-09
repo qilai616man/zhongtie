@@ -1,6 +1,5 @@
 package com.crphdm.dl2.fragments.login;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -28,7 +27,6 @@ import com.crphdm.dl2.utils.Util;
 import com.crphdm.dl2.views.ClearEditTextNew;
 import com.goyourfly.gdownloader.utils.ErrorUtils;
 import com.umeng.analytics.MobclickAgent;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,6 +34,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+
+/**
+ * 手机号注册
+ */
 
 public class PhoneRegisterFragment extends Fragment {
     @Bind(R.id.username)
@@ -117,33 +119,27 @@ public class PhoneRegisterFragment extends Fragment {
     private void delayBtn() {
         new DelayHelper().delayButton(getVerifyCode);
     }
-
     @OnClick(R.id.register)
     void register() {
         String username = this.username.getText().toString();
         String verifyCode = this.verifyCode.getText().toString();
         String password = this.password.getText().toString();
-
         if (username.equals("")) {
             Toast.makeText(getActivity(), "用户名不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if(username.length() != 11){
             Toast.makeText(getActivity(), "用户名不符合规范", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if (verifyCode.equals("")) {
             Toast.makeText(getActivity(), "验证码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if (password.equals("")) {
             Toast.makeText(getActivity(), "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if(password.length() < 6 || password.length() >20 ){
             Toast.makeText(getActivity(),"密码由6-20位英文字母、数字或者符号组成",Toast.LENGTH_SHORT).show();
             return;
@@ -153,7 +149,6 @@ public class PhoneRegisterFragment extends Fragment {
             Toast.makeText(getActivity(),"密码由6-20位英文字母、数字或者符号组成",Toast.LENGTH_SHORT).show();
             return;
         }
-
         if(!dealIsOk){
             Toast.makeText(getActivity(),"请阅读并同意注册用户协议",Toast.LENGTH_SHORT).show();
             return;
@@ -234,18 +229,18 @@ public class PhoneRegisterFragment extends Fragment {
             }
         });
     }
-
+ //销毁
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+//恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("用户注册页");
     }
-
+//暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("用户注册页");

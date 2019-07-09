@@ -10,7 +10,7 @@ import android.graphics.Canvas;
 import android.view.View;
 
 /**
- * Created by Administrator on 2016/4/29.
+ * Modify by songzixuan on 19/07/04.
  */
 public class Decoration extends RecyclerView.ItemDecoration {
     /**

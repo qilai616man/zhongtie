@@ -17,6 +17,7 @@ import com.crphdm.dl2.R;
 
 /**
  * Created by gaoyufei on 15/9/30.
+ * 好看的进度条
  */
 public class BeautifulProgressbar extends View {
 

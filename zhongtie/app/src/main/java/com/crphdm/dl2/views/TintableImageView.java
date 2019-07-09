@@ -13,13 +13,14 @@ import com.crphdm.dl2.R;
 
 /**
  * https://gist.github.com/tylerchesley/5d15d859be4f3ce31213
+ * 图片着色
  */
 public class TintableImageView extends ImageView {
 
     private ColorStateList tint;
     private Drawable dNormal;
     private Drawable dSelect;
-
+            //图片着色
     public TintableImageView(Context context) {
         super(context);
     }
@@ -45,7 +46,7 @@ public class TintableImageView extends ImageView {
                 R.styleable.TintableImageView_select);
         a.recycle();
     }
-
+                //可绘制状态已更改
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
@@ -54,17 +55,17 @@ public class TintableImageView extends ImageView {
             updateDrawable();
         }
     }
-
+        //设置颜色过滤器
     public void setColorFilter(ColorStateList tint) {
         this.tint = tint;
         super.setColorFilter(tint.getColorForState(getDrawableState(), 0));
     }
-
+        //更新色调颜色
     private void updateTintColor() {
         int color = tint.getColorForState(getDrawableState(), 0);
         setColorFilter(color);
     }
-
+        //更新图片
     public void updateDrawable() {
         if (isSelected()) {
             Log.d("", "I am select:" + dSelect);

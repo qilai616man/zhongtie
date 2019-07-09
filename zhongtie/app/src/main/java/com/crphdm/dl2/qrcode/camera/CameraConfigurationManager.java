@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.crphdm.dl2.qrcode.camera;
 
 import android.content.Context;
@@ -26,6 +10,11 @@ import android.view.WindowManager;
 
 import java.lang.reflect.Method;
 import java.util.regex.Pattern;
+
+/**
+ * Modify by songzixuan on 19/07/04.
+ * 相机配置管理器
+ */
 
 final class CameraConfigurationManager {
 
@@ -47,7 +36,8 @@ final class CameraConfigurationManager {
   }
 
   /**
-   * Reads, one time, values from the camera that are needed by the app.
+   *一次读取应用程序所需的相机值
+   *
    */
   void initFromCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
@@ -63,10 +53,10 @@ final class CameraConfigurationManager {
   }
 
   /**
-   * Sets the camera up to take preview images which are used for both preview and decoding.
-   * We detect the preview format here so that buildLuminanceSource() can build an appropriate
-   * LuminanceSource subclass. In the future we may want to force YUV420SP as it's the smallest,
-   * and the planar Y can be used for barcode scanning without a copy in some cases.
+   *设置相机以拍摄用于预览和解码的预览图像。
+   *我们在这里检测预览格式，以便buildLuminanceSource（）可以构建一个合适的
+   * LuminanceSource子类。 在未来我们可能想要强制YUV420SP，因为它是最小的，
+   *在某些情况下，平面Y可用于条形码扫描而无需复制。
    */
   void setDesiredCameraParameters(Camera camera) {
     Camera.Parameters parameters = camera.getParameters();
@@ -76,8 +66,7 @@ final class CameraConfigurationManager {
     setZoom(parameters);
     //setSharpness(parameters);
     //modify here
-
-//    camera.setDisplayOrientation(90);
+    //camera.setDisplayOrientation(90);
     //兼容2.1
     setDisplayOrientation(camera, 90);
     camera.setParameters(parameters);
@@ -98,7 +87,9 @@ final class CameraConfigurationManager {
   String getPreviewFormatString() {
     return previewFormatString;
   }
-
+  /**
+   * 获得相机分辨率
+   */
   private static Point getCameraResolution(Camera.Parameters parameters, Point screenResolution) {
 
     String previewSizeValueString = parameters.get("preview-size-values");

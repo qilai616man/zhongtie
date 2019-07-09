@@ -19,17 +19,17 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
         this.fragmentList = fragmentList;
         this.mtitles = titles;
     }
-
+    //获得Item
     @Override
     public Fragment getItem(int position) {
         return fragmentList.get(position);
     }
-
+    //获取数量
     @Override
     public int getCount() {
         return fragmentList.size();
     }
-
+    //配置页面标题
     @Override
     public CharSequence getPageTitle(int position) {
         return mtitles.get(position);

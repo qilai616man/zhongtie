@@ -35,7 +35,7 @@ import com.google.zxing.Result;
 import java.util.Vector;
 
 /**
- * This class handles all the messaging which comprises the state machine for capture.
+ * 此类处理包含要捕获的状态机的所有消息传递。
  */
 public final class CaptureActivityHandler extends Handler {
 
@@ -58,7 +58,7 @@ public final class CaptureActivityHandler extends Handler {
             new ViewfinderResultPointCallback(activity.getViewfinderView()));
     decodeThread.start();
     state = State.SUCCESS;
-    // Start ourselves capturing previews and decoding.
+    // 开始捕捉预览和解码。
     CameraManager.get().startPreview();
     restartPreviewAndDecode();
   }
@@ -68,8 +68,8 @@ public final class CaptureActivityHandler extends Handler {
     switch (message.what) {
       case R.id.auto_focus:
         //Log.d(TAG, "Got auto-focus message");
-        // When one auto focus pass finishes, start another. This is the closest thing to
-        // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
+        //当一个自动对焦传递完成时，启动另一个。 这是最接近的事情
+        //连续自动对焦。 它似乎确实有点狩猎，但我不知道还能做什么。
         if (state == State.PREVIEW) {
           CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
         }
@@ -82,15 +82,14 @@ public final class CaptureActivityHandler extends Handler {
         Log.d(TAG, "Got decode succeeded message");
         state = State.SUCCESS;
         Bundle bundle = message.getData();
-        
-        /***********************************************************************/
+
         Bitmap barcode = bundle == null ? null :
-            (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//���ñ����߳�
+            (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);
         
-        activity.handleDecode((Result) message.obj, barcode);//���ؽ��?        /***********************************************************************/
+        activity.handleDecode((Result) message.obj, barcode);
         break;
       case R.id.decode_failed:
-        // We're decoding as fast as possible, so when one decode fails, start another.
+        // 我们正在尽可能快地解码，因此当一个解码失败时，启动另一个。
         state = State.PREVIEW;
         CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
         break;
@@ -108,7 +107,7 @@ public final class CaptureActivityHandler extends Handler {
         break;
     }
   }
-
+          //同步退出
   public void quitSynchronously() {
     state = State.DONE;
     CameraManager.get().stopPreview();
@@ -120,7 +119,7 @@ public final class CaptureActivityHandler extends Handler {
       // continue
     }
 
-    // Be absolutely sure we don't send any queued up messages
+    // 确保不发送排队的消息
     removeMessages(R.id.decode_succeeded);
     removeMessages(R.id.decode_failed);
   }

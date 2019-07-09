@@ -9,6 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * *Modify by songzixuan on 19/07/04.
+ * RecyclerView 的界面装饰
+ */
+
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{
@@ -29,7 +34,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         a.recycle();
         setOrientation(orientation);
     }
-
+        //设置方向
     public void setOrientation(int orientation) {
         if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
             throw new IllegalArgumentException("invalid orientation");
@@ -45,7 +50,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             drawHorizontal(c, parent);
         }
     }
-
+            //画垂直
     public void drawVertical(Canvas c, RecyclerView parent) {
         final int left = parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
@@ -61,7 +66,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             mDivider.draw(c);
         }
     }
-
+            //画水平
     public void drawHorizontal(Canvas c, RecyclerView parent) {
         final int top = parent.getPaddingTop();
         final int bottom = parent.getHeight() - parent.getPaddingBottom();
@@ -77,7 +82,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             mDivider.draw(c);
         }
     }
-
+                //获取偏移量
     @Override
     public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
         if (mOrientation == VERTICAL_LIST) {

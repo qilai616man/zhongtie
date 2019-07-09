@@ -35,6 +35,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 电话找回密码
+ */
 public class PhoneFindPasswordFragment extends Fragment {
     public static final int WAIT_TIME = 30;
     private int time = WAIT_TIME;

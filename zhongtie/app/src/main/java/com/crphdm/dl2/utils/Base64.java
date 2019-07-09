@@ -1,5 +1,9 @@
 package com.crphdm.dl2.utils;
 
+/**
+ * base64并不算是一种加密的算法，只是一种基于64个可打印字符来表示二进制数据的表示方法。
+ */
+
 public final class Base64 {
 
 	private static final int BASELENGTH = 128;

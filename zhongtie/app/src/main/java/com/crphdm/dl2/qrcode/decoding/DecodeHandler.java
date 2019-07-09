@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.crphdm.dl2.qrcode.decoding;
 
 import android.os.Bundle;
@@ -34,7 +18,7 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 
 import java.util.Hashtable;
-
+       //解码
 final class DecodeHandler extends Handler {
 
   private static final String TAG = DecodeHandler.class.getSimpleName();
@@ -47,7 +31,7 @@ final class DecodeHandler extends Handler {
     multiFormatReader.setHints(hints);
     this.activity = activity;
   }
-
+            //处理消息
   @Override
   public void handleMessage(Message message) {
     switch (message.what) {
@@ -62,12 +46,12 @@ final class DecodeHandler extends Handler {
   }
 
   /**
-   * Decode the data within the viewfinder rectangle, and time how long it took. For efficiency,
-   * reuse the same reader objects from one decode to the next.
+   * 解码取景器矩形内的数据，并计算所需的时间。
+   * 为了提高效率从一个解码到下一个解码重用相同的读取器对象。
    *
-   * @param data   The YUV preview frame.
-   * @param width  The width of the preview frame.
-   * @param height The height of the preview frame.
+   * @param data   YUV预览框。
+   * @param width  预览框的宽度。
+   * @param height 预览框的高度。
    */
   private void decode(byte[] data, int width, int height) {
     long start = System.currentTimeMillis();

@@ -82,14 +82,14 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
             }
         }
     };
-
+    //当另一个组件通过调用bindService()与服务绑定时，系统将调用此方法
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
 //        return null;
     }
-
+    //首次创建服务时，系统将调用此方法
     @Override
     public void onCreate() {
         super.onCreate();
@@ -110,7 +110,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
             }
         }, 0, 1000 * 90);
     }
-
+    //开始服务
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Ln.d("MyService:onStartCommand");
@@ -139,7 +139,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
 
         return super.onStartCommand(intent, flags, startId);
     }
-
+    //准备开始
     @Override
     public void onPreStart(String url) {
         Ln.d("MyService:onPreStart:url:" + url);
@@ -149,7 +149,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.state = DbDownloadExt.DOWNLOAD_STATE_PREPARING;
         EventBus.getDefault().post(event);
     }
-
+    //界面被显示出来的时候执行
     @Override
     public void onStart(String url, long totalLength, long localLength) {
         Ln.d("MyService:onStart:url:" + localLength + "/" + totalLength);
@@ -159,7 +159,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.state = DbDownloadExt.DOWNLOAD_STATE_DOWNLOADING;
         EventBus.getDefault().post(event);
     }
-
+    //下载时触发
     @Override
     public void onProgress(String url, long totalLength, long downloadedBytes) {
         Ln.d("MyService:onProgress:" + downloadedBytes + "/" + totalLength);
@@ -172,7 +172,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.totalLength = totalLength;
         EventBus.getDefault().post(event);
     }
-
+    //暂停
     @Override
     public void onPause(String url) {
         Ln.d("MyService:onPause:url:" + url);
@@ -183,7 +183,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         EventBus.getDefault().post(event);
 
     }
-
+    //视频由于要播放下一帧而需要缓冲时触发
     @Override
     public void onWaiting(String url) {
         Ln.d("MyService:onWaiting:url:" + url);
@@ -193,7 +193,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+    //关闭对话框
     @Override
     public void onCancel(String url) {
         Ln.d("MyService:onCancel:url:" + url);
@@ -204,7 +204,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+    //关闭当前界面
     @Override
     public void onFinish(final String url) {
         Ln.d("MyService:onFinish:url:" + url);
@@ -243,7 +243,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         event.url = url;
         EventBus.getDefault().post(event);
     }
-
+    //错误
     @Override
     public void onError(final String url, String err) {
         Ln.d("MyService:onError:url:" + url);
@@ -279,7 +279,7 @@ public class MyService extends Service implements DownloadHelper.DownloadListene
         EventBus.getDefault().post(event);
 
     }
-
+    //刷新网络状态
     private void refreshNetState() {
         Log.i("rere","rerere");
         UserModuleImpl.getInstance().getNetState()

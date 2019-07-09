@@ -3,13 +3,15 @@ package com.crphdm.dl2.user.obj;
 import com.crphdm.dl2.user.obj.net.NetObject;
 
 /**
- * Created by qinqi on 15/12/28.
+ * Modify by songzixuan on 19/07/03.
  */
 public class PgResult {
+    //状态
     private boolean status;
+    //错误
     private int errorCode;
+    //信息
     private String message;
-
 
     public static PgResult getPgByNet(NetObject net) {
         PgResult pg = new PgResult();

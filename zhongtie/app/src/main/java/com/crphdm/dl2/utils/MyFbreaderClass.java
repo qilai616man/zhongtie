@@ -48,7 +48,7 @@ public class MyFbreaderClass {
         myFBReaderApp=null;
         return 0+"";
     }
-
+   //在文件路径下创建图书
     private static Book createBookForFile(ZLFile file) {
         Log.i("ccccc","createBookFile"+file);
         if (file == null) {
@@ -62,16 +62,7 @@ public class MyFbreaderClass {
         }
         Log.i("cccccc","collection=="+myFBReaderApp.Collection);
         book = myFBReaderApp.Collection.getBookByFile(file);
-//        if (file.isArchive()) {
-//            for (ZLFile child : file.children()) {
-//                Log.i("ccccc","child===1"+child);
-//                book = myFBReaderApp.Collection.getBookByFile(child);
-//                Log.i("ccccc","book===1"+book);
-//                if (book != null) {
-//                    return book;
-//                }
-//            }
-//        }
+
         return book;
     }
 

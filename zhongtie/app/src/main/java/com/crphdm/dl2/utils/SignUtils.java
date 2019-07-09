@@ -1,10 +1,13 @@
 package com.crphdm.dl2.utils;
 
-import android.util.Log;
-
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
+
+
+/**
+ * 生成sign(签名)，以及校验工具类
+ */
 
 public class SignUtils {
 

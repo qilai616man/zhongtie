@@ -72,7 +72,6 @@ public class MyApplication extends ZLAndroidApplication {
         SelectManager.init(this);
         DatabaseManager.getInstance().init(this);
 
-
         GDownloader.init(this,
                 Constant.FILE_DOWNLOAD_PATH,
                 2, null);

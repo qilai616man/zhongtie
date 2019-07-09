@@ -58,9 +58,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 图书详情页面
+ */
 public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
-    //图书详情页面
     @Bind(R.id.bookCover)
     ImageView mBookCover;
     @Bind(R.id.progress)

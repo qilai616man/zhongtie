@@ -18,7 +18,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/10.
+ * Modify by songzixuan on 19/07/04.
+ * 修改地址可选地址adapter
  */
 public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.ViewHolder> {
     //修改地址可选地址adapter
@@ -30,22 +31,22 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
     public AddressListAdapter(Context context) {
         mContext = context;
     }
-
+    //设置监听
     public void setListener(OnAddressChangeListener listener) {
         Ln.d("MiningMenuAdapter:setListener");
         mListener = listener;
     }
-
+    //设置数据
     public void setData( List<PgAddress> list){
         mAddressList = list;
     }
-
+    //承载每个子项的布局
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_address_list_layout, parent, false);
         return new ViewHolder(view);
     }
-
+    //将每个子项holder绑定数据
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final PgAddress address = mAddressList.get(position);
@@ -69,7 +70,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
             }
         });
     }
-
+    //返回数组
     @Override
     public int getItemCount() {
         return mAddressList == null ? 0 : mAddressList.size();

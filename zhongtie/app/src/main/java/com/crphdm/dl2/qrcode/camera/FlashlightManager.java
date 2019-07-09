@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2010 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.crphdm.dl2.qrcode.camera;
 
 import android.os.IBinder;
@@ -23,13 +7,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * This class is used to activate the weak light on some camera phones (not flash)
- * in order to illuminate surfaces for scanning. There is no official way to do this,
- * but, classes which allow access to this function still exist on some devices.
- * This therefore proceeds through a great deal of reflection.
+ * 此类用于激活某些拍照手机（不是闪光灯）的微弱光线
+ * 为了照亮表面进行扫描。 没有正式的方法来做到这一点，
+ * 但是，某些设备上仍然存在允许访问此功能的类。
+ * 因此，这需要经过大量的反思。
  *
- * See <a href="http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/">
- * http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/</a> and
+ * 请参考 <a href="http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/">
+ * http://almondmendoza.com/2009/01/05/changing-the-screen-brightness-programatically/</a> 和
  * <a href="http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java">
  * http://code.google.com/p/droidled/source/browse/trunk/src/com/droidled/demo/DroidLED.java</a>.
  * Thanks to Ryan Alford for pointing out the availability of this class.
@@ -44,8 +28,10 @@ final class FlashlightManager {
     iHardwareService = getHardwareService();
     setFlashEnabledMethod = getSetFlashEnabledMethod(iHardwareService);
     if (iHardwareService == null) {
+      //该设备支持控制手电筒
       Log.v(TAG, "This device does supports control of a flashlight");
     } else {
+      //此设备不支持控制手电筒
       Log.v(TAG, "This device does not support control of a flashlight");
     }
   }
@@ -65,6 +51,10 @@ final class FlashlightManager {
     setFlashlight(false);
   }
 
+
+  /**
+   * 获取硬件服务
+   */
   private static Object getHardwareService() {
     Class<?> serviceManagerClass = maybeForName("android.os.ServiceManager");
     if (serviceManagerClass == null) {
@@ -93,7 +83,9 @@ final class FlashlightManager {
 
     return invoke(asInterfaceMethod, null, hardwareService);
   }
-
+  /**
+   * 获取设置Flash启用方法
+   */
   private static Method getSetFlashEnabledMethod(Object iHardwareService) {
     if (iHardwareService == null) {
       return null;
@@ -125,7 +117,7 @@ final class FlashlightManager {
       return null;
     }
   }
-
+        //调用
   private static Object invoke(Method method, Object instance, Object... args) {
     try {
       return method.invoke(instance, args);
@@ -140,7 +132,7 @@ final class FlashlightManager {
       return null;
     }
   }
-
+    //设置闪光灯
   private static void setFlashlight(boolean active) {
     if (iHardwareService != null) {
       invoke(setFlashEnabledMethod, iHardwareService, active);

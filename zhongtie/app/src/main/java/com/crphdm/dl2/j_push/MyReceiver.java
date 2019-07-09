@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-//import cn.jpush.android.api.JPushInterface;
-
 /**
  * 自定义接收器
  * <p/>

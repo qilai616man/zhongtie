@@ -8,7 +8,8 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * Created by gaoyufei on 15/9/26.
+ * Modify by songzixuan on 19/07/04.
+ * 删除线文本框
  */
 public class StrikeTextView extends TextView{
     public StrikeTextView(Context context) {

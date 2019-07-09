@@ -42,8 +42,10 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 图书分类页面
+ */
 public class ClassifyDetailActivity extends AppCompatActivity {
-    //图书分类页面
     @Bind(R.id.sv_classify_detail)
     ScrollView mScrollView;
     @Bind(R.id.rcl_classify_detail_list)
@@ -600,14 +602,18 @@ public class ClassifyDetailActivity extends AppCompatActivity {
         return list;
     }
 
+
+    /**
+     * 处理操作栏项目点击此处。 操作栏将
+     * 自动处理Home / Up按钮上的点击，这么久
+     * 在AndroidManifest.xml中指定父活动时。
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //点击home界面
         if (id == android.R.id.home) {
             onBackPressed();
         }

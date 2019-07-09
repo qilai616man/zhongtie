@@ -20,6 +20,7 @@ import java.util.List;
  * Created by poliveira on 03/11/2014.
  */
 public class ParallaxRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    //滚动乘数
     private final float SCROLL_MULTIPLIER = 0f;
 
     public static class VIEW_TYPES {

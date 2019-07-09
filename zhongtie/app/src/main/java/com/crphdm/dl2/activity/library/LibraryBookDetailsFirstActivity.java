@@ -26,8 +26,11 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 
+/**
+ * 图书馆和资源共用详情页
+ */
 public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
-    //图书馆和资源共用详情页
+
     @Bind(R.id.sv_library_book_detail)
     ScrollView mScrollView;
     @Bind(R.id.iv_book_url)
@@ -101,7 +104,7 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
                     }
                 });
     }
-
+        //获取本地数据
     private void initData() {
         if (mUserInfo != null) {
 
@@ -140,7 +143,7 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
             }
         }
     }
-
+        //刷新
     private void refresh() {
         Ln.d("LibraryBookDetailFirstActivity:refresh" );
         Glide.with(LibraryBookDetailsFirstActivity.this)
@@ -171,7 +174,7 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
         mContents.setText(buffer.toString());
     }
 
-
+//处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -180,13 +183,13 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
+//恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("一级图书馆图书详情页");
         MobclickAgent.onResume(this);
     }
-
+//暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("一级图书馆图书详情页");

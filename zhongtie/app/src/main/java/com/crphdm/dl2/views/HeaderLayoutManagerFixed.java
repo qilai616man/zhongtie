@@ -17,8 +17,8 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 /**
- * A {@link RecyclerView.LayoutManager} implementation which provides
- * similar functionality to {@link android.widget.ListView}.
+ * 提供的{@link RecyclerView.LayoutManager}实现
+ * 与{@link android.widget.ListView}类似的功能。
  */
 public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
 
@@ -34,80 +34,77 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
 
 
     /**
-     * While trying to find next view to focus, LinearLayoutManager will not try to scroll more
-     * than
-     * this factor times the total space of the list. If layout is vertical, total space is the
-     * height minus padding, if layout is horizontal, total space is the width minus padding.
+     * 在尝试查找下一个要聚焦的视图时，LinearLayoutManager不会尝试滚动更多
+     * 此因子乘以列表的总空间。 如果布局是垂直的，那么总空间就是
+     * height减去填充，如果布局是水平的，则总空间是宽度减去填充。
      */
     private static final float MAX_SCROLL_FACTOR = 0.33f;
     private int mHeaderIncrementFixer = 0;
 
 
     /**
-     * Current orientation. Either {@link #HORIZONTAL} or {@link #VERTICAL}
+     * 目前的方向。 {@link #HORIZONTAL}或{@link #VERTICAL}
      */
     private int mOrientation;
 
     /**
-     * Helper class that keeps temporary rendering state.
-     * It does not keep state after rendering is complete but we still keep a reference to re-use
-     * the same object.
+     * Helper类保持临时呈现状态。
+     * 渲染完成后它不会保持状态，但我们仍然提供重用的参考同一个对象。
      */
     private RenderState mRenderState;
 
     /**
-     * Many calculations are made depending on orientation. To keep it clean, this interface
-     * helps {@link HeaderLayoutManagerFixed} make those decisions.
-     * Based on {@link #mOrientation}, an implementation is lazily created in
-     * {@link #ensureRenderState} method.
+     * 根据方向进行许多计算。 为了保持干净，这个界面
+     * 帮助{@link HeaderLayoutManagerFixed}做出这些决定。
+     * 基于{@link #mOrientation}，一个实现是懒洋洋地创建的
+     * {@link #ensureRenderState}方法。
      */
     OrientationHelper mOrientationHelper;
 
     /**
-     * We need to track this so that we can ignore current position when it changes.
+     * 我们需要跟踪这一点，以便我们可以在它发生变化时忽略当前位置。
      */
     private boolean mLastStackFromEnd;
 
 
     /**
-     * Defines if layout should be calculated from end to start.
+     * 定义是否应从头到尾计算布局。
      *
      * @see #mShouldReverseLayout
      */
     private boolean mReverseLayout = false;
 
     /**
-     * This keeps the final value for how LayoutManager shouls start laying out views.
-     * It is calculated by checking {@link #getReverseLayout()} and View's layout direction.
-     * {@link #onLayoutChildren(RecyclerView.Recycler, RecyclerView.State)} is run.
+     * 这保留了LayoutManager shouls开始布局视图的最终值。
+     * 通过检查{@link #getReverseLayout（）}和View的布局方向来计算。
+     * {@link #onLayoutChildren（RecyclerView.Recycler，RecyclerView.State）}正在运行。
      */
     private boolean mShouldReverseLayout = false;
 
     /**
-     * Works the same way as {@link android.widget.AbsListView#setStackFromBottom(boolean)} and
-     * it supports both orientations.
-     * see {@link android.widget.AbsListView#setStackFromBottom(boolean)}
+     * 与{@link android.widget.AbsListView #setStackFromBottom（boolean）}的工作方式相同
+     * 它支持两种方向。
+     * 请参阅{@link android.widget.AbsListView #setStackFromBottom（boolean）}
      */
     private boolean mStackFromEnd = false;
 
     /**
-     * When LayoutManager needs to scroll to a position, it sets this variable and requests a
-     * layout which will check this variable and re-layout accordingly.
+     * 当LayoutManager需要滚动到某个位置时，它会设置此变量并请求a
+     * 布局将检查此变量并相应地重新布局。
      */
     private int mPendingScrollPosition = RecyclerView.NO_POSITION;
 
     /**
-     * Used to keep the offset value when {@link #scrollToPositionWithOffset(int, int)} is
-     * called.
+     * 用于在调用{@link #scrollToPositionWithOffset（int，int）}时保留偏移量值。
      */
     private int mPendingScrollPositionOffset = INVALID_OFFSET;
 
     private SavedState mPendingSavedState = null;
 
     /**
-     * Creates a vertical LinearLayoutManager
+     * 创建一个垂直LinearLayoutManager
      *
-     * @param context Current context, will be used to access resources.
+     * @param context 当前上下文，将用于访问资源。
      */
     public HeaderLayoutManagerFixed(Context context) {
         this(context, VERTICAL, false);
@@ -115,10 +112,9 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * @param context       Current context, will be used to access resources.
-     * @param orientation   Layout orientation. Should be {@link #HORIZONTAL} or {@link
-     *                      #VERTICAL}.
-     * @param reverseLayout When set to true, renders the layout from end to start.
+     * @param context       当前上下文将用于访问资源。
+     * @param orientation   布局方向。 应该是{@link #HORIZONTAL}或{@link #VERTICAL}。
+     * @param reverseLayout 设置为true时，将布局从end添加到start。
      */
     public HeaderLayoutManagerFixed(Context context, int orientation, boolean reverseLayout) {
         setOrientation(orientation);
@@ -133,7 +129,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
-
+                //保存实例
     @Override
     public Parcelable onSaveInstanceState() {
         if (mPendingSavedState != null) {
@@ -163,7 +159,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
         state.mOrientation = mOrientation;
         return state;
     }
-
+            //关于还原实例状态
     @Override
     public void onRestoreInstanceState(Parcelable state) {
         if (state instanceof SavedState) {
@@ -178,7 +174,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * @return true if {@link #getOrientation()} is {@link #HORIZONTAL}
+     * @return 如果{@link #getOrientation（）}是{@link #HORIZONTAL}，则为true
      */
     @Override
     public boolean canScrollHorizontally() {
@@ -186,7 +182,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * @return true if {@link #getOrientation()} is {@link #VERTICAL}
+     * @return 如果{@link #getOrientation（）}是{@link #VERTICAL}，则为true
      */
     @Override
     public boolean canScrollVertically() {
@@ -194,7 +190,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Compatibility support for {@link android.widget.AbsListView#setStackFromBottom(boolean)}
+     * 兼容性支持{@link android.widget.AbsListView #setStackFromBottom（boolean）}
      */
     public void setStackFromEnd(boolean stackFromEnd) {
         if (mPendingSavedState != null && mPendingSavedState.mStackFromEnd != stackFromEnd) {
@@ -213,19 +209,18 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Returns the current orientaion of the layout.
+     * 返回布局的当前方向。
      *
-     * @return Current orientation.
-     * @see #mOrientation
-     * @see #setOrientation(int)
+     * @return 目前的方向。
+     * @see #  方向
+     * @see # 设置方向（int）
      */
     public int getOrientation() {
         return mOrientation;
     }
 
     /**
-     * Sets the orientation of the layout. {@link android.support.v7.widget.LinearLayoutManager}
-     * will do its best to keep scroll position.
+     * 设置布局的方向。 {@link android.support.v7.widget.LinearLayoutManager}将尽力保持滚动位置。
      *
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
      */
@@ -246,9 +241,9 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Calculates the view layout order. (e.g. from end to start or start to end)
-     * RTL layout support is applied automatically. So if layout is RTL and
-     * {@link #getReverseLayout()} is {@code true}, elements will be laid out starting from left.
+     * 计算视图布局顺序。 （例如从结束到开始或从开始到结束）
+     * 自动应用RTL布局支持。 所以如果布局是RTL和{@link #getReverseLayout（）}
+     * 是{@code true}，元素将从左边开始布局。
      */
     private void resolveShouldLayoutReverse() {
         // A == B is the same result, but we rather keep it readable
@@ -260,7 +255,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Returns if views are laid out from the opposite direction of the layout.
+     * 如果视图从布局的相反方向布局，则返回。
      *
      * @return If layout is reversed or not.
      * @see {@link #setReverseLayout(boolean)}
@@ -270,18 +265,16 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Used to reverse item traversal and layout order.
-     * This behaves similar to the layout change for RTL views. When set to true, first item is
-     * rendered at the end of the UI, second item is render before it etc.
-     * <p/>
-     * For horizontal layouts, it depends on the layout direction.
-     * When set to true, If {@link RecyclerView} is LTR, than it will
-     * render from RTL, if {@link RecyclerView}} is RTL, it will render
-     * from LTR.
-     * <p/>
-     * If you are looking for the exact same behavior of
-     * {@link android.widget.AbsListView#setStackFromBottom(boolean)}, use
-     * {@link #setStackFromEnd(boolean)}
+     * 用于反转项目遍历和布局顺序。此行为类似于RTL视图的布局更改。
+     * 设置为true时，第一个项目在UI的末尾呈现，第二个项目在它之前呈现等。
+     *
+     * 对于水平布局，它取决于布局方向。 设置为true时，
+     * 如果{@link RecyclerView}是LTR，那么它将从RTL呈现，
+     * 如果{@link RecyclerView}}是RTL，它将从LTR呈现。
+     *
+     * 如果您正在寻找{@link android.widget.AbsListView
+     * #setStackFromBottom（boolean）}的完全相同的行为，
+     * 请使用{@link #setStackFromEnd（boolean）}
      */
     public void setReverseLayout(boolean reverseLayout) {
         if (mPendingSavedState != null && mPendingSavedState.mReverseLayout != reverseLayout) {
@@ -322,7 +315,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
      * LayoutManager to calculate a much smoother scrolling; which improves user experience.</p>
      * <p>You can also use this if you are trying to pre-render your upcoming views.</p>
      *
-     * @return The extra space that should be laid out (in pixels).
+     * @return 布局的额外空间（以像素为单位）。
      */
     protected int getExtraLayoutSpace(RecyclerView.State state) {
         if (state.hasTargetScrollPosition()) {
@@ -535,10 +528,10 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
             }
         }
 
-        // If there are scrap children that we did not layout, we need to find where they did go
-        // and layout them accordingly so that animations can work as expected.
-        // This case may happen if new views are added or an existing view expands and pushes
-        // another view out of bounds.
+        //如果我们没有布局的废旧儿童，我们需要找到他们去的地方
+        //并相应地布局它们，以便动画可以按预期工作。
+        //如果添加了新视图或现有视图扩展和推送，则可能发生这种情况
+        //另一个超出界限的视图
         if (getChildCount() > 0 && !state.isPreLayout() && supportsPredictiveItemAnimations()) {
             // to make the logic simpler, we calculate the size of children and call fill.
             int scrapExtraStart = 0, scrapExtraEnd = 0;
@@ -594,6 +587,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
+     * 儿童的最终抵消金额
      * @return The final offset amount for children
      */
     private int fixLayoutEndGap(int endOffset, RecyclerView.Recycler recycler,
@@ -680,7 +674,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * <p>Scroll the RecyclerView to make the position visible.</p>
+     * <p>滚动RecyclerView以使位置可见</p>
      * <p/>
      * <p>RecyclerView will scroll the minimum amount that is necessary to make the
      * target position visible. If you are looking for a similar behavior to
@@ -701,16 +695,14 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * <p>Scroll to the specified adapter position with the given offset from layout start.</p>
+     * <p>使用布局开始时给定的偏移滚动到指定的适配器位置。</p>
      * <p/>
-     * <p>Note that scroll position change will not be reflected until the next layout call.</p>
+     * <p>请注意，在下一次布局调用之前，不会反映滚动位置更改。</p>
      * <p/>
-     * <p>If you are just trying to make a position visible, use {@link
-     * #scrollToPosition(int)}.</p>
+     * <p>如果您只是想让位置可见，请使用{@link #scrollToPosition（int）}。</p>
      *
-     * @param position Index (starting at 0) of the reference item.
-     * @param offset   The distance (in pixels) between the start edge of the item view and
-     *                 start edge of the RecyclerView.
+     * @param position 参考项目的索引（从0开始）。
+     * @param offset   项目视图的起始边缘与RecyclerView的起始边缘之间的距离（以像素为单位）。
      * @see #setReverseLayout(boolean)
      * @see #scrollToPosition(int)
      */
@@ -842,7 +834,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
 
     /**
      * Recycles children between given indices.
-     *
+     *在给定指数之间重新循环。
      * @param startIndex inclusive
      * @param endIndex   exclusive
      */
@@ -865,7 +857,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Recycles views that went out of bounds after scrolling towards the end of the layout.
+     * 滚动到布局结束后，Recycles视图超出范围。
      *
      * @param recycler Recycler instance of {@link RecyclerView}
      * @param dt       This can be used to add additional padding to the visible area. This is used
@@ -904,7 +896,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
 
 
     /**
-     * Recycles views that went out of bounds after scrolling towards the start of the layout.
+     * 滚动到布局的开头后，Recycles视图超出范围。
      *
      * @param recycler Recycler instance of {@link RecyclerView}
      * @param dt       This can be used to add additional padding to the visible area. This is used
@@ -942,8 +934,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Helper method to call appropriate recycle method depending on current render layout
-     * direction
+     * Helper方法根据当前渲染布局方向调用适当的循环方法
      *
      * @param recycler    Current recycler that is attached to RecyclerView
      * @param renderState Current render state. Right now, this object does not change but
@@ -961,13 +952,13 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * The magic functions :). Fills the given layout, defined by the renderState. This is fairly
-     * independent from the rest of the {@link android.support.v7.widget.LinearLayoutManager}
-     * and with little change, can be made publicly available as a helper class.
+     * 神奇的功能:)。 填充由renderState定义的给定布局。
+     * 这与{@link android.support.v7.widget.LinearLayoutManager}的其余部分相当独立，
+     * 几乎没有变化，可以作为帮助类公开发布。
      *
-     * @param recycler        Current recycler that is attached to RecyclerView
-     * @param renderState     Configuration on how we should fill out the available space.
-     * @param state           Context passed by the RecyclerView to control scroll steps.
+     * @param recycler        当前的Recycler连接到RecyclerView
+     * @param renderState     关于如何填写可用空间的配置。
+     * @param state           RecyclerView传递的上下文用于控制滚动步骤。
      * @param stopOnFocusable If true, filling stops in the first focusable new child
      * @return Number of pixels that it added. Useful for scoll functions.
      */
@@ -1072,7 +1063,7 @@ public class HeaderLayoutManagerFixed extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Converts a focusDirection to orientation.
+     * 将focusDirection转换为orientation。
      *
      * @param focusDirection One of {@link View#FOCUS_UP}, {@link View#FOCUS_DOWN},
      *                       {@link View#FOCUS_LEFT}, {@link View#FOCUS_RIGHT},

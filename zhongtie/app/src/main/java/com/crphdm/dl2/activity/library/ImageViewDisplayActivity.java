@@ -35,12 +35,13 @@ public class ImageViewDisplayActivity extends ActionBarActivity {
         mProgressDialog = ProgressDialog.show(ImageViewDisplayActivity.this,"","加载中",true,false,null);
         if(path.startsWith("http")){
             Glide.with(this).load(path).downloadOnly(new SimpleTarget<File>() {
+                  //资源就绪
                 @Override
                 public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
                     mImageView.setImage(ImageSource.uri(Uri.fromFile(resource)).tilingEnabled());
                     mProgressDialog.dismiss();
                 }
-
+                //加载失败
                 @Override
                 public void onLoadFailed(Exception e, Drawable errorDrawable) {
                     mProgressDialog.dismiss();
@@ -49,11 +50,12 @@ public class ImageViewDisplayActivity extends ActionBarActivity {
         }else {
             mImageView.setImage(ImageSource.uri(Uri.fromFile(new File(path))).tilingEnabled());
             mImageView.setOnImageEventListener(new SubsamplingScaleImageView.OnImageEventListener() {
+                        //准备就绪
                 @Override
                 public void onReady() {
                     mProgressDialog.dismiss();
                 }
-
+                        //在图像加载
                 @Override
                 public void onImageLoaded() {
                     mProgressDialog.dismiss();

@@ -21,7 +21,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/8.
+ * Modify by songzixuan on 19/07/04.
+ * 我的采选adapter
  */
 public class MyPickAdapter extends RecyclerView.Adapter<MyPickAdapter.ViewHolder> {
     //我的采选adapter

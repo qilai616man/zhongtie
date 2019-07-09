@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by YueXy on 7/31/2015.
+ * Modify by songzixuan on 19/07/04.
+ * 重写线性布局管理器
  */
+
 public class FullyLinearLayoutManager extends LinearLayoutManager
 {
 
@@ -26,6 +28,7 @@ public class FullyLinearLayoutManager extends LinearLayoutManager
 
 	private int[] mMeasuredDimension = new int[2];
 
+	//onMeasure()方法作用是为了自定义View尺寸
 	@Override
 	public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec,
 						  int heightSpec)
@@ -77,7 +80,7 @@ public class FullyLinearLayoutManager extends LinearLayoutManager
 
 		setMeasuredDimension(width, height);
 	}
-
+		//测量
 	private void measureScrapChild(RecyclerView.Recycler recycler, int position, int widthSpec,
 								   int heightSpec, int[] measuredDimension)
 	{

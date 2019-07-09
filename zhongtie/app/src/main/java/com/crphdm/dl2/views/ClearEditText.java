@@ -15,6 +15,11 @@ import android.widget.EditText;
 
 import com.crphdm.dl2.R;
 
+/**
+ * Modify by songzixuan on 19/07/04.
+ * 自带清除按钮的输入框
+ */
+
 
 public class ClearEditText extends EditText implements
         OnFocusChangeListener, TextWatcher {

@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2008 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.crphdm.dl2.qrcode.camera;
 
 import android.content.Context;
@@ -29,10 +13,9 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 
 /**
- * This object wraps the Camera service object and expects to be the only one talking to it. The
- * implementation encapsulates the steps needed to take preview-sized images, which are used for
- * both preview and decoding.
- *
+ * 此对象包装Camera服务对象，并期望成为唯一与之对话的对象。
+ * 该实现封装了拍摄预览大小图像所需的步骤
+ * 预览和解码。
  */
 public final class CameraManager {
 
@@ -66,17 +49,17 @@ public final class CameraManager {
   private boolean previewing;
   private final boolean useOneShotPreviewCallback;
   /**
-   * Preview frames are delivered here, which we pass on to the registered handler. Make sure to
-   * clear the handler so it will only receive one message.
+   * 预览帧在这里传递，我们将其传递给注册的处理程序。
+   * 确保清除处理程序，这样它只会收到一条消息。
    */
   private final PreviewCallback previewCallback;
-  /** Autofocus callbacks arrive here, and are dispatched to the Handler which requested them. */
+  /** 自动对焦回调到达此处，并被分派到请求它们的处理程序。 */
   private final AutoFocusCallback autoFocusCallback;
 
   /**
-   * Initializes this static object with the Context of the calling Activity.
+   * 使用调用Activity的Context初始化此静态对象。
    *
-   * @param context The Activity which wants to use the camera.
+   * @param context 这个界面想要使用相机.
    */
   public static void init(Context context) {
     if (cameraManager == null) {
@@ -85,9 +68,9 @@ public final class CameraManager {
   }
 
   /**
-   * Gets the CameraManager singleton instance.
+   * 获取CameraManager单例实例
    *
-   * @return A reference to the CameraManager singleton.
+   * @return 对CameraManager单例的引用。
    */
   public static CameraManager get() {
     return cameraManager;
@@ -110,10 +93,10 @@ public final class CameraManager {
   }
 
   /**
-   * Opens the camera driver and initializes the hardware parameters.
+   * 打开相机驱动程序并初始化硬件参数。
    *
-   * @param holder The surface object which the camera will draw preview frames into.
-   * @throws IOException Indicates the camera driver failed to open.
+   * @param holder 相机将预览帧绘制到的表面对象。
+   * @throws IOException 表示相机驱动程序无法打开。
    */
   public void openDriver(SurfaceHolder holder) throws IOException {
     if (camera == null) {
@@ -140,7 +123,7 @@ public final class CameraManager {
   }
 
   /**
-   * Closes the camera driver if still in use.
+   * 如果仍在使用，请关闭相机驱动程序。
    */
   public void closeDriver() {
     if (camera != null) {
@@ -151,7 +134,7 @@ public final class CameraManager {
   }
 
   /**
-   * Asks the camera hardware to begin drawing preview frames to the screen.
+   * 要求相机硬件开始将预览帧绘制到屏幕上。
    */
   public void startPreview() {
     if (camera != null && !previewing) {
@@ -161,7 +144,7 @@ public final class CameraManager {
   }
 
   /**
-   * Tells the camera to stop drawing preview frames.
+   * 告诉相机停止绘制预览帧。
    */
   public void stopPreview() {
     if (camera != null && previewing) {
@@ -176,12 +159,11 @@ public final class CameraManager {
   }
 
   /**
-   * A single preview frame will be returned to the handler supplied. The data will arrive as byte[]
-   * in the message.obj field, with width and height encoded as message.arg1 and message.arg2,
-   * respectively.
+   * 单个预览框将返回到提供的处理程序。 数据将以byte []的形式到达
+   * 在message.obj字段中，宽度和高度编码分别为message.arg1和message.arg2。
    *
-   * @param handler The handler to send the message to.
-   * @param message The what field of the message to be sent.
+   * @param handler 发送消息的处理程序。
+   * @param message 要发送的消息的哪个字段。
    */
   public void requestPreviewFrame(Handler handler, int message) {
     if (camera != null && previewing) {
@@ -195,10 +177,10 @@ public final class CameraManager {
   }
 
   /**
-   * Asks the camera hardware to perform an autofocus.
+   * 要求相机硬件执行自动对焦。
    *
-   * @param handler The Handler to notify when the autofocus completes.
-   * @param message The message to deliver.
+   * @param handler 处理程序在自动对焦完成时通知。
+   * @param message 要传递的信息。
    */
   public void requestAutoFocus(Handler handler, int message) {
     if (camera != null && previewing) {
@@ -209,11 +191,10 @@ public final class CameraManager {
   }
 
   /**
-   * Calculates the framing rect which the UI should draw to show the user where to place the
-   * barcode. This target helps with alignment as well as forces the user to hold the device
-   * far enough away to ensure the image will be in focus.
+   * 计算UI应绘制的框架矩形，以显示用户放置的位置条码。
+   * 该目标有助于对齐并强制用户握住设备足够远以确保图像聚焦。
    *
-   * @return The rectangle to draw on screen in window coordinates.
+   * @return 在窗口坐标中在屏幕上绘制的矩形。
    */
   public Rect getFramingRect() {
     Point screenResolution = configManager.getScreenResolution();
@@ -242,8 +223,8 @@ public final class CameraManager {
   }
 
   /**
-   * Like {@link #getFramingRect} but coordinates are in terms of the preview frame,
-   * not UI / screen.
+   * 与{@link #getFramingRect}类似，但坐标是预览框架，
+   * not UI/屏幕.
    */
   public Rect getFramingRectInPreview() {
     if (framingRectInPreview == null) {
@@ -265,11 +246,10 @@ public final class CameraManager {
   }
 
   /**
-   * Converts the result points from still resolution coordinates to screen coordinates.
+   * 将结果点从静止分辨率坐标转换为屏幕坐标。
    *
-   * @param points The points returned by the Reader subclass through Result.getResultPoints().
-   * @return An array of Points scaled to the size of the framing rect and offset appropriately
-   *         so they can be drawn in screen coordinates.
+   * @param points Reader子类通过Result.getResultPoints（）返回的点。
+   * @return 一个点数组缩放到框架矩形的大小并适当地偏移，因此它们可以在屏幕坐标中绘制。
    */
   /*
   public Point[] convertResultPoints(ResultPoint[] points) {
@@ -286,13 +266,12 @@ public final class CameraManager {
    */
 
   /**
-   * A factory method to build the appropriate LuminanceSource object based on the format
-   * of the preview buffers, as described by Camera.Parameters.
+   * 一种工厂方法，用于根据预览缓冲区的格式构建适当的LuminanceSource对象，如Camera.Parameters所述。
    *
-   * @param data A preview frame.
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @return A PlanarYUVLuminanceSource instance.
+   * @param data 预览框架。
+   * @param width 图像的宽度。
+   * @param height 图像的高度。
+   * @return 平面YUV亮度源实例。
    */
   public PlanarYUVLuminanceSource buildLuminanceSource(byte[] data, int width, int height) {
     Rect rect = getFramingRectInPreview();

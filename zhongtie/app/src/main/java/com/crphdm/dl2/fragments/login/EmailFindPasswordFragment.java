@@ -33,6 +33,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 邮箱找回密码
+ */
+
 public class EmailFindPasswordFragment extends Fragment {
     public static final int WAIT_TIME = 30;
     private int time = WAIT_TIME;

@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2008 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.crphdm.dl2.qrcode.view;
 
 import android.content.Context;
@@ -35,9 +19,8 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * This view is overlaid on top of the camera preview. It adds the viewfinder
- * rectangle and partial transparency outside it, as well as the laser scanner
- * animation and result points.
+ * 此视图覆盖在相机预览的顶部。 它添加了取景器
+ * 外面有矩形和部分透明，以及激光扫描仪动画和结果点。
  * 
  */
 public final class ViewfinderView extends View {
@@ -240,11 +223,10 @@ public final class ViewfinderView extends View {
 	}
 
 	/**
-	 * Draw a bitmap with the result points highlighted instead of the live
-	 * scanning display.
+	 * 绘制一个位图，突出显示结果点而不是实时扫描显示。
 	 *
 	 * @param barcode
-	 *            An image of the decoded barcode.
+	 *           解码条形码的图像。
 	 */
 	public void drawResultBitmap(Bitmap barcode) {
 		resultBitmap = barcode;

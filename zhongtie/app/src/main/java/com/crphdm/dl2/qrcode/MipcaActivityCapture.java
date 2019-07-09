@@ -29,9 +29,10 @@ import java.io.IOException;
 import java.util.Vector;
 
 /**
- * Initial the camera
- * @author Ryan.Tang
+ * 初始摄像头
+ * 主要处理扫描界面的类，比如，扫描成功有声音和振动等等
  */
+
 public class MipcaActivityCapture extends Activity implements Callback {
 
 	private CaptureActivityHandler handler;
@@ -45,7 +46,7 @@ public class MipcaActivityCapture extends Activity implements Callback {
 	private static final float BEEP_VOLUME = 0.10f;
 	private boolean vibrate;
 
-	/** Called when the activity is first created. */
+	/** 在第一次创建页面时调用。 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -215,6 +216,7 @@ public class MipcaActivityCapture extends Activity implements Callback {
 
 	/**
 	 * When the beep has finished playing, rewind to queue up another one.
+	 * 当蜂鸣声结束播放时，倒带以排队另一个。
 	 */
 	private final OnCompletionListener beepListener = new OnCompletionListener() {
 		public void onCompletion(MediaPlayer mediaPlayer) {

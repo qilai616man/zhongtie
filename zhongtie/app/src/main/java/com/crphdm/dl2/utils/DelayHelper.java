@@ -5,7 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Created by gaoyufei on 15/9/30.
+ * Modify by songzixuan on 19/07/04.
  */
 public class DelayHelper {
     private int WAIT_TIME = 30;
@@ -18,7 +18,7 @@ public class DelayHelper {
     public DelayHelper(int waitTime) {
         WAIT_TIME = waitTime;
     }
-
+                //延迟按钮
     public void delayButton(final Button view) {
         time = WAIT_TIME;
         view.setEnabled(false);

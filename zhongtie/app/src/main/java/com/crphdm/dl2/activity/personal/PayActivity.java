@@ -34,6 +34,10 @@ import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 支付页面
+ */
+
 public class PayActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_PAY = 12;
 

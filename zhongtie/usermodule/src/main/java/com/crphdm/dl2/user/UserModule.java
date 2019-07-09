@@ -99,6 +99,7 @@ public abstract class UserModule {
      */
     public abstract Observable<Boolean> register(String username, String password, int userType, String code);
 
+
     /**
      * 获取验证码
      *
@@ -176,14 +177,15 @@ public abstract class UserModule {
      * @param gender
      * @return
      */
+    //更新用户信息
     public abstract Observable<UserInfo> updateUserInfo(String iconUrl, String trueName, String nickname, int gender, int netType);
-
+    //更新用户信息状态
     public abstract void updateUserInfoByState(int type,String mobile,String orgName);
-
+    //获取UUID
     public abstract String[] getUUIDs();
-
+    //注销
     public abstract void logout();
-
+    //保存登录状态
     public abstract void saveLoginState(boolean isLogin);
 
     //判断是否是展示版

@@ -8,14 +8,15 @@ import android.os.CountDownTimer;
 import android.util.Log;
 
 /**
- * Created by zhangcirui on 15/12/19.
+ * Modify by songzixuan on 19/07/04.
+ * 倒计时提示框
  */
 public class TimerProgressDialog extends ProgressDialog {
 
     private static String TAG = TimerProgressDialog.class.getSimpleName();
 
     private ProgressDialog mProgressDialog;
-
+            //倒计时提示框
     public TimerProgressDialog(Context context) {
         super(context);
 
@@ -53,14 +54,14 @@ public class TimerProgressDialog extends ProgressDialog {
         }
 
     }
-
+        //解除
     public void dismiss() {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }
     }
-
+        //展示
     public boolean isShowing(){
         if (mProgressDialog != null) {
             return mProgressDialog.isShowing();
@@ -68,7 +69,7 @@ public class TimerProgressDialog extends ProgressDialog {
 
         return  false;
     }
-
+    //设置监听
     public void setOnDismissListener(final OnDismissListener dismissListener){
 
         mProgressDialog.setOnDismissListener(new OnDismissListener() {

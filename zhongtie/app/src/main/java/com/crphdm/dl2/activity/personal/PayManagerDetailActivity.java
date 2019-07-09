@@ -38,9 +38,12 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 订单详情
+ */
+
 public class PayManagerDetailActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 5312;
-    //订单详情
     public static final String ORDER_ID = "orderId";
     @Bind(R.id.recycler)
     RecyclerView mRecycler;

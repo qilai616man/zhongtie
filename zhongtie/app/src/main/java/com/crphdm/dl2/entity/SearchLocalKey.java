@@ -2,8 +2,8 @@ package com.crphdm.dl2.entity;
 
 /**
  * Created by Administrator on 2017/9/21.
+ * 搜索本地密钥
  */
-
 public class SearchLocalKey {
     private String name;
     private String count;

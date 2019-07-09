@@ -38,7 +38,7 @@ import rx.functions.Func1;
 import rx.observables.BlockingObservable;
 
 /**
- * Created by gaoyufei on 15/10/9.
+ * Modify by songzixuan on 19/07/02.
  */
 public class UserModuleImpl extends UserModule {
     private Context mContext;
@@ -91,12 +91,14 @@ public class UserModuleImpl extends UserModule {
      */
     @Override
     public Observable<Integer> getNetState() {
+        //没有网络
         if (getNetWorkType(mContext) == Constant.NETWORK_TYPE_INVALID) {
 
             Ln.d("UserModule:getNetState:NET_STATE_UNKNOWN");
 
             return Observable.just(UserModule.NET_STATE_UNKNOWN);
         } else {
+            //获取时间毫秒
             final long t1 = System.currentTimeMillis();
             return Observable.defer(new Func0<Observable<Integer>>() {
                 @Override
@@ -109,7 +111,7 @@ public class UserModuleImpl extends UserModule {
                     //1.先判断是否在一级网络
                     try {
                         String result = NetHelper.getContent5Second(Urls.URL_FIRST_CENTER);
-//                        String result = NetHelper.getContent5Second("https://www.google.com.hk/?gws_rd=ssl#q=hello");
+//                      String result = NetHelper.getContent5Second("https://www.google.com.hk/?gws_rd=ssl#q=hello");
                         Ln.d("UserModule:getNetState:FirstCenter:result:" + result);
                         NetLocationResult netObject = new Gson().fromJson(result, NetLocationResult.class);
                         if (netObject != null && NetLocationResult.LOCATION_MASTER.equals(netObject.getLocation()))
@@ -256,7 +258,7 @@ public class UserModuleImpl extends UserModule {
             }
         });
     }
-
+            //用户是否相同
     private boolean userNameIsSame(String username) {
         UserInfo userInfoFirst = getUserInfoLocal(UserModule.NET_CENTER_FIRST);
         UserInfo userInfoSecond = getUserInfoLocal(UserModule.NET_CENTER_SECOND);
@@ -264,21 +266,23 @@ public class UserModuleImpl extends UserModule {
 
         if (userInfoFirst != null) {
             Ln.d("UserModule:userNameIsSame:UserInfoFirst:" + userInfoFirst.getUsername());
-            if (username.equals(userInfoFirst.getUsername())) {//登录的账号跟以前不同，清除本地数据
+            //登录的账号跟以前不同，清除本地数据
+            if (username.equals(userInfoFirst.getUsername())) {
                 return true;
             }
         }
 
         if (userInfoSecond != null) {
             Ln.d("UserModule:userNameIsSame:UserInfoSecond:" + userInfoSecond.getUsername());
-            if (username.equals(userInfoSecond.getUsername())) {//登录的账号跟以前不同，清除本地数据
+            //登录的账号跟以前不同，清除本地数据
+            if (username.equals(userInfoSecond.getUsername())) {
                 return true;
             }
         }
 
         return false;
     }
-
+            //二次登陆
     @Override
     public Observable<UserInfo> loginSecond(String username, String password, int userType) {
         return loginSecond(username, password, userType, null)
@@ -363,7 +367,9 @@ public class UserModuleImpl extends UserModule {
                     }
                 });
     }
-
+         /**
+         *重设密码
+         */
     @Override
     public Observable<PgResult> resetPassword(String username, int resetType, String code, String pwd) {
         final String newPassword = new MD5().md5(pwd);
@@ -429,6 +435,9 @@ public class UserModuleImpl extends UserModule {
         });
     }
 
+    /**
+     *二次登陆
+     */
     private Observable<NetLoginResult> loginSecond(String username, final String password, final int userType, String ciphertext) {
         StringBuffer stringBuffer = new StringBuffer(Urls.URL_LOGIN_SECOND_CENTER);
 //        StringBuffer stringBuffer = new StringBuffer(Urls.URL_LOGIN_SECOND_CENTER_OLD);
@@ -462,7 +471,9 @@ public class UserModuleImpl extends UserModule {
             }
         });
     }
-
+    /**
+     *全部登陆
+     */
     private Observable<NetLoginResult> loginAll(final String username, final String password, final int userType) {
         StringBuffer stringBuffer = new StringBuffer(Urls.URL_LOGIN_FIRST_CENTER);
         stringBuffer.append("&user_name").append("=").append(username);
@@ -632,7 +643,9 @@ public class UserModuleImpl extends UserModule {
                     }
                 });
     }
-
+    /**
+     *登陆Url
+     */
     private Observable<NetLoginResult> loginUrl(String url) {
         return Observable.just(url)
                 .flatMap(new Func1<String, Observable<String>>() {
