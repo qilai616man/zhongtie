@@ -52,12 +52,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
     RelativeLayout mUserAdviceSelect;//用户推荐采选
     @Bind(R.id.layout_check_select)
     RelativeLayout mCheckSelect;//审核采选单
-    @Bind(R.id.layout_phone)
-    RelativeLayout layoutPhone;
-    @Bind(R.id.phone_num)
-    TextView phoneNum;
-    @Bind(R.id.tv_personal_phone_bind_state)
-    TextView phoneBindState;
+
+//    TextView phoneBindState;
     @Bind(R.id.layout_org)
     RelativeLayout layoutOrg;
     @Bind(R.id.bind_org)
@@ -176,12 +172,12 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
 
             if (mUserInfoFirst.getMobile() != null && !mUserInfoFirst.getMobile().equals("")) {
-                phoneNum.setText(mUserInfoFirst.getMobile());
-                phoneBindState.setVisibility(View.GONE);
+//                phoneNum.setText(mUserInfoFirst.getMobile());
+//                phoneBindState.setVisibility(View.GONE);
 //                layoutPhone.setEnabled(false);
             } else {
-                phoneBindState.setVisibility(View.VISIBLE);
-                layoutPhone.setEnabled(true);
+//                phoneBindState.setVisibility(View.VISIBLE);
+//                layoutPhone.setEnabled(true);
             }
 
             if (mUserInfoFirst.getOrg_name() != null && !mUserInfoFirst.getOrg_name().equals("")) {
@@ -289,12 +285,12 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 }
 
                 if (mUserInfoSecond.getMobile() != null && !mUserInfoSecond.getMobile().equals("")) {
-                    phoneNum.setText(mUserInfoSecond.getMobile());
-                    phoneBindState.setVisibility(View.GONE);
+//                    phoneNum.setText(mUserInfoSecond.getMobile());
+//                    phoneBindState.setVisibility(View.GONE);
 //                layoutPhone.setEnabled(false);
                 } else {
-                    phoneBindState.setVisibility(View.VISIBLE);
-                    layoutPhone.setEnabled(true);
+//                    phoneBindState.setVisibility(View.VISIBLE);
+//                    layoutPhone.setEnabled(true);
                 }
 
                 if (mUserInfoSecond.getOrg_name() != null && !mUserInfoSecond.getOrg_name().equals("")) {
@@ -401,25 +397,14 @@ public class PersonalInfoActivity extends AppCompatActivity {
     public void onShoppingCartClick() {
         if (UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_FIRST_LEVEL ||
                 UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_ALL) {//1级网络和1级2级共有
-            startActivity(new Intent(this, ShoppingCartActivity.class));
+//            startActivity(new Intent(this, ShoppingCartActivity.class));
         } else {
             Toast.makeText(PersonalInfoActivity.this, "亲爱的用户，看不到我？请用手机连接互联网试一试", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    /**
-     * 支付管理
-     */
-    @OnClick(R.id.layout_pay_manager)
-    public void onPayManagerClick() {
-        if (UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_FIRST_LEVEL ||
-                UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_ALL) {//1级网络和1级2级共有
-            startActivity(new Intent(this, PayManagerListActivity.class));
-        } else {
-            Toast.makeText(PersonalInfoActivity.this, "亲爱的用户，看不到我？请用手机连接互联网试一试", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     /**
      * 采选单
@@ -463,18 +448,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 绑定手机号
-     */
-    @OnClick(R.id.layout_phone)
-    public void onBindPhoneClick() {
-        if (UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_FIRST_LEVEL ||
-                UserModule.getInstance().getNetStateLocal() == Constant.NET_STATE_ALL) {//1级网络和1级2级共有
-            startActivityForResult(new Intent(this, BindPhoneActivity.class), BindPhoneActivity.REQUEST_CODE);
-        } else {
-            Toast.makeText(PersonalInfoActivity.this, "亲爱的用户，看不到我？请用手机连接互联网试一试", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     /**
      * 绑定机构
@@ -627,9 +601,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
         if (requestCode == BindPhoneActivity.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Ln.d("PersonalInfoActivity:onActivityResult:data:" + data.getStringExtra(BindPhoneActivity.INTENT_PHONE));
-                phoneNum.setText(data.getStringExtra(BindPhoneActivity.INTENT_PHONE));
-                phoneBindState.setVisibility(View.GONE);
-                layoutPhone.setEnabled(false);
+//                phoneNum.setText(data.getStringExtra(BindPhoneActivity.INTENT_PHONE));
+//                phoneBindState.setVisibility(View.GONE);
+//                layoutPhone.setEnabled(false);
             }
         } else if (requestCode == BindOrganizationActivity.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

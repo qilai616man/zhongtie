@@ -79,14 +79,8 @@
             android:name=".activity.personal.FeedbackActivity"
             android:label="意见反馈"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.personal.PayManagerDetailActivity"
-            android:label="订单详情"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.personal.PayManagerListActivity"
-            android:label="支付管理"
-            android:screenOrientation="portrait" />
+
+
         <activity
             android:name=".activity.personal.UserRecommendSelectListActivity"
             android:label="用户推荐采选"
@@ -162,10 +156,7 @@
             android:name=".activity.cloud_bookstore.ClassifyDetailActivity"
             android:label="@string/title_activity_classify_detail"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.personal.ShoppingCartActivity"
-            android:label="@string/title_activity_shopping_cart"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.personal.PickActivity"
             android:label="@string/title_activity_pick"
@@ -178,10 +169,7 @@
             android:name=".activity.personal.PickHistoryActivity"
             android:label="@string/title_activity_pick_history"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.personal.EditAddressActivity"
-            android:label="@string/title_activity_edit_address"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.cloud_bookstore.CloudBookstoreBookDetailActivity"
             android:label="@string/title_activity_book_detail"
@@ -230,9 +218,7 @@
         <activity
             android:name=".activity.select.SelectClassifyDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".activity.personal.PayActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.WebActivity"
             android:label="广告"

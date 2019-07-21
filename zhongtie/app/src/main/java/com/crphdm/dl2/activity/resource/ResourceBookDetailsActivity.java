@@ -22,8 +22,8 @@ import android.widget.Toast;
 import com.brainsoon.utils.BookUtils;
 import com.bumptech.glide.Glide;
 import com.crphdm.dl2.R;
-import com.crphdm.dl2.activity.personal.PayManagerDetailActivity;
-import com.crphdm.dl2.activity.personal.ShoppingCartActivity;
+//import com.crphdm.dl2.activity.personal.PayManagerDetailActivity;
+//import com.crphdm.dl2.activity.personal.ShoppingCartActivity;
 import com.crphdm.dl2.service.MyService;
 import com.crphdm.dl2.user.UserModule;
 import com.crphdm.dl2.user.obj.UserInfo;
@@ -190,10 +190,10 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
                 }
             } else {//购买资源
 //            Toast.makeText(ResourceBookDetailsActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ResourceBookDetailsActivity.this, PayManagerDetailActivity.class);
-                intent.putExtra(Constant.SHOPPING_CART_ORDER_TYPE, Constant.E_BOOK);
-                intent.putExtra(Constant.BOOK_ID, mResourceId);
-                startActivityForResult(intent, PayManagerDetailActivity.REQUEST_CODE);
+//                Intent intent = new Intent(ResourceBookDetailsActivity.this, PayManagerDetailActivity.class);
+//                intent.putExtra(Constant.SHOPPING_CART_ORDER_TYPE, Constant.E_BOOK);
+//                intent.putExtra(Constant.BOOK_ID, mResourceId);
+//                startActivityForResult(intent, PayManagerDetailActivity.REQUEST_CODE);
             }
         }
 
@@ -295,13 +295,18 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
 
         mResourceId = getIntent().getIntExtra(Constant.BOOK_ID, 0);
         mType = getIntent().getIntExtra(Constant.RESOURCE_TYPE, 0);
-        if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
-            btnAddShoppingCart.setVisibility(View.GONE);
-            btnDownload.setVisibility(View.GONE);
-        }else{
-            btnAddShoppingCart.setVisibility(View.VISIBLE);
-            btnDownload.setVisibility(View.VISIBLE);
-        }
+//        if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
+//            btnAddShoppingCart.setVisibility(View.GONE);
+//            btnDownload.setVisibility(View.GONE);
+//        }else{
+//            btnAddShoppingCart.setVisibility(View.VISIBLE);
+//            btnDownload.setVisibility(View.VISIBLE);
+//        }
+
+        btnAddShoppingCart.setVisibility(View.GONE);
+        btnDownload.setVisibility(View.GONE);
+
+
         Ln.d("ResourceBookDetailActivity:mType:" + mType);
 
         if (mProgressDialog == null) {
@@ -581,7 +586,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
                 if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
                     Toast.makeText(ResourceBookDetailsActivity.this,"此用户为临时用户",Toast.LENGTH_SHORT).show();
                 }else{
-                    startActivity(new Intent(ResourceBookDetailsActivity.this, ShoppingCartActivity.class));
+//                    startActivity(new Intent(ResourceBookDetailsActivity.this, ShoppingCartActivity.class));
                 }
 
             }

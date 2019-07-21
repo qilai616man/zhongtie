@@ -22,7 +22,7 @@ import com.brainsoon.utils.BookUtils;
 import com.bumptech.glide.Glide;
 import com.crphdm.dl2.R;
 import com.crphdm.dl2.activity.personal.PickActivity;
-import com.crphdm.dl2.activity.personal.ShoppingCartActivity;
+
 import com.crphdm.dl2.adapter.personal.PreviewListAdapter;
 import com.crphdm.dl2.service.MyService;
 import com.crphdm.dl2.user.UserModule;
@@ -1234,7 +1234,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
                     Toast.makeText(CloudBookstoreBookDetailActivity.this, "此用户为临时用户", Toast.LENGTH_SHORT).show();
                 } else {
                     Ln.d("CloudBookstoreBookDetailActivity:点击购物车");
-                    startActivity(new Intent(CloudBookstoreBookDetailActivity.this, ShoppingCartActivity.class));
+//                    startActivity(new Intent(CloudBookstoreBookDetailActivity.this, ShoppingCartActivity.class));
                 }
 
             }
