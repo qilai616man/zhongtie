@@ -11,7 +11,6 @@ import android.view.MenuItem;
 
 import com.crphdm.dl2.R;
 import com.crphdm.dl2.fragments.login.EmailRegisterFragment;
-import com.crphdm.dl2.fragments.login.PhoneRegisterFragment;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
@@ -69,12 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 0)
-                return new EmailRegisterFragment();
-            else if (position == 1) {
-                return new PhoneRegisterFragment();
-            }
-            return null;
+
+            return new EmailRegisterFragment();
         }
 
         @Override
@@ -84,13 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "邮箱";
-                case 1:
-                    return "手机号";
-            }
-            return null;
+
+            return "邮箱";
         }
     }
 

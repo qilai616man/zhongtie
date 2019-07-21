@@ -11,7 +11,6 @@ import android.view.MenuItem;
 
 import com.crphdm.dl2.R;
 import com.crphdm.dl2.fragments.login.EmailFindPasswordFragment;
-import com.crphdm.dl2.fragments.login.PhoneFindPasswordFragment;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
@@ -70,12 +69,8 @@ public class FindPasswordActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 0)
-                return new EmailFindPasswordFragment();
-            else if (position == 1) {
-                return new PhoneFindPasswordFragment();
-            }
-            return null;
+            return new EmailFindPasswordFragment();
+
         }
 
         @Override

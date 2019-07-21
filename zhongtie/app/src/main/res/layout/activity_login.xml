@@ -14,7 +14,7 @@
         android:background="@drawable/gray_rectangle"
         android:drawableLeft="@drawable/selector_email"
         android:drawablePadding="8dp"
-        android:hint="账号/手机/邮箱"
+        android:hint="账号/邮箱"
         android:singleLine="true"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"

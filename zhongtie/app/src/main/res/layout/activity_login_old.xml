@@ -13,6 +13,7 @@
         app:tabSelectedTextColor="@color/color_4c8afb"
         app:tabTextColor="@color/color_5f646e"
         app:tabIndicatorHeight="2dp"
+        android:visibility="gone"
         app:tabIndicatorColor="@color/color_4c8afb" />
 
     <android.support.v4.view.ViewPager
