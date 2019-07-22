@@ -75,7 +75,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
     public int getItemCount() {
         return mAddressList == null ? 0 : mAddressList.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_name)
         TextView mName;

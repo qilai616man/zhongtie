@@ -41,9 +41,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 编辑个人资料
+ */
 public class UpdateUserInfoActivity extends AppCompatActivity {
-    //编辑个人资料
     @Bind(R.id.civ_update_user_info_photo)
     CircleImageView mIcon;
     @Bind(R.id.username)
@@ -76,7 +77,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
     private String mTrueName;
     private String mNickName;
     private int mSex = 1;//1.男  2.女
-
+    //头像点击事件
     @OnClick(R.id.civ_update_user_info_photo)
     public void onIconClick() {
         Ln.d("UpdateUserInfoActivity:onIconClick");
@@ -197,7 +198,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
 
         }
     }
-
+    //保存按钮点击事件
     @OnClick(R.id.save)
     public void onSaveClick() {
         Ln.d("UpdateUseInfoActivity:onSaveClick:mIconUrl:" + mIconUrl);
@@ -238,7 +239,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             Toast.makeText(UpdateUserInfoActivity.this, "亲爱的用户，看不到我？请用手机连接互联网试一试", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,7 +252,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         initMembers();
         setListener();
     }
-
+    //初始化成员
     private void initMembers() {
         mCropImage = new CropImage(this);
 
@@ -302,7 +303,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             }
         }
     }
-
+    //设置监听
     private void setListener() {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -353,7 +354,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             }
         });
     }
-
+    //获取头像（拍照/本地相册）
     private Dialog getPhotoDialog() {
         String[] items = new String[]{"    拍照", "    相册选择"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -374,13 +375,13 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
 
         return builder.create();
     }
-
+    //接手Activity的回调信息做处理
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCropImage.onActivityResult(requestCode, resultCode, data);
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
@@ -389,13 +390,13 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("编辑个人资料页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("编辑个人资料页");

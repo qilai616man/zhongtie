@@ -30,15 +30,20 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 采选历史页面
+ */
 public class PickHistoryActivity extends AppCompatActivity {
     //采选历史页面
     @Bind(R.id.rcl_pick_history_list)
     RecyclerView mPickHistoryList;
+    //错误内容文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误内容页面
     @Bind(R.id.lLError)
     LinearLayout lLError;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
 
@@ -62,11 +67,13 @@ public class PickHistoryActivity extends AppCompatActivity {
         initMembers();
     }
 
+    //错误界面
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
 
+    //初始化成员
     private void initMembers() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mPickHistoryList.setLayoutManager(linearLayoutManager);
@@ -115,7 +122,7 @@ public class PickHistoryActivity extends AppCompatActivity {
             }
         }
     }
-
+    //初始化数据
     private void initData() {
         PersonalCenterManager.getInstance().getHistoryMiningMenuList(
                 mUserInfo.getUserid(),
@@ -208,7 +215,7 @@ public class PickHistoryActivity extends AppCompatActivity {
             }
         });
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -220,13 +227,13 @@ public class PickHistoryActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选历史页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选历史页面");

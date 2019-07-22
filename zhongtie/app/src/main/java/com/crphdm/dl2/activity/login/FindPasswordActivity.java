@@ -17,9 +17,15 @@ import com.umeng.analytics.MobclickAgent;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 找回密码页面
+ */
+
 public class FindPasswordActivity extends AppCompatActivity {
+    //选项卡效果
     @Bind(R.id.tb_institution_library)
     TabLayout tbInstitutionLibrary;
+    //邮箱找回或手机号找回页面内容
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
 
@@ -54,6 +60,7 @@ public class FindPasswordActivity extends AppCompatActivity {
 
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
@@ -61,7 +68,7 @@ public class FindPasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //找回密码页面适配器
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -94,12 +101,12 @@ public class FindPasswordActivity extends AppCompatActivity {
             return null;
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

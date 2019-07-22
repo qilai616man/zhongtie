@@ -44,9 +44,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 云书城下面的fragment
+ */
 public class SelectSourceFragment extends Fragment {
-    //云书城下面的fragment
     private static final String BUNDLE_CARD_ID = "BUNDLE_CARD_ID";
 
     @Bind(R.id.rcl_fragment_select_source)
@@ -76,7 +77,7 @@ public class SelectSourceFragment extends Fragment {
         selectSourceFragment.setArguments(bundle);
         return selectSourceFragment;
     }
-
+    //初始化Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,7 @@ public class SelectSourceFragment extends Fragment {
         }
     }
 
+    //初始化Fragment的布局
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,14 +100,14 @@ public class SelectSourceFragment extends Fragment {
 
         return mParentView;
     }
-
+    //Fragment绑定的Activity的onCreate方法已经执行完成并返回，在该方法内可以进行与Activity交互的UI操作
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
 
     }
-
+    //设置监听
     private void setLintener(){
         mRclFragmentSelectSource.addOnScrollListener(new RecyclerView.OnScrollListener() {
             boolean loading = false;
@@ -171,13 +173,13 @@ public class SelectSourceFragment extends Fragment {
             }
         });
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //初始化成员
     private void initMembers() {
         mSelectBookstoreManager = SelectManager.getInstance();
 //        mParallaxAdapter = new ParallaxRecyclerAdapter();
@@ -218,7 +220,7 @@ public class SelectSourceFragment extends Fragment {
                     }
                 });
     }
-
+    //初始化数据
     private void initData() {
         mSelectBookstoreManager.getSelectSourceBookList(mUserInfo.getUserid(), mToken,mSelectType,/*1,1,*/1,20)
                 .observeOn(AndroidSchedulers.mainThread())

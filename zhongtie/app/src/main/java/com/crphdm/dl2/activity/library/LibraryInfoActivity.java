@@ -36,19 +36,25 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 更多图书馆  机构图书馆详情
+ */
 public class LibraryInfoActivity extends AppCompatActivity {
-    //更多图书馆  图书馆详情
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    //机构标志
     @Bind(R.id.iv_press_logo)
     ImageView ivPressLogo;
+    //机构名称
     @Bind(R.id.tv_press_name)
     TextView tvPressName;
+    //介绍文字
     @Bind(R.id.tv_press_info)
     TextView tvPressInfo;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
+    //标题
     @Bind(R.id.header)
     RecyclerViewHeader header;
 
@@ -87,7 +93,7 @@ public class LibraryInfoActivity extends AppCompatActivity {
     }
 
     private ProgressDialog mProgressDialog;
-
+    //初始化数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(this, null, "加载中...");
@@ -191,7 +197,7 @@ public class LibraryInfoActivity extends AppCompatActivity {
 
     }
 
-
+    //机构图书馆详情适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgBookForLibraryListEntity> pgBookForLibraryListEntities;
@@ -258,7 +264,7 @@ public class LibraryInfoActivity extends AppCompatActivity {
         }
     }
 
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -267,18 +273,18 @@ public class LibraryInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
+    //销毁
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("一级图书馆详情页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("一级图书馆详情页");

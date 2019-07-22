@@ -33,9 +33,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 购物车页面
+ */
 public class ShoppingCartActivity extends AppCompatActivity {
-    //购物车页面
     @Bind(R.id.ll_5_shopping_cart_real_book)
     LinearLayout mRealBookLL;
     @Bind(R.id.tv_5_shopping_cart_real_book_type)
@@ -85,7 +86,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private UserInfo mUserInfo;
     private String mToken;
 
-
+    //去结账按钮点击事件（实体书）
     @OnClick(R.id.tv_pay_for_real_book)
     void OnPayForBook() {
 //        Toast.makeText(ShoppingCartActivity.this, "结算实体书", Toast.LENGTH_SHORT).show();
@@ -93,7 +94,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         intent.putExtra(Constant.SHOPPING_CART_ORDER_TYPE, Constant.PAPER_BOOK);
         startActivity(intent);
     }
-
+    //去结账按钮点击事件（电子书）
     @OnClick(R.id.tv_pay_for_ebook)
     void OnPayForEbook() {
 //        Toast.makeText(ShoppingCartActivity.this, "结算电子书", Toast.LENGTH_SHORT).show();
@@ -114,7 +115,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
         mShoppingManager = ShoppingManager.getInstance();
         mBookAdapter = new ShoppingCartAdapter();
@@ -162,12 +163,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //错误状态页面监听
     @OnClick(R.id.lLError)
         public void onErrorClick() {
         initMembers();
     }
-
+    //初始化数据
     private void initData(String token) {
         mShoppingManager.getShoppingCartList(mUserInfo.getUserid(), token, 1, 50)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -288,7 +289,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
             }
         }
     }
-
+    //设置监听
     private void setListener() {
         Ln.d("ShoppingCartActivity:setListener");
 
@@ -516,7 +517,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 //        getMenuInflater().inflate(R.menu.menu_shopping_cart, menu);
 //        return true;
 //    }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -531,14 +532,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //继续
     public void onResume() {
         super.onResume();
         initMembers();
         MobclickAgent.onPageStart("购物车页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("购物车页面");

@@ -38,7 +38,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 搜索选择页面
+ */
 public class SelectSearchActivity extends AppCompatActivity {
     //搜索
     private SearchView mSearchView;
@@ -49,20 +51,16 @@ public class SelectSearchActivity extends AppCompatActivity {
     @Bind(R.id.lLError)
     LinearLayout lLError;
     private MyAdapter myAdapter;
-
     public static final String INTENT_FROM = "INTENT_FROM";
     public static final String INTENT_LIBRARY_TYPE = "INTENT_LIBRARY_TYPE";
     public static final int FROM_STORE = 1;
     public static final int FROM_RESOURCE = 2;
     public static final int FROM_LIBRARY = 3;
-
     private static final int E_BOOK = 1;
     private static final int PAPER_BOOK = 2;
-
-
     private int mFrom;
     private int mLibraryBookType;
-
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,12 +78,12 @@ public class SelectSearchActivity extends AppCompatActivity {
         myAdapter = new MyAdapter();
         recycler.setAdapter(myAdapter);
     }
-
+    //错误信息列表事件
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         //initMembers();
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
@@ -160,7 +158,7 @@ public class SelectSearchActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-
+    //每次显示菜单前都会被调用
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 //        MenuItem search = menu.findItem(R.id.action_search);
@@ -170,14 +168,14 @@ public class SelectSearchActivity extends AppCompatActivity {
 
         return super.onPrepareOptionsMenu(menu);
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //搜索页面适配器
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         public List<PgSelectSearchBook> mList;
 
@@ -288,13 +286,13 @@ public class SelectSearchActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("搜索页");
         MobclickAgent.onResume(this);
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("搜索页");

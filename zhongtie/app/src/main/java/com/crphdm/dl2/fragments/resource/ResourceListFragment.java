@@ -35,9 +35,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 资源页的fragment
+ */
 public class ResourceListFragment extends Fragment {
-    //资源页的fragment
     public static final int TYPE_ALL = 1;
     public static final int TYPE_HOT = 2;
     public static final int TYPE_NEW = 3;
@@ -46,10 +47,13 @@ public class ResourceListFragment extends Fragment {
 
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
+    //错误显示的文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误显示的布局
     @Bind(R.id.lLError)
     LinearLayout lLError;
 
@@ -67,11 +71,10 @@ public class ResourceListFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putInt(INTENT_TYPE, type);
         libraryResourceListFragment.setArguments(bundle);
-
         Ln.d("ResourceListFragment:newInstance");
         return libraryResourceListFragment;
     }
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +83,7 @@ public class ResourceListFragment extends Fragment {
             mType = getArguments().getInt(INTENT_TYPE);
         }
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,12 +94,12 @@ public class ResourceListFragment extends Fragment {
         Ln.d("ResourceListFragment:onCreateView:mType:" + mType);
         return view;
     }
-
+    //错误信息显示页面
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
 
         if (mProgressDialog == null) {
@@ -142,7 +145,7 @@ public class ResourceListFragment extends Fragment {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData() {
         Ln.d("ResourceListFragment:refreshData");
 
@@ -249,12 +252,13 @@ public class ResourceListFragment extends Fragment {
         }
 
     }
-
+    //执行该方法时，与Fragment绑定的Activity的onCreate方法已经执行完成并返回，
+    // 在该方法内可以进行与Activity交互的UI操作
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
+    //适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgResourcesListEntity> mListData;
@@ -314,19 +318,19 @@ public class ResourceListFragment extends Fragment {
             }
         }
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("资源列表页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();

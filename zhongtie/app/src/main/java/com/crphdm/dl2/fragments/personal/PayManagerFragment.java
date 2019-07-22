@@ -35,10 +35,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 支付管理 下面的列表
+ */
 public class PayManagerFragment extends Fragment {
     private int page = 1;
-    //支付管理 下面的列表
     public static final int COUNT = 50;
     public static final String ARG_TYPE = "TYPE";
     public static final int TYPE_ALL = 0x00;
@@ -72,13 +73,13 @@ public class PayManagerFragment extends Fragment {
     public PayManagerFragment() {
         // Required empty public constructor
     }
-
+    //初始化Fragment。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mType = getArguments().getInt(ARG_TYPE);
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,18 +88,18 @@ public class PayManagerFragment extends Fragment {
         ButterKnife.bind(this, view);
         return view;
     }
-
+    // onViewCreated在onCreateView执行完后立即执行
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initMembers();
     }
-
+    //错误页面显示
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initData();
     }
-
+    //初始化成员
     private void initMembers() {
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecycler.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -106,7 +107,7 @@ public class PayManagerFragment extends Fragment {
         mRecycler.setAdapter(mAdapter);
 
     }
-
+    //初始化数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(getActivity(), null, "加载中...");
@@ -143,7 +144,7 @@ public class PayManagerFragment extends Fragment {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData() {
         PersonalCenterManager.getInstance().getOrders(mUserInfo.getUserid(), mToken, mType, 1, COUNT)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -228,7 +229,7 @@ public class PayManagerFragment extends Fragment {
             }
         });
     }
-
+    //适配器
     public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
         private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -279,13 +280,13 @@ public class PayManagerFragment extends Fragment {
             return list == null ? 0 : list.size();
         }
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.order_number)
         TextView orderNumber;
@@ -307,14 +308,14 @@ public class PayManagerFragment extends Fragment {
             ButterKnife.bind(this, view);
         }
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         initData();
         MobclickAgent.onPageStart("支付管理页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();

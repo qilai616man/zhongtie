@@ -33,8 +33,10 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 绑定机构
+ */
 public class BindOrganizationActivity extends AppCompatActivity {
-    //绑定机构
     public static final int REQUEST_CODE = 321;
     public static final String INTENT_ORG = "phone";
 
@@ -51,7 +53,7 @@ public class BindOrganizationActivity extends AppCompatActivity {
     private UserInfo mUserInfo;
 
     private ProgressDialog mProgressDialog;
-
+    //申请绑定按钮
     @OnClick(R.id.bind)
     public void bind() {
         if (mUserInfo != null) {
@@ -109,7 +111,7 @@ public class BindOrganizationActivity extends AppCompatActivity {
             Toast.makeText(BindOrganizationActivity.this, "绑定失败 ：用户信息为空", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //绑定机构成功
     private void bindSuccess() {
         Intent intent = new Intent();
         intent.putExtra(INTENT_ORG, spinner.getSelectedItem().toString());
@@ -161,7 +163,7 @@ public class BindOrganizationActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //初始化成员
     private void initMembers() {
 
         PersonalCenterManager.getInstance().getPublishAgencys(mToken)
@@ -202,7 +204,7 @@ public class BindOrganizationActivity extends AppCompatActivity {
 
 
     }
-
+    //获取后台数据
     private List<String> getList(List<PgPublishAgency> pgPublishAgencies) {
         List<String> list = new ArrayList<>();
 
@@ -214,20 +216,20 @@ public class BindOrganizationActivity extends AppCompatActivity {
         }
         return list;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("绑定机构页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("绑定机构页");

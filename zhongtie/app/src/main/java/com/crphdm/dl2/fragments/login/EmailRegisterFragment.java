@@ -48,7 +48,7 @@ public class EmailRegisterFragment extends Fragment {
     CheckBox mCheckBox;
 
     private boolean dealIsOk = true;
-
+    //获取验证码按钮点击事件
     @OnClick(R.id.get_verify_code)
     void onGetCodeClick() {
         final ProgressDialog dialog = new ProgressDialog(getActivity());
@@ -83,7 +83,7 @@ public class EmailRegisterFragment extends Fragment {
                     }
                 });
     }
-
+    //注册用户协议按钮点击事件
     @OnClick(R.id.tv_1_user_agreement)
     public void onUserAgreement() {
         showUserAgreementDialog(getActivity());
@@ -112,7 +112,7 @@ public class EmailRegisterFragment extends Fragment {
     private void delayBtn() {
         new DelayHelper().delayButton(getVerifyCode);
     }
-
+    //立即注册按钮监听
     @OnClick(R.id.register)
     void register() {
         String username = this.username.getText().toString();
@@ -171,11 +171,11 @@ public class EmailRegisterFragment extends Fragment {
                     }
                 });
     }
-
+    //电子邮箱注册
     public EmailRegisterFragment() {
 
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -185,13 +185,13 @@ public class EmailRegisterFragment extends Fragment {
         setListener();
         return view;
     }
-
+    //初始化成员
     private void initMember() {
         InputFilter[] filters2 = {new InputFilter.LengthFilter(6)};
         verifyCode.setFilters(filters2);
         verifyCode.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
-
+    //设置监听
     private void setListener() {
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -200,18 +200,18 @@ public class EmailRegisterFragment extends Fragment {
             }
         });
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("用户注册页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("用户注册页");

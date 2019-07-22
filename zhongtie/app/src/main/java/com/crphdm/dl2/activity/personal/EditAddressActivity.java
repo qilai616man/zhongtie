@@ -34,9 +34,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 修改地址页面
+ */
 public class EditAddressActivity extends AppCompatActivity {
-    //修改地址页面
     @Bind(R.id.et_name)
     EditText mName;
     @Bind(R.id.et_phone)
@@ -112,8 +113,8 @@ public class EditAddressActivity extends AppCompatActivity {
     }
 
     //初始化曾用过地址列表
+    //这里接受上一个页面传进来的参数
     private void initData() {
-        //这里接受上一个页面传进来的参数
         mName.setText("");
         mPhone.setText("");
         mAddress.setText("");
@@ -150,7 +151,7 @@ public class EditAddressActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //刷新数据
     private void refreshData() {
         ShoppingManager.getInstance().getCommonAddress(mUserInfo.getUserid(), mToken)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -181,7 +182,7 @@ public class EditAddressActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //设置监听
     private void setListener() {
         mName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -275,7 +276,7 @@ public class EditAddressActivity extends AppCompatActivity {
             }
         });
     }
-
+    //添加地址
     private void addAddress() {
         if (mUserInfo != null) {
             UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_FIRST)
@@ -324,7 +325,7 @@ public class EditAddressActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //更新地址
     private void updateAddress(final int id) {
         if (mUserInfo != null) {
             UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_FIRST)
@@ -374,7 +375,7 @@ public class EditAddressActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //删除地址
     private void deleteAddress(final int id) {
         if (mUserInfo != null) {
             UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_FIRST)
@@ -421,7 +422,7 @@ public class EditAddressActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //启动支付页面
     private void startActivityPayManagerDetail() {
         Ln.d("EditAddressActivity:startActivity:mAddressId:" + mAddressId);
         Ln.d("EditAddressActivity:startActivity:mShoppingCartBookType:" + mShoppingCartBookType);
@@ -440,7 +441,7 @@ public class EditAddressActivity extends AppCompatActivity {
 //        getMenuInflater().inflate(R.menu.menu_edit_address, menu);
 //        return true;
 //    }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -456,13 +457,13 @@ public class EditAddressActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("修改地址页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("修改地址页面");

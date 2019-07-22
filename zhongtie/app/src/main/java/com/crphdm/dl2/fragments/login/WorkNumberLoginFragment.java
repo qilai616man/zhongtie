@@ -34,7 +34,7 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class WorkNumberLoginFragment extends Fragment {
-    //工号
+    //工号（废弃）
 
     @Bind(R.id.username)
     ClearEditTextNew username;

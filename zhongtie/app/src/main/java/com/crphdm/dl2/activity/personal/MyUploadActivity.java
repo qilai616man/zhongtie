@@ -33,22 +33,25 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 我的上传页
+ */
 public class MyUploadActivity extends AppCompatActivity {
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    //错误文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误页面
     @Bind(R.id.lLError)
     LinearLayout lLError;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
     private int index = 1;
     private List<PgUploadList> mListData;
-
     private UserInfo mUserInfo;
-
-    //我的上传
+    //我的上传页
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class MyUploadActivity extends AppCompatActivity {
     private MyAdapter mAdapter;
     private String mToken;
 
+    //初始化成员
     private void initMembers() {
 
         if (mProgressDialog == null) {
@@ -119,7 +123,7 @@ public class MyUploadActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData() {
         Ln.d("MyUploadActivity:refreshData");
 
@@ -222,14 +226,14 @@ public class MyUploadActivity extends AppCompatActivity {
         }
 
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgUploadList> mListData;
@@ -286,13 +290,13 @@ public class MyUploadActivity extends AppCompatActivity {
             }
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("我的上传页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("我的上传页");

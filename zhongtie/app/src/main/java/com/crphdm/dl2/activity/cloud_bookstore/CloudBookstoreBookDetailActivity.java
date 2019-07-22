@@ -634,7 +634,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         setupActionbar();
 //        setShopCartState(true);
     }
-
+    //初始化控件
     private void initView() {
         mContext = this;
         mCloudBookstoreManager = CloudBookstoreManager.getInstance();
@@ -716,7 +716,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //初始化电子书类型
     private void initEBookType(int bookId) {
         mEBookOne.setVisibility(View.INVISIBLE);
         mEBookTwo.setVisibility(View.INVISIBLE);
@@ -745,7 +745,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
 
         initBookDetail(bookId);
     }
-
+    //初始化书籍信息
     private void initBookDetail(int bookId) {
         for (int i = 0; i < mListData.size(); i++) {
             PgBookForBookstoreDetail book = mListData.get(i);
@@ -767,7 +767,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         }
 
     }
-
+    //显示实体书/电子书  价格
     private void setupPrice(boolean isRealBook) {
         Ln.d("CloudBookstoreBookDetailActivity:setupPrice:price:" + mBookDetail.getPrice());
         Ln.d("CloudBookstoreBookDetailActivity:setupPrice:pressPrice:" + mBookDetail.getPressPrice());
@@ -779,7 +779,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
             mBookFixprice.setText("￥" + mBookDetail.getPressPrice());
         }
     }
-
+    //设置图书信息
     private void setupBookInfo(PgBookForBookstoreDetail bookstoreDetail) {
         Ln.d("CloudBookstoreBookDetailActivity:setupBookInfo:bookstoreDetail:" + bookstoreDetail.toString());
 
@@ -810,16 +810,18 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         mNumber.setText(mBookDetail.getBookNumber());
         mPublish.setText(mBookDetail.getPublishingHouse());
         mDesc.setText(mBookDetail.getIntroduction());
-
-        if (UserModule.getInstance().getRole() == Constant.USER_ROLE_CAIXUANYUAN) {//采选员
+                //采选员
+        if (UserModule.getInstance().getRole() == Constant.USER_ROLE_CAIXUANYUAN) {
             mRecommendPick.setVisibility(View.GONE);
             mPick.setVisibility(View.VISIBLE);
-        } else {//普通用户
+        } else {
+            //普通用户
             mRecommendPick.setVisibility(View.VISIBLE);
             mPick.setVisibility(View.GONE);
         }
 
-        if (mCardId != Constant.CLOUD_BOOKSTORE_BOOK) {//pod  隐藏电子书
+        if (mCardId != Constant.CLOUD_BOOKSTORE_BOOK) {
+            //pod  隐藏电子书
             mBookType = Constant.BOOK_TYPE_POD;
             mSelect.setVisibility(View.GONE);
             mEbook.setVisibility(View.GONE);
@@ -1216,6 +1218,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         }
     }
 
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         mMenu = menu;
@@ -1259,10 +1262,12 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         return true;
     }
 
+    //每次显示菜单前都会被调用
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem pickDetailLayout = menu.findItem(R.id.action_pick_detail);
-        if (UserModule.getInstance().getRole() != Constant.USER_ROLE_CAIXUANYUAN) {//采选员
+        //采选员
+        if (UserModule.getInstance().getRole() != Constant.USER_ROLE_CAIXUANYUAN) {
             pickDetailLayout.setVisible(false);
         }
         MenuItem shopDetailLayout = menu.findItem(R.id.action_shopcart);
@@ -1272,6 +1277,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -1286,6 +1292,7 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //恢复
     @Override
     protected void onResume() {
         super.onResume();
@@ -1296,18 +1303,20 @@ public class CloudBookstoreBookDetailActivity extends AppCompatActivity {
         MobclickAgent.onResume(this);
     }
 
+    //启动
     @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
     }
 
+    //停止时
     @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("云书城图书详情页");

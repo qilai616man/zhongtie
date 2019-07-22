@@ -2,9 +2,6 @@ package com.crphdm.dl2.user.obj;
 
 import com.crphdm.dl2.user.obj.net.NetObject;
 
-/**
- * Modify by songzixuan on 19/07/03.
- */
 public class PgResult {
     //状态
     private boolean status;

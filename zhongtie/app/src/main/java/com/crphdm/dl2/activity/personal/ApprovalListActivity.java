@@ -41,8 +41,11 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 审批采选单
+ */
+
 public class ApprovalListActivity extends AppCompatActivity {
-    //审批采选单
     @Bind(R.id.recycler)
     RecyclerView recycler;
     @Bind(R.id.tvError)
@@ -75,12 +78,12 @@ public class ApprovalListActivity extends AppCompatActivity {
 
         initMembers();
     }
-
+    //错误提示页面监听
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -95,7 +98,7 @@ public class ApprovalListActivity extends AppCompatActivity {
         });
         return true;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -105,7 +108,7 @@ public class ApprovalListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //初始化成员
     private void initMembers() {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
@@ -155,7 +158,7 @@ public class ApprovalListActivity extends AppCompatActivity {
             }
         }
     }
-
+    //初始化数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(ApprovalListActivity.this, null, "加载中");
@@ -255,7 +258,7 @@ public class ApprovalListActivity extends AppCompatActivity {
             }
         });
     }
-
+    //审批员采选单适配器
     class ApprovalListAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         private String mRejectStr;
@@ -486,13 +489,13 @@ public class ApprovalListActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("审批采选单页");
         MobclickAgent.onResume(this);
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("审批采选单页");

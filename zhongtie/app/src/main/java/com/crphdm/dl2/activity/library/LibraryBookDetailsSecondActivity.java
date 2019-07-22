@@ -53,9 +53,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 图书馆二级中心详情页
+ */
 public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
-    //图书馆二级中心详情页\
     @Bind(R.id.sv_library_book_detail)
     ScrollView mScrollView;
     @Bind(R.id.iv_book_url)
@@ -167,9 +168,10 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
 
         EventBus.getDefault().register(this);
     }
-
+    //临时用户借阅
     @OnClick(R.id.btn_provisionality_book_detail_borrow)
-    public void onProvisionalityBorrowClick(){//临时用户：provisionality
+    public void onProvisionalityBorrowClick(){
+        //临时用户：provisionality
         if(isBorrowing){//已借阅
             if(isDownload){
                 readBook();
@@ -186,7 +188,8 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
                     Toast.makeText(mContext, "获取下载地址失败", Toast.LENGTH_SHORT).show();
                 }
             }
-        }else{//借阅
+        }else{
+            //借阅
             if(mUserInfo != null){
                 UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_SECOND)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -227,8 +230,9 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
         }
     }
 
+    //临时用户移除图书
     @OnClick(R.id.btn_provisionality_book_detail_remove)
-    public void onProvisionalityRemoveClick(){//临时用户移除图书
+    public void onProvisionalityRemoveClick(){
         if (mUserInfo != null) {
             GDownloader.getInstance().delete(mBookDetail.getDownloadUrl());
             progressbar.setProgress(0);
@@ -246,6 +250,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
 
     }
 
+    //执行借阅 下载 打开操作
     @OnClick(R.id.btn_library_book_detail_borrow)
     public void onBorrowClick() {
         Ln.d("LibraryBookDetailsSecondActivity:onBorrowClick");
@@ -331,6 +336,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
         }
     }
 
+    //续借按钮监听
     @OnClick(R.id.btn_library_book_detail_renew)
     public void onRenewClick() {//续借
         if (BookshelfManager.getInstance().getBookById(mBookDetail.getEntityId()) != null) {
@@ -348,7 +354,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
             Toast.makeText(mContext, "续借失败", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //续借事件处理
     private void renewBook() {
         if (mUserInfo != null) {
             UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_SECOND)
@@ -420,7 +426,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
             Ln.d("LibraryBookDetailSecondActivity:用户信息为空");
         }
     }
-
+    //归还按钮
     @OnClick(R.id.btn_library_book_detail_return)
     public void onReturnClick() {//归还
         if (mUserInfo != null) {
@@ -505,7 +511,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //预定按钮
     @OnClick(R.id.btn_library_book_detail_reservation)
     public void onReservationClick() {//预订
         if (mUserInfo != null) {
@@ -562,6 +568,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void showDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
@@ -591,8 +598,9 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
 
     SharedPreferences spp;
     int Number=0;
+    //下载
     @OnClick(R.id.btn_library_book_detail_download)
-    public void onDownloadClick() {//下载
+    public void onDownloadClick() {
         Ln.d("LibraryBookDetailsSecondActivity:onDownloadClick");
         String name = String.valueOf( mBookDetail.getEntityId());
         spp=getSharedPreferences("share",MODE_PRIVATE);
@@ -673,9 +681,8 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
         editor.commit();
 
     }
+    //执行下载操作
     public void download(){
-
-            //执行下载操作
             if (mBookDetail.getDownloadUrl() != null) {
                 Ln.d("LibraryBookDetailsSecondActivity:onDownloadClick:download:" + mBookDetail.getDownloadUrl());
                 BookshelfManager.getInstance().insertBookForLibrary(mBookDetail);
@@ -692,6 +699,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
             }
 
     }
+    //初始化数据
     private void initData() {
         Ln.d("LibraryBookDetailSecondActivity:initData");
         if (mProgressDialog == null) {
@@ -766,7 +774,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
             }
         }
     }
-
+    //刷新
     private void refresh() {
 
         DbBookshelfEntity db = DatabaseManager.getInstance().queryBookById(mBookDetail.getEntityId());
@@ -912,7 +920,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
             }
         }
     }
-
+    //刷新下载
     private void refreshDownloadState() {
         Ln.d("LibraryBookDetailSecondActivity:refreshDownloadState");
         if (mBookDetail.getDownloadProgress() != 0) {
@@ -1026,6 +1034,7 @@ public class LibraryBookDetailsSecondActivity extends AppCompatActivity {
         }
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

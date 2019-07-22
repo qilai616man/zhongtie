@@ -87,9 +87,11 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static org.acra.ACRA.log;
-
+/**
+ * 书架
+ */
 public class BookcaseFragment extends Fragment {
-    //书架
+
     private static final int COUNT = 50;
     @Bind(R.id.load)
     FrameLayout load;
@@ -173,6 +175,7 @@ public class BookcaseFragment extends Fragment {
 
     }
 
+    //刷新网络状态
     private void refreshNetState() {
         UserModuleImpl.getInstance().getNetState()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -193,7 +196,6 @@ public class BookcaseFragment extends Fragment {
                 });
     }
 
-
     List<Book> list=new ArrayList<>();
     List<Long> idList=new ArrayList<>();
     public void onEventMainThread(Book book) {
@@ -212,7 +214,7 @@ public class BookcaseFragment extends Fragment {
         }
     }
 
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -223,14 +225,12 @@ public class BookcaseFragment extends Fragment {
         initMembers();
         return view;
     }
+    //初始化失败加载布局
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
-
-
-
-
+    //初始化成员
     private void initMembers() {
         mContext = getActivity();
 
@@ -291,6 +291,7 @@ public class BookcaseFragment extends Fragment {
         registerAlarmServiceReceiver();
     }
     private ProgressDialog mProgressDialog;
+    //刷新数据
     private void refreshData() {
         mList = BookshelfManager.getInstance().getBookShelfItemList(Constant.BOOKSHELF_TYPE_ALL, 0, COUNT);
         Ln.d("BookcaseFragment:initBookshelfData:getBookShelfItemList:" + mList);
@@ -306,7 +307,7 @@ public class BookcaseFragment extends Fragment {
         setupSpinner(getGroupListData());
         mAdapter.notifyDataSetChanged();
     }
-
+    //初始化书架数据
     private void initBookshelfData(String group) {
         if (group.equals("全部")) {
 //            final String fileUrl = Environment.getExternalStorageDirectory() + "/crphdm/download/t200100005_1359_mobi.tdp";
@@ -354,7 +355,7 @@ public class BookcaseFragment extends Fragment {
                 break;
         }
     }
-
+    //获取后台数据
     private List<String> getGroupListData() {
         Ln.d("BookcaseFragment:getGroupListData:mGroupList(one):" + mGroupList);
         mGroupList.clear();
@@ -440,7 +441,7 @@ public class BookcaseFragment extends Fragment {
 //        EndlessCirclePageIndicator indicator = (EndlessCirclePageIndicator) mHeader.findViewById(R.id.viewPagerIndicator);
 //        indicator.setViewPager(loopViewPager);
     }
-
+    //设置Spinner
     private void setupSpinner(final List<String> list) {
         final Spinner spinner = (Spinner) mHeader.findViewById(R.id.spinner);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
@@ -473,12 +474,11 @@ public class BookcaseFragment extends Fragment {
             }
         });
     }
-
+    //广播接收区
     private BroadcastReceiver mRefreshDataReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-
             Ln.d("BookcaseFragment:BroadcastReceiver:");
             if (Constant.ACTION_REFRESH_DATA.equals(action)) {
                 refreshData();
@@ -493,7 +493,7 @@ public class BookcaseFragment extends Fragment {
         intentFilter.addAction(Constant.ACTION_REFRESH_DATA);
         mContext.registerReceiver(mRefreshDataReceiver, intentFilter);
     }
-
+    //Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
@@ -501,14 +501,14 @@ public class BookcaseFragment extends Fragment {
         MobclickAgent.onPageStart("书架页");
 
     }
-
+    //Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("书架页");
 
     }
-
+    //显示组对话框
     private void showGroupDialog(final String[] items, final int id) {
         new AlertDialog.Builder(getActivity())
                 .setItems(items, new DialogInterface.OnClickListener() {
@@ -520,7 +520,7 @@ public class BookcaseFragment extends Fragment {
                     }
                 }).show();
     }
-
+    //升级回收
     private void setupRecycler() {
         mAdapter.implementRecyclerAdapterMethods(new ParallaxRecyclerAdapter.RecyclerAdapterMethods() {
             @Override
@@ -1004,7 +1004,7 @@ public class BookcaseFragment extends Fragment {
         });
         mRecycler.setAdapter(mAdapter);
     }
-
+    //图书到期
     private void getReturnBook(PgBookshelfItem book){
         Toast.makeText(getActivity() , "您的借阅时间已到期，请再次借阅！" , Toast.LENGTH_SHORT).show();
         GDownloader.getInstance().delete(book.getDownloadUrl());
@@ -1014,7 +1014,7 @@ public class BookcaseFragment extends Fragment {
         ProvisionalityDatabaseHelper pdHelper = new ProvisionalityDatabaseHelper(getActivity());
         pdHelper.del(book.getEntityId());
     }
-
+    //下载图书
     private void getDownloader(PgBookshelfItem pgBookshelfItem, PgBookshelfItem book){
         if (PublicManager.getInstance().isDownloadOk(book.getDownloadUrl())) {//已经下载
             final String fileUrl = PublicManager.getInstance().getFilePath(pgBookshelfItem.getDownloadUrl());
@@ -1098,7 +1098,7 @@ public class BookcaseFragment extends Fragment {
 
         Ln.d("BookcaseFragment:itemView:阅读执行结束");
     }
-
+    //续借图书
     private void renewBookById(final int bookId) {
         UserModule.getInstance().getTokenAsync(UserModule.NET_CENTER_SECOND)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1213,7 +1213,7 @@ public class BookcaseFragment extends Fragment {
             container.removeView((View) object);
         }
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();

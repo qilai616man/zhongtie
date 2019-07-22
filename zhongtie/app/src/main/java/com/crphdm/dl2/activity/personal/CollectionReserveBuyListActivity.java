@@ -40,8 +40,11 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 我的收藏  我的预订  我的购买
+ */
+
 public class CollectionReserveBuyListActivity extends AppCompatActivity {
-    //我的收藏  我的预订  我的购买
     public static final int TYPE_COLLECTION = 0x01;
     public static final int TYPE_RESERVATION = 0x02;
     public static final int TYPE_BOUGHT = 0x03;
@@ -92,12 +95,12 @@ public class CollectionReserveBuyListActivity extends AppCompatActivity {
         }
     }
 
-
+    //没有网络时
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
@@ -435,6 +438,7 @@ public class CollectionReserveBuyListActivity extends AppCompatActivity {
 
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -442,7 +446,7 @@ public class CollectionReserveBuyListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //适配器
     public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -519,14 +523,14 @@ public class CollectionReserveBuyListActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         initMembers();
         MobclickAgent.onPageStart("我的预订、收藏和购买页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("我的预订、收藏和购买页");

@@ -21,10 +21,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/13.
+ * 云书城首页
  */
 public class MarketFragment extends Fragment{
-    //云书城首页
     @Bind(R.id.tl_cloud_book_market_tab)
     TabLayout mCloudBookMarketTab;
     @Bind(R.id.vp_cloud_book_market_list)
@@ -45,7 +44,7 @@ public class MarketFragment extends Fragment{
         cloudMarketFragment.setArguments(bundle);
         return cloudMarketFragment;
     }
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +59,12 @@ public class MarketFragment extends Fragment{
 //            Toast.makeText(getActivity(), "网络异常,无法访问北控中心!", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //通过参数savedInstanceState获取之前保存的值
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
     }
-
+    //初始化Fragment的布局。
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +73,7 @@ public class MarketFragment extends Fragment{
         initView();
         return view;
     }
-
+    //初始化布局
     private void initView() {
         List<String> titles = new ArrayList<>();
         titles.add(BOOK);

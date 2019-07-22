@@ -174,7 +174,7 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
         mContents.setText(buffer.toString());
     }
 
-//处理菜单被选中运行后的事件处理
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -183,13 +183,13 @@ public class LibraryBookDetailsFirstActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-//恢复
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("一级图书馆图书详情页");
         MobclickAgent.onResume(this);
     }
-//暂停
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("一级图书馆图书详情页");

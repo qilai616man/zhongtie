@@ -37,14 +37,18 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 搜索
+ */
 public class SearchActivity extends AppCompatActivity {
     //搜索
     private SearchView mSearchView;
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    //错误信息文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误布局
     @Bind(R.id.lLError)
     LinearLayout lLError;
     private MyAdapter myAdapter;
@@ -77,12 +81,13 @@ public class SearchActivity extends AppCompatActivity {
         myAdapter = new MyAdapter();
         recycler.setAdapter(myAdapter);
     }
-
+    //错误事件
     @OnClick(R.id.lLError)
     public void onErrorClick() {
 
     }
 
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
@@ -205,20 +210,21 @@ public class SearchActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-
+    //每次显示菜单前都会被调用
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
         return super.onPrepareOptionsMenu(menu);
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //搜索页面适配器
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         public List<PgSearchBook> mList;
 
@@ -323,13 +329,13 @@ public class SearchActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("搜索页");
         MobclickAgent.onResume(this);
     }
-
+    //恢复
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("搜索页");

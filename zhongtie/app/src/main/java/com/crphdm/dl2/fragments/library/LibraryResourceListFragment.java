@@ -36,9 +36,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 自有资源和共享资源
+ */
 public class LibraryResourceListFragment extends Fragment {
-    //自有资源和共享资源
     public static final int TYPE_SELF = 2;
     public static final int TYPE_SHARE = 3;
     public static final String INTENT_TYPE = "type";
@@ -68,13 +69,13 @@ public class LibraryResourceListFragment extends Fragment {
         libraryResourceListFragment.setArguments(bundle);
         return libraryResourceListFragment;
     }
-
+    //初始化Fragment。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mType = getArguments().getInt(INTENT_TYPE);
     }
-
+    //初始化Fragment布局
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,19 +85,20 @@ public class LibraryResourceListFragment extends Fragment {
         return view;
     }
 
-
+    //错误显示布局
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
 
+    //执行该方法时，与Fragment绑定的Activity的onCreate方法已经执行完成并返回
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         initMembers();
     }
-
+    //初始化成员
     public void initMembers() {
 
         mUserInfoSecond = UserModule.getInstance().getUserInfoLocal(UserModule.NET_CENTER_SECOND);
@@ -182,7 +184,7 @@ public class LibraryResourceListFragment extends Fragment {
 
 
     }
-
+    //适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgBookForLibraryListEntity> pgBookForLibraryListEntities;
@@ -254,7 +256,7 @@ public class LibraryResourceListFragment extends Fragment {
             }
         }
     }
-
+    //显示对话框
     private void showDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("提示");
@@ -275,19 +277,19 @@ public class LibraryResourceListFragment extends Fragment {
         builder.create();
         builder.show();
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("图书馆资源页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();

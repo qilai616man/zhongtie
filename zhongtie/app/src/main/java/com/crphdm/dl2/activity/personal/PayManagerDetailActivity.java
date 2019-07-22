@@ -41,7 +41,6 @@ import rx.schedulers.Schedulers;
 /**
  * 订单详情
  */
-
 public class PayManagerDetailActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 5312;
     public static final String ORDER_ID = "orderId";
@@ -51,10 +50,13 @@ public class PayManagerDetailActivity extends AppCompatActivity {
     private ParallaxRecyclerAdapter<PgPayOrderDetail> mAdapter;
     private View mHeader;
     private HeaderViewHolder mHeaderViewHolder;
-
+    //购物ID
     private int mAddressId;
+    //购物车书类型
     private int mShoppingCartBookType;
+    //购物车书ID
     private int mShoppingCatyBookId;
+    //订单详情
     private int mOrderId;
 
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,7 +94,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
         initMembers();
         initData();
     }
-
+    //初始化成员
     private void initMembers() {
         Ln.d("PayManagerDetailActivity:initMembers");
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -131,7 +133,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
 
 
     }
-
+    //初始化数据
     private void initData() {
         Ln.d("PayManagerDetailActivity:initData");
         if (mUserInfo != null) {
@@ -166,7 +168,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //刷新数据
     private void refreshData() {
         Ln.d("PayManagerDetailActivity:refreshData");
         if (mShoppingCatyBookId != 0) {//直接购买
@@ -303,6 +305,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
                 });
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -311,6 +314,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //返回按钮的点击事件
     @Override
     public void onBackPressed() {
         if (mPaySuccess) {
@@ -321,6 +325,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    //设置头部
     private void setupHeader(final PgPayOrderInfo pgPayOrderInfo) {
         mPgPayOrderInfo = pgPayOrderInfo;
         Ln.d("PayManagerDetailActivity:setupHeader:PgOrderForm:" + pgPayOrderInfo.toString());
@@ -421,6 +426,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
+
 
     public class HeaderViewHolder {
         @Bind(R.id.order_number)
@@ -548,6 +554,7 @@ public class PayManagerDetailActivity extends AppCompatActivity {
         }
     }
 
+    //支付成功支付失败
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

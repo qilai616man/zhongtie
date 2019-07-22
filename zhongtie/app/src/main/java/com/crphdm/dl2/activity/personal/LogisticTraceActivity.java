@@ -39,10 +39,13 @@ public class LogisticTraceActivity extends AppCompatActivity {
 
 //    @Bind(R.id.recycler)
     RecyclerView recycler;
+    //错误提示内容
 //    @Bind(R.id.tvError)
+    //错误提示布局
     TextView tvError;
 //    @Bind(R.id.lLError)
     LinearLayout lLError;
+    //加载页面
 //    @Bind(R.id.load)
     FrameLayout load;
 
@@ -76,7 +79,7 @@ public class LogisticTraceActivity extends AppCompatActivity {
         initData();
 
     }
-
+    //初始化数据
     private void initData() {
         if(mUserInfo != null){
             if(mProgressDialog == null){
@@ -111,7 +114,7 @@ public class LogisticTraceActivity extends AppCompatActivity {
         }
 
     }
-
+    //刷新数据
     private void refreshData(){
         PersonalCenterManager.getInstance().getLogisticTrace(mUserInfo.getUserid() ,"2016050667352" ,mToken)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -157,7 +160,7 @@ public class LogisticTraceActivity extends AppCompatActivity {
 
     }
 
-
+    //适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
         @Override
@@ -206,6 +209,7 @@ public class LogisticTraceActivity extends AppCompatActivity {
         }
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -215,16 +219,14 @@ public class LogisticTraceActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
+    //恢复
     public void onResume() {
         super.onResume();
 
         MobclickAgent.onPageStart("物流跟踪");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("物流跟踪");

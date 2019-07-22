@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by qinqi on 16/2/29.
+ * Modify by songzixuan on 19/07/11.
  */
 public class LoginOldActivity extends AppCompatActivity implements
         PhoneLoginFragment.OnPhoneLoginFragmentListener,
@@ -80,7 +80,7 @@ public class LoginOldActivity extends AppCompatActivity implements
         Ln.d("LoginActivity:工号登录");
         onBackPressed();
     }
-     //张杰适配器
+     //适配器
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -129,12 +129,12 @@ public class LoginOldActivity extends AppCompatActivity implements
     public void onBackPressed() {
         super.onBackPressed();
     }
- //恢复
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-//暂停
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

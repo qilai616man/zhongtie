@@ -54,9 +54,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+/**
+ * 资源fragment 图书详情页
+ */
 
 public class ResourceBookDetailsActivity extends AppCompatActivity {
-    //资源fragment 图书详情页
     @Bind(R.id.iv_book_url)
     ImageView ivBookUrl;
     @Bind(R.id.tv_book_name)
@@ -98,9 +100,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
 
     private Context mContext;
 
-    /**
-     * 加入购物车
-     */
+     //加入购物车按钮点击事件
     @OnClick(R.id.btn_resource_detail_add_shopping_cart)
     public void onAddShoppingCartClick() {
         if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
@@ -172,7 +172,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
         }
 
     }
-
+    //购买按钮点击事件
     @OnClick(R.id.btn_resource_book_detail_download)
     public void onDownloadClick() {
         if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
@@ -198,7 +198,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
         }
 
     }
-
+    //出版社
     @OnClick(R.id.btn_publish_institution)
     public void onPublishInstitutionClick() {
 //        if(UserModule.getInstance().getRole() == Constant.USER_ROLE_PROVISIONALITY){
@@ -276,13 +276,13 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
             Toast.makeText(mContext, "获取下载路径失败", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //销毁
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -523,7 +523,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
             }
         }
     }
-
+    //刷新下载状态
     private void refreshDownloadState() {
         Ln.d("LibraryBookDetailSecondActivity:refreshDownloadState");
         if (mResourceDetail.getDownloadProgress() != 0) {
@@ -561,7 +561,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
                 break;
         }
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        mMenu = menu;
@@ -600,6 +600,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
 
         return true;
     }
+    //每次显示菜单前都会被调用
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem pickDetailLayout = menu.findItem(R.id.action_pick_detail);
@@ -675,6 +676,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
         }
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -682,7 +684,7 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //接收Activity回调并处理
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -690,14 +692,14 @@ public class ResourceBookDetailsActivity extends AppCompatActivity {
             initMembers(mResourceId);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         setupActionbar();
         MobclickAgent.onPageStart("资源详情页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("资源详情页");

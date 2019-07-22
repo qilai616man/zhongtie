@@ -203,7 +203,7 @@ public class PhoneRegisterFragment extends Fragment {
         setListener();
         return view;
     }
-
+    //初始化成员
     private void initMembers() {
         username.setHint("请输入手机号");
         InputFilter[] filters = {new InputFilter.LengthFilter(11)};

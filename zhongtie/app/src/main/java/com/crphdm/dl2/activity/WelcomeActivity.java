@@ -24,10 +24,8 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * Modify by 宋子轩 on 19/07/02.
  * 欢迎页面
  */
-
 public class WelcomeActivity extends Activity {
     //登录状态
     private static final int ACTIVITY_REQUEST_CODE_LOGIN_ACTIVITY = 1;

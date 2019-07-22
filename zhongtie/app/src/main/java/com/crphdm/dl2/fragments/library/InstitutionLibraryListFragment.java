@@ -36,9 +36,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 更多图书馆 下面的fragment
+ */
 public class InstitutionLibraryListFragment extends Fragment {
-    //更多图书馆 下面的fragment
 
     @Bind(R.id.recycler)
     RecyclerView recycler;
@@ -56,7 +57,7 @@ public class InstitutionLibraryListFragment extends Fragment {
 
     private List<PgLibrary> mListData;
     private MyAdapter mAdapter;
-
+    //初始化Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +73,7 @@ public class InstitutionLibraryListFragment extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,7 +82,7 @@ public class InstitutionLibraryListFragment extends Fragment {
         ButterKnife.bind(this, view);
         return view;
     }
-
+    //onViewCreated在onCreateView执行完后立即执行。
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -89,7 +90,7 @@ public class InstitutionLibraryListFragment extends Fragment {
     }
 
     private ProgressDialog mProgressDialog;
-
+    //初始化数据
     private void initData() {
 
 
@@ -193,7 +194,7 @@ public class InstitutionLibraryListFragment extends Fragment {
                 }
         );
     }
-
+    //适配器
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgLibrary> pgLibraries;
@@ -273,18 +274,18 @@ public class InstitutionLibraryListFragment extends Fragment {
         }
     }
 
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("一级图书馆列表页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("一级图书馆列表页");

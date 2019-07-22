@@ -17,7 +17,9 @@ import java.lang.reflect.Field;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
+/**
+ * 资源页
+ */
 public class ResourceFragment extends Fragment {
     //资源
     @Bind(R.id.tb_institution_library)
@@ -27,7 +29,7 @@ public class ResourceFragment extends Fragment {
     private static final String TAG = ResourceFragment.class.getSimpleName();
 
     private int mNetState;
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +52,12 @@ public class ResourceFragment extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
+    //通过参数savedInstanceState获取之前保存的值
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class ResourceFragment extends Fragment {
         ButterKnife.bind(this, view);
         return view;
     }
-
+    //执行该方法时，与Fragment绑定的Activity的onCreate方法已经执行完成并返回
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -145,13 +147,13 @@ public class ResourceFragment extends Fragment {
         getChildFragmentManager().beginTransaction().replace(
                 R.id.frame_layout, mNewResourceListFragment).commit();
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("资源页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();

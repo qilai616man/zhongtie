@@ -32,7 +32,7 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class PhoneLoginFragment extends Fragment {
-    //手机号
+    //手机号 （已废弃）
     @Bind(R.id.username)
     ClearEditTextNew username;
     @Bind(R.id.password)

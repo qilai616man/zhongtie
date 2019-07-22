@@ -121,44 +121,41 @@ public class LibraryElectronicBookDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //临时用户借阅
     @OnClick(R.id.btn_provisionality_book_detail_borrow)
     public void onProvisionalityBorrowClick(){//临时用户：provisionality
 
-
         Toast.makeText(LibraryElectronicBookDetailsActivity.this, "亲爱的用户，请先连接自助阅读机的wifi后再进行借阅图书！", Toast.LENGTH_SHORT).show();
-
-
 
     }
 
-
+    //借阅
     @OnClick(R.id.btn_library_book_detail_borrow)
     public void onBorrowClick() {
 
         Toast.makeText(LibraryElectronicBookDetailsActivity.this, "亲爱的用户，请先连接自助阅读机的wifi后再进行借阅图书！", Toast.LENGTH_SHORT).show();
 
     }
-
+    //续借
     @OnClick(R.id.btn_library_book_detail_renew)
-    public void onRenewClick() {//续借
+    public void onRenewClick() {
         Toast.makeText(LibraryElectronicBookDetailsActivity.this, "亲爱的用户，请先连接自助阅读机的wifi后再进行续借图书！", Toast.LENGTH_SHORT).show();
 
     }
 
-
+    //归还
     @OnClick(R.id.btn_library_book_detail_return)
-    public void onReturnClick() {//归还
+    public void onReturnClick() {
         Toast.makeText(LibraryElectronicBookDetailsActivity.this, "亲爱的用户，请先连接自助阅读机的wifi后再进行归还图书！", Toast.LENGTH_SHORT).show();
 
     }
-
+    //预订
     @OnClick(R.id.btn_library_book_detail_reservation)
-    public void onReservationClick() {//预订
+    public void onReservationClick() {
         Toast.makeText(LibraryElectronicBookDetailsActivity.this, "亲爱的用户，请先连接自助阅读机的wifi后再进行预订图书！", Toast.LENGTH_SHORT).show();
 
     }
-
+    //初始化数据
     private void initData() {
         if (mUserInfo != null) {
 
@@ -197,7 +194,7 @@ public class LibraryElectronicBookDetailsActivity extends AppCompatActivity {
             }
         }
     }
-
+    //刷新
     private void refresh() {
         Ln.d("LibraryBookDetailFirstActivity:refresh");
         Glide.with(LibraryElectronicBookDetailsActivity.this)
@@ -240,7 +237,7 @@ public class LibraryElectronicBookDetailsActivity extends AppCompatActivity {
         mContents.setText(buffer.toString());
     }
 
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -249,13 +246,13 @@ public class LibraryElectronicBookDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("一级图书馆图书详情页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("一级图书馆图书详情页");

@@ -24,13 +24,17 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 意见与反馈
+ */
 public class FeedbackActivity extends AppCompatActivity {
-    //意见与反馈
+    //姓名
     @Bind(R.id.name)
     EditText name;
+    //邮箱
     @Bind(R.id.email)
     EditText email;
+    //内容
     @Bind(R.id.content)
     EditText content;
 
@@ -41,6 +45,7 @@ public class FeedbackActivity extends AppCompatActivity {
     private UserInfo mUserInfo;
     private String mToken;
 
+    //发送反馈按钮监听
     @OnClick(R.id.sendFeedback)
     public void sendFeedback() {
         if (name.getText().toString().trim().isEmpty()) {
@@ -135,7 +140,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
 
 
@@ -190,20 +195,20 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("意见与反馈页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("意见与反馈页面");

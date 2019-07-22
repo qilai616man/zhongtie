@@ -33,17 +33,25 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 中图分类
+ * 专业分类
+ * 共用Activity
+ */
+
 public class ZhongTuActivity extends AppCompatActivity {
-    //中图分类的activity  和专业分类公用一个
+    //分类内容
     @Bind(R.id.tag_cloud_view)
     TagCloudView mTagCloudView;
+    //错误布局文字提示
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误显示
     @Bind(R.id.lLError)
     LinearLayout lLError;
-    private View mParentView;
-    private List<PgBookCategory> mClassifyList;
-    private Map<String, Integer> mMap = new HashMap<>();
+//    private View mParentView;
+//    private List<PgBookCategory> mClassifyList;
+//    private Map<String, Integer> mMap = new HashMap<>();
 
     private int mCardId;
     private int mTypeId;
@@ -68,10 +76,12 @@ public class ZhongTuActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            if (mTypeId == Constant.CLOUD_BOOKSTORE_FIGURE) {//专业分类
+           //设置抬头
+            if (mTypeId == Constant.CLOUD_BOOKSTORE_FIGURE) {
+                    //专业分类
                 getSupportActionBar().setTitle("专业分类");
-            } else if (mTypeId == Constant.CLOUD_BOOKSTORE_PROFESSIONAL) {//中图分类
+            } else if (mTypeId == Constant.CLOUD_BOOKSTORE_PROFESSIONAL) {
+                    //中图分类
                 getSupportActionBar().setTitle("中图分类");
             }
         }
@@ -80,11 +90,12 @@ public class ZhongTuActivity extends AppCompatActivity {
         setListener();
     }
 
+    //错误提示页面监听
     @OnClick(R.id.lLError)
     public void onErrorClick(){
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(ZhongTuActivity.this, null, "加载中...");
@@ -119,7 +130,7 @@ public class ZhongTuActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //初始化数据
     private void initData() {
         if (mUserInfo != null) {
             if (mProgressDialog == null) {
@@ -168,7 +179,7 @@ public class ZhongTuActivity extends AppCompatActivity {
             }
         }
     }
-
+    //设置监听
     private void setListener() {
         mTagCloudView.setOnTagClickListener(new TagCloudView.OnTagClickListener() {
             @Override
@@ -186,7 +197,7 @@ public class ZhongTuActivity extends AppCompatActivity {
             }
         });
     }
-
+    //获取数据
     private List<String> getList(List<PgBookCategory> pgBookCategories) {
         List<String> list = new ArrayList<>();
 
@@ -213,6 +224,7 @@ public class ZhongTuActivity extends AppCompatActivity {
         return list;
     }
 
+    //处理菜单被选中运行后的事件处理 （home键）
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

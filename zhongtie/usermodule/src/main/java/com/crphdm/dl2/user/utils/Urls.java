@@ -1,7 +1,7 @@
 package com.crphdm.dl2.user.utils;
 
 /**
- * Modify by songzixuan on 19/07/02.
+ *
  */
 public class Urls {
     public static final String URL_FIRST_CENTER = "http://app.m.crphdm.com/?app=system&controller=Location&action=locate";

@@ -35,9 +35,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+/**
+ * 采选页面
+ */
 
 public class PickActivity extends AppCompatActivity {
-    //采选页面
     @Bind(R.id.tv_ebook_count)
     TextView mEBookCount;
     @Bind(R.id.tv_total_ebook_price)
@@ -73,7 +75,7 @@ public class PickActivity extends AppCompatActivity {
     private String mToken;
 
     private PgMiningMenuDetail mMiningMenuDetail;
-
+    //无网络界面
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
@@ -210,7 +212,7 @@ public class PickActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //初始胡数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(this, null, "加载中...");
@@ -257,7 +259,7 @@ public class PickActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData() {
         mAdapter.setData(PickActivity.this, Constant.BOOK_TYPE_E_BOOK, mMiningMenuDetail.getShoppingCartItemList());
         mAdapter.notifyDataSetChanged();
@@ -269,7 +271,7 @@ public class PickActivity extends AppCompatActivity {
         refreshStatus(mMiningMenuDetail.getState());
 //        refreshStatus(Constant.MINING_MENU_STATE_WEI_TI_JIAO);
     }
-
+    //刷新状态
     private void refreshStatus(int state) {
 //        if (mWhichActivity == Constant.FROM_CLOUD_BOOK_MARKET) {//从云书城进来
 //
@@ -298,7 +300,7 @@ public class PickActivity extends AppCompatActivity {
         }
 //        }
     }
-
+    //设置监听
     private void setListener() {
         mAdapter.setListener(new OnChangeCountListener() {
             @Override
@@ -468,26 +470,26 @@ public class PickActivity extends AppCompatActivity {
             }
         });
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选页面");
         MobclickAgent.onPause(this);
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my_pick, menu);
         return true;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

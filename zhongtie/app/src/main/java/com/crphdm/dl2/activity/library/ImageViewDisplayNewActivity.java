@@ -20,8 +20,12 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 试读列表页
+ */
+
 public class ImageViewDisplayNewActivity extends AppCompatActivity{
-    //试读列表页
+
     private ViewPager mViewPager;
     public int mPosition;
     private ArrayList<String> mImageList;
@@ -38,7 +42,7 @@ public class ImageViewDisplayNewActivity extends AppCompatActivity{
 
         initView();
     }
-
+        //初始化界面
     private void initView() {
         mPosition = getIntent().getIntExtra("position",0);
         mImageList = getIntent().getStringArrayListExtra("ImageList");
