@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,14 +37,16 @@ import java.io.File;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 编辑个人资料
+ */
 public class UpdateUserInfoActivity extends AppCompatActivity {
-    //编辑个人资料
     @Bind(R.id.civ_update_user_info_photo)
     CircleImageView mIcon;
     @Bind(R.id.username)
@@ -69,27 +72,18 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
 
     private String mIconUrl;
     private Bitmap bitmap;
-    private final int uploadStart = -1;
-    private final int uploadOk = -2;
-    private final int uploadErr = -3;
 
     private String mTrueName;
     private String mNickName;
     private int mSex = 1;//1.男  2.女
-
-    @OnClick(R.id.civ_update_user_info_photo)
+    //头像点击事件
+    /*@OnClick(R.id.civ_update_user_info_photo)
     public void onIconClick() {
         Ln.d("UpdateUserInfoActivity:onIconClick");
         if (mUserInfo != null) {
 
             getPhotoDialog().show();
 
-//        mProgressDialog = new ProgressDialog(this);
-//        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//        mProgressDialog.setMessage("上传中");
-//        mProgressDialog.setCancelable(false);
-
-//        final MyHandler myHandler = new MyHandler(this);
 
             mCropImage.setCropListener(new CropImage.OnCropImageListener() {
                 @Override
@@ -123,7 +117,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
                                                 public void call(String url) {
                                                     file.delete();
                                                     mIconUrl = url;
-                                                    Ln.d("UpdateUserInfoActivity:uploadImage:mIconUrl:" + mIconUrl);
+                                                    Ln.d("UpdateUserInfoActivity:uploadImage:mIconUrl:" + mIconUrl+"---"+url);
 
                                                 }
                                             }, new Action1<Throwable>() {
@@ -163,30 +157,6 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
                                 }
                             });
 
-
-//                UserModule.getInstance().uploadAvatarImage(file.getPath(), new FileUploader.FileUploadListener() {
-//                    @Override
-//                    public void uploadSuccess(String url) {
-//                        mModify++;
-//                        mSaveLL.setVisibility(View.VISIBLE);
-//                        file.delete();
-//                        mIconUrl = url;
-//                        Ln.d("mIconUrl:" + mIconUrl);
-//                        myHandler.sendEmptyMessage(uploadOk);
-//                    }
-//
-//                    @Override
-//                    public void uploadProgress(int current, int total) {
-//                        float rate = (float) current / (float) total;
-//                        myHandler.sendEmptyMessage((int) (rate * 100));
-//                    }
-//
-//                    @Override
-//                    public void uploadException(String err) {
-//                        Ln.e("upload pic error:" + err);
-//                        myHandler.sendEmptyMessage(uploadErr);
-//                    }
-//                });
                 }
 
                 @Override
@@ -196,8 +166,8 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             });
 
         }
-    }
-
+    }*/
+    //保存按钮点击事件
     @OnClick(R.id.save)
     public void onSaveClick() {
         Ln.d("UpdateUseInfoActivity:onSaveClick:mIconUrl:" + mIconUrl);
@@ -238,7 +208,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             Toast.makeText(UpdateUserInfoActivity.this, "亲爱的用户，看不到我？请用手机连接互联网试一试", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,7 +221,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         initMembers();
         setListener();
     }
-
+    //初始化成员
     private void initMembers() {
         mCropImage = new CropImage(this);
 
@@ -292,17 +262,17 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             if (mTrueName != null) {
                 trueName.setText(mTrueName);
             }
-
+            Log.d("ttt", "initMembers: "+mUserInfo.getSex());
             if (mUserInfo.getSex() == 0) {
                 mSex = 0;
-                girl.setChecked(true);
-            } else {
                 boy.setChecked(true);
+            } else {
+                girl.setChecked(true);
                 mSex = 1;
             }
         }
     }
-
+    //设置监听
     private void setListener() {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -353,7 +323,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
             }
         });
     }
-
+    //获取头像（拍照/本地相册）
     private Dialog getPhotoDialog() {
         String[] items = new String[]{"    拍照", "    相册选择"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -374,13 +344,13 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
 
         return builder.create();
     }
-
+    //接手Activity的回调信息做处理
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCropImage.onActivityResult(requestCode, resultCode, data);
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home){
@@ -389,13 +359,13 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("编辑个人资料页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("编辑个人资料页");

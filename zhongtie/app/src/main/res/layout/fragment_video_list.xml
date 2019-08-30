@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <ScrollView
+            android:id="@+id/scrollView_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <recycler.coverflow.RecyclerCoverFlow
+                            android:layout_width="match_parent"
+                            android:layout_height="258dp"
+                            android:background="#d3d3d3"
+                            android:paddingBottom="8dp"
+                            android:id="@+id/video_recycler_coverFlow_id"
+                            android:layout_marginBottom="8dp"></recycler.coverflow.RecyclerCoverFlow>
+                        <TextView
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="最美铁路人"
+                            android:textSize="15sp"
+                            android:gravity="center"/>
+                    </RelativeLayout>
+
+                    <com.crphdm.dl2.fragments.video.LoadListView
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/video_recycler_coverFlow_id"
+                        android:layout_height="match_parent"
+                        android:id="@+id/video_listView_id"></com.crphdm.dl2.fragments.video.LoadListView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lLError"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/error_cloud" />
+
+                    <TextView
+                        android:id="@+id/tvError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="亲爱的用户，看不到我？请用手机连接互联网试一试？"
+                        android:textColor="#ffbbbbbb" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+</LinearLayout>

@@ -15,10 +15,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/10.
+ * 采选历史项适配器
  */
 public class PickItemHistoryAdapter extends RecyclerView.Adapter<PickItemHistoryAdapter.ViewHolder> {
-
 
     private Context mContext;
     private List<String> mNameList;
@@ -27,24 +26,24 @@ public class PickItemHistoryAdapter extends RecyclerView.Adapter<PickItemHistory
         mContext = context;
         mNameList = list;
     }
-
+    //负责承载每个子项的布局。
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_pick_history_item_layout, parent, false);
         return new ViewHolder(view);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mIndex.setText((position+1)+".");
         holder.mName.setText(mNameList.get(position));
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         return mNameList == null ? 0 : mNameList.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_name)
         TextView mName;

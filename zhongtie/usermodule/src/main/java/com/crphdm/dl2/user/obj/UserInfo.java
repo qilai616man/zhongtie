@@ -2,9 +2,7 @@ package com.crphdm.dl2.user.obj;
 
 import com.google.gson.annotations.Expose;
 
-/**
- * Created by gaoyufei on 15/10/9.
- */
+
 public class UserInfo {
     @Expose
     int userid;

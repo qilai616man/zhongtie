@@ -34,13 +34,16 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 资源 机构列表页
+ */
 public class ResourceOrgListActivity extends AppCompatActivity {
 
     private static final String TAG = ResourceOrgListActivity.class.getSimpleName();
     //资源 机构列表页
     @Bind(R.id.rv_2_resource_org_list)
     RecyclerView mRecyclerView;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
     private Context mContext;
@@ -102,7 +105,7 @@ public class ResourceOrgListActivity extends AppCompatActivity {
                 });
 
     }
-
+    //初始化成员
     private void initMembers(final int orgId){
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
@@ -189,14 +192,14 @@ public class ResourceOrgListActivity extends AppCompatActivity {
 
 
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //机构列表页
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private List<PgResourcesListEntity> pgBookForLibraryListEntities;
@@ -258,13 +261,13 @@ public class ResourceOrgListActivity extends AppCompatActivity {
             }
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("机构列表页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("机构列表页");

@@ -18,7 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/9.
+ * 我的采选里面图书列表adapter
  */
 public class MyPickBookListAdapter extends RecyclerView.Adapter<MyPickBookListAdapter.ViewHolder> {
     //我的采选里面图书列表adapter
@@ -33,13 +33,13 @@ public class MyPickBookListAdapter extends RecyclerView.Adapter<MyPickBookListAd
         mNameList = data.getBookNameList();
         mFlag = flag;
     }
-
+    //负责承载每个子项的布局。
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_my_pick_book_list_layout, parent, false);
         return new ViewHolder(view);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (mFlag == Constant.FLAG_PICK) {
@@ -51,7 +51,7 @@ public class MyPickBookListAdapter extends RecyclerView.Adapter<MyPickBookListAd
             holder.mBookCount.setVisibility(View.INVISIBLE);
         }
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         if (mFlag == Constant.FLAG_PICK) {
@@ -61,7 +61,7 @@ public class MyPickBookListAdapter extends RecyclerView.Adapter<MyPickBookListAd
         }
         return 0;
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_booK_name)
         TextView mBooKName;

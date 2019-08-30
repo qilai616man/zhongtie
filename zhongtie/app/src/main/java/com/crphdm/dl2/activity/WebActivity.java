@@ -18,7 +18,9 @@ import android.widget.LinearLayout;
 
 import com.crphdm.dl2.R;
 import com.umeng.analytics.MobclickAgent;
-
+/**
+ * 广告页
+ */
 public class WebActivity extends AppCompatActivity {
 
     public static final String INTENT_POST_URL = "INTENT_POST_URL";
@@ -74,7 +76,7 @@ public class WebActivity extends AppCompatActivity {
             mLoading.setVisibility(View.GONE);
         }
     }
-
+    //测试连接管理器
     public boolean testConnectivityManager() {
         ConnectivityManager connectivity = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity == null) {
@@ -93,7 +95,7 @@ public class WebActivity extends AppCompatActivity {
         }
         return false;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -106,8 +108,7 @@ public class WebActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
+    //我的web页面客户端
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -136,7 +137,7 @@ public class WebActivity extends AppCompatActivity {
             mLoading.setVisibility(View.GONE);
         }
     }
-
+    //按下屏幕时触发
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -147,18 +148,18 @@ public class WebActivity extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
-
+    //获取后退按钮事件
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("广告页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("广告页");

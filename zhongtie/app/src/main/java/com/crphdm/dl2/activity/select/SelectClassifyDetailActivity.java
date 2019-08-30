@@ -41,7 +41,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 采选图书分类页面
+ */
 public class SelectClassifyDetailActivity extends AppCompatActivity {
     //采选图书分类页面
     @Bind(R.id.sv_classify_detail)
@@ -185,7 +187,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
             }
         });
     }
-
+    //刷新数据
     private void refreshData(int parentId) {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(SelectClassifyDetailActivity.this, null, "加载中...");
@@ -233,7 +235,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
                 });
     }
 
-
+    //初始化成员
     private void initMembers() {
         mCloudBookstoreManager = SelectManager.getInstance();
 
@@ -246,6 +248,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
         mRclClassifyDetailList.setAdapter(mClassifyDetailAdapter);
 
     }
+    //设置监听
     private void setLintener() {
         Ln.d("SelectClassifyDetailActivity:setListener");
         mClassifyDetailAdapter.setListener(new OnClassDetailChangeListener() {
@@ -347,6 +350,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
             }
         });
     }
+    //添加推荐列表
     private void addRecommendList(final int bookId,final int position){
         if (mUserInfo !=null) {
             if (mProgressDialog == null) {
@@ -417,6 +421,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
 
         }
     }
+    //添加成员列表
     private void addMiningList(final int position, final int bookId, final int type) {
         if (mUserInfo != null) {
             if (mSelectType == Constant.CLOUD_BOOKSTORE_BOOK && mProgressDialog == null) {
@@ -488,7 +493,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //删除成员列表
     private void deleteMiningList(final int position, final int bookId, final int type) {
         if (mUserInfo != null) {
 
@@ -558,7 +563,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //获取数据
     private List<String> getList(List<PgSelectBookCategory> pgBookCategories) {
         List<String> list = new ArrayList<>();
 
@@ -570,7 +575,7 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
         }
         return list;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -585,13 +590,13 @@ public class SelectClassifyDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选二级分类页");
         MobclickAgent.onResume(this);
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选二级分类页");

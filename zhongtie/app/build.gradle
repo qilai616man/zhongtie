@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.crphdm.dl2"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 9
         versionName "1.1.0"
@@ -73,6 +73,8 @@ dependencies {
 //  classpath 'com.android.tools.build:gradle:2.4'
     provided fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.chenlittleping:recyclercoverflow:1.0.6'
+    compile 'fm.jiecao:jiecaovideoplayer:5.5.4'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:appcompat-v7:25+'
     compile 'com.android.support:design:25+'

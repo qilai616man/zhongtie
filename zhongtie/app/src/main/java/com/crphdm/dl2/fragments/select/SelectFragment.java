@@ -28,9 +28,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 资源采选首页
+ */
 public class SelectFragment extends Fragment{
-    //资源采选首页
     @Bind(R.id.tl_select_book_market_tab)
     TabLayout mSelectBookMarketTab;
     @Bind(R.id.vp_select_book_market_list)
@@ -51,7 +52,7 @@ public class SelectFragment extends Fragment{
         selectFragment.setArguments(bundle);
         return selectFragment;
     }
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class SelectFragment extends Fragment{
 //            Toast.makeText(getActivity(), "网络异常,无法访问北控中心!", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
@@ -73,6 +74,7 @@ public class SelectFragment extends Fragment{
 
     @Nullable
     @Override
+    //初始化Fragment的布局
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_select, container,false);
         ButterKnife.bind(this, view);
@@ -142,6 +144,7 @@ public class SelectFragment extends Fragment{
                     }
                 });
     }
+    //初始化师徒
     private void initView() {
         List<String> titles = new ArrayList<>();
         titles.add(NOTSELECT + "(" + mNoSelectBookNumber + ")");
@@ -178,7 +181,7 @@ public class SelectFragment extends Fragment{
 //            e.printStackTrace();
 //        }
 //    }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();

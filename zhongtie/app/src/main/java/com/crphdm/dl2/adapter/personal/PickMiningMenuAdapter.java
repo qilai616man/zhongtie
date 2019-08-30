@@ -34,24 +34,24 @@ public class PickMiningMenuAdapter extends RecyclerView.Adapter<PickMiningMenuAd
     public PickMiningMenuAdapter() {
 
     }
-
+    //设置数据
     public void setData(Context context, int type, List<PgMiningMenuListEntity> list) {
         mContext = context;
         mType = type;
         mList = list;
     }
-
+    //设置监听
     public void setListener(OnChangeCountListener listener) {
         Ln.d("ShoppingCartAdapter:setListener");
         mListener = listener;
     }
-
+    //负责承载每个子项的布局。
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mParentView = LayoutInflater.from(mContext).inflate(R.layout.item_shopping_cart, parent, false);
         return new ViewHolder(mParentView);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final PgMiningMenuListEntity item = mList.get(position);
@@ -116,12 +116,12 @@ public class PickMiningMenuAdapter extends RecyclerView.Adapter<PickMiningMenuAd
 //            }
 //        });
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         return mList == null ? 0 : mList.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.bookCover)
         ImageView bookCover;

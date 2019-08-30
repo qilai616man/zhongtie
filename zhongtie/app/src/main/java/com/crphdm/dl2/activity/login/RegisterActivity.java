@@ -15,10 +15,14 @@ import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
+/**
+ * 注册页
+ */
 public class RegisterActivity extends AppCompatActivity {
+    //邮箱注册/手机号注册选项卡
     @Bind(R.id.tb_institution_library)
     TabLayout tbInstitutionLibrary;
+    //邮箱注册/手机号注册页面
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
 
@@ -52,14 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-
+        //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+        //注册页面适配器
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -83,12 +87,12 @@ public class RegisterActivity extends AppCompatActivity {
             return "邮箱";
         }
     }
-
+        //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
+        //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

@@ -31,15 +31,19 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 绑定手机号
+ */
 public class BindPhoneActivity extends AppCompatActivity {
-    //绑定手机号
     public static final int REQUEST_CODE = 213;
     public static final String INTENT_PHONE = "phone";
+    //手机号
     @Bind(R.id.username)
     ClearEditTextNew username;
+    //输入验证码框
     @Bind(R.id.verify_code)
     ClearEditTextNew verifyCode;
+    //获取验证码按钮
     @Bind(R.id.get_verify_code)
     Button getVerifyCode;
 
@@ -49,7 +53,7 @@ public class BindPhoneActivity extends AppCompatActivity {
     private UserInfo mUserInfo;
 
     private ProgressDialog mProgressDialog;
-
+    //绑定按钮
     @OnClick(R.id.bind)
     public void bind() {
         if(mPhone == null || mPhone.equals("")){
@@ -110,7 +114,7 @@ public class BindPhoneActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //获取验证码
     @OnClick(R.id.get_verify_code)
     void onGetVerifyCodeClick() {
         if(mPhone == null || mPhone.equals("")){
@@ -140,7 +144,7 @@ public class BindPhoneActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //提示信息
     private void showDialog(String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
@@ -173,7 +177,7 @@ public class BindPhoneActivity extends AppCompatActivity {
 
         initMembers();
     }
-
+    //初始化成员
     private void initMembers(){
         Drawable icon = getResources().getDrawable(R.drawable.selector_phone);
         if(icon != null){
@@ -247,27 +251,27 @@ public class BindPhoneActivity extends AppCompatActivity {
             }
         });
     }
-
+    //绑定成功
     private void bindSuccess(){
         Intent intent = new Intent();
         intent.putExtra(INTENT_PHONE, username.getText().toString());
         setResult(RESULT_OK, intent);
         finish();
     }
-
+    //onOptionsItemSelected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("绑定手机号页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("绑定手机号页");

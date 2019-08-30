@@ -37,9 +37,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 上传自有资源  （功能已隐藏）
+ */
 public class UploadSelfResourceActivity extends AppCompatActivity implements View.OnClickListener {
-    //上传文件
     private static final String TAG = UploadSelfResourceActivity.class.getSimpleName();
 
     @Bind(R.id.tv_local_institution)

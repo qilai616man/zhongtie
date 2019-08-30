@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.crphdm.dl2.R;
 import com.crphdm.dl2.adapter.library.FragmentAdapter;
+import com.crphdm.dl2.fragments.video.VideoListFragment;
 import com.crphdm.dl2.utils.Constant;
 
 import java.util.ArrayList;
@@ -21,22 +22,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/13.
+ * 云书城首页
  */
 public class MarketFragment extends Fragment{
-    //云书城首页
     @Bind(R.id.tl_cloud_book_market_tab)
     TabLayout mCloudBookMarketTab;
     @Bind(R.id.vp_cloud_book_market_list)
-    ViewPager mCloudBookMarketList;
+    NoScrollViewPager mCloudBookMarketList;
 
     private static final String ARG_NET_STATE = "ARG_NET_STATE";
     private String BOOK = "图书";
     private String POD = "POD";
-
+    private String Video = "视频";
     private int mNetState;
-
-    private CloudMarketFragment mBookFragment,mPODFragment;
+    private VideoListFragment videoListFragment;
+    private CloudMarketFragment mBookFragment,mPODFragment,mVideoFragment;
 
     public static MarketFragment newInstance(int netState) {
         MarketFragment cloudMarketFragment = new MarketFragment();
@@ -45,7 +45,7 @@ public class MarketFragment extends Fragment{
         cloudMarketFragment.setArguments(bundle);
         return cloudMarketFragment;
     }
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +60,12 @@ public class MarketFragment extends Fragment{
 //            Toast.makeText(getActivity(), "网络异常,无法访问北控中心!", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //通过参数savedInstanceState获取之前保存的值
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
     }
-
+    //初始化Fragment的布局。
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,22 +74,23 @@ public class MarketFragment extends Fragment{
         initView();
         return view;
     }
-
+    //初始化布局
     private void initView() {
         List<String> titles = new ArrayList<>();
         titles.add(BOOK);
         titles.add(POD);
-
+        titles.add(Video);
         mCloudBookMarketTab.addTab(mCloudBookMarketTab.newTab().setText(titles.get(0)));
         mCloudBookMarketTab.addTab(mCloudBookMarketTab.newTab().setText(titles.get(1)));
-
+        mCloudBookMarketTab.addTab(mCloudBookMarketTab.newTab().setText(titles.get(2)));
+        videoListFragment = new VideoListFragment();
         List<Fragment> fragmentList = new ArrayList<>();
         mBookFragment = CloudMarketFragment.newInstance(Constant.CLOUD_BOOKSTORE_BOOK);
         mPODFragment = CloudMarketFragment.newInstance(Constant.CLOUD_BOOKSTORE_POD);
 
         fragmentList.add(mBookFragment);
         fragmentList.add(mPODFragment);
-
+        fragmentList.add(videoListFragment);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getChildFragmentManager(), fragmentList, titles);
         mCloudBookMarketList.setAdapter(fragmentAdapter);
         mCloudBookMarketTab.setupWithViewPager(mCloudBookMarketList);

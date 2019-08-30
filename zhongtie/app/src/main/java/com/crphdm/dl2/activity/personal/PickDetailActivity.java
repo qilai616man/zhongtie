@@ -28,18 +28,26 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 采选详情页面
+ */
 public class PickDetailActivity extends AppCompatActivity {
-    //采选详情页面
+    //采选单号
     @Bind(R.id.tv_id)
     TextView mId;
+    //价格
     @Bind(R.id.tv_press_price)
     TextView mPressPrice;
+    //时间
     @Bind(R.id.tv_time)
     TextView mTime;
+    //实付价格
     @Bind(R.id.tv_press)
     TextView mPrice;
+    //批注
     @Bind(R.id.tv_comments)
     TextView mComments;
+    //采选总数
     @Bind(R.id.tv_book_count)
     TextView mBookCount;
     @Bind(R.id.rcl_pick_detail_list)
@@ -70,7 +78,7 @@ public class PickDetailActivity extends AppCompatActivity {
 
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -115,7 +123,7 @@ public class PickDetailActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //初始化数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(this, null, "加载中...");
@@ -153,7 +161,7 @@ public class PickDetailActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData(){
         if(mMiningMenuDetail != null){
             Ln.d("PickDetailActivity:refreshData:mMiningMenuDetail:" + mMiningMenuDetail.toString());
@@ -174,7 +182,7 @@ public class PickDetailActivity extends AppCompatActivity {
             Ln.d("PickDetailActivity:refreshData:mMiningMenuDetail == null");
         }
     }
-
+    ////处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -185,13 +193,13 @@ public class PickDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选详情页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选详情页面");

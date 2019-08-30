@@ -23,18 +23,18 @@ public class SearchLocalAdapter extends RecyclerView.Adapter<SearchLocalAdapter.
     public SearchLocalAdapter(Context context){
         this.context=context;
     }
-
+    //设置数据
     public void setData(List<SearchLocalKey> data){
         this.data=data;
     }
-
+    //负责承载每个子项的布局。
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=View.inflate(context, R.layout.search_local_item,null);
 
         return new MyViewHolder(view);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final SearchLocalKey searchLocalKey=data.get(position);
@@ -55,12 +55,12 @@ public class SearchLocalAdapter extends RecyclerView.Adapter<SearchLocalAdapter.
             }
         });
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         return data.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView search_text_name;
         TextView search_text_count;

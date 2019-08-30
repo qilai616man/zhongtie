@@ -16,7 +16,7 @@
         app:tabSelectedTextColor="@color/color_blue_bg"
         app:tabTextColor="#999999" />
 
-    <android.support.v4.view.ViewPager
+    <com.crphdm.dl2.fragments.cloud_bookstore.NoScrollViewPager
         android:id="@+id/vp_cloud_book_market_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

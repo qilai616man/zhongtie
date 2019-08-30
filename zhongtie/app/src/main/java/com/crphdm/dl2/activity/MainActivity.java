@@ -125,13 +125,13 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
     private boolean isAccessCoarseLocation = false;
     private boolean isReadPhoneState = false;
     private boolean isReadExternalStorage = false;
-
+    //点击个人中心图片点击事件
     @OnClick(R.id.profile_image)
     public void onIconClick() {
         Intent intent = new Intent(this, PersonalInfoActivity.class);
         startActivity(intent);
-
     }
+    //抬头文字
     @OnClick(R.id.title)
     public void ontitleClick() {
 //        final String fileUrl = Environment.getExternalStorageDirectory() + "/crphdm/download/kmljjg_2_mobi.tdp";//t200100005_1358_mobi.tdp
@@ -147,12 +147,13 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
 //                code,
 //                this);
     }
+    //书签
     @OnClick(R.id.select_pick_detail)
     public void onSelectPickDetail(){
         Intent intent = new Intent(this , PickActivity.class);
         startActivity(intent);
     }
-
+    //搜索
     @OnClick(R.id.search)
     public void onSearchClick() {
 //        if(mViewPager.getCurrentItem()==0){
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
 
         pgBookshelfItems=mList;
     }
-
+    //刷新搜索
    public void refreshSearchCount(String query){
         keyItemList.clear();
        if (pgBookshelfItems.size()>0){
@@ -243,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
        });
    }
 
-
+    //显示对话框
     private void showDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("提示");
@@ -262,6 +263,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
     private boolean isExhibition;
 
     BookCollectionShadow bookCollectionShadow;
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -292,9 +294,8 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
         EventBus.getDefault().register(this);
     }
 
-
-
     private Integer mNetState;
+    //刷新网络状态
     private void refreshNetState() {
         UserModuleImpl.getInstance().getNetState()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -334,6 +335,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                     }
                 });
     }
+    //获取网络
     private void getNetExhibition(){
         UserModuleImpl.getInstance().getExhibition()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -392,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                 });
 
     }
-
+    //升级
     private void upgrade() {
         Ln.d("MainActivity:upgrade");
         UpgradeHelper.checkUpgradeByWifi(
@@ -400,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                 true,
                 com.jiuwei.upgrade_package_new.lib.Constant.DIALOG_STYLE_ELDERLY_ASSISTANT);
     }
-
+    //初始化成员
     private void initMembers() {
         mUserInfoFirst = UserModule.getInstance().getUserInfoLocal(UserModule.NET_CENTER_FIRST);
         mUserInfoSecond = UserModule.getInstance().getUserInfoLocal(UserModule.NET_CENTER_SECOND);
@@ -450,7 +452,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                     }
                 });
     }
-
+    //初始化购买数据
     private void initDbDataByBuy() {
         if (mUserInfoFirst != null) {
             PersonalCenterManager.getInstance().getMyBuyList(mUserInfoFirst.getUserid(), mTokenFirst, 0, 100)
@@ -476,7 +478,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                     });
         }
     }
-
+    //初始化临时数据
     private void initDBDataByBorrowing() {
         if (mUserInfoSecond != null) {
             BookshelfManager.getInstance().getBorrowingBookList(mUserInfoSecond.getUserid(), mTokenSecond)
@@ -500,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                     });
         }
     }
-
+    //更新图标
     public void setUpLogo() {
         if (mUserInfoFirst != null && mUserInfoFirst.getPhoto() != null && !mUserInfoFirst.getPhoto().equals("")) {
             mProfileImage.setImageResource(R.drawable.drw_1_touxiang_new);
@@ -509,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
             mProfileImage.setImageResource(R.drawable.drw_1_touxiang_new);
         }
     }
-
+    //初始化
     private void initViewPager() {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -571,7 +573,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
             }
         });
     }
-
+    //初始化权限
     private void initPermissions(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -645,7 +647,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                 break;
         }
     }
-
+    //请求权限
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -690,6 +692,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
+     * 一个{@link FragmentPagerAdapter}，它返回一个与section / tabs / pages之一对应的片段。
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -747,6 +750,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
 
     /**
      * A placeholder fragment containing a simple view.
+     * 包含简单视图的占位符片段
      */
     public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -865,11 +869,12 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
 
     private int mBackKeyClickedNum = 0;
 
+    //保存用户自定义的状态
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //No call for super(). Bug on API Level > 11.
     }
-
+    //获取Back键的按下事件
     @Override
     public void onBackPressed() {
         mBackKeyClickedNum++;
@@ -897,6 +902,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
     }
 
     SearchLocalAdapter searchLocalAdapter;
+    //恢复
     @Override
     protected void onResume() {
         super.onResume();
@@ -956,13 +962,13 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
             searchLocalAdapter.notifyDataSetChanged();
         }
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
 
     }
-
+    //销毁View的时候，写的这个View不再显示，在这个方法做一些收尾工作
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();

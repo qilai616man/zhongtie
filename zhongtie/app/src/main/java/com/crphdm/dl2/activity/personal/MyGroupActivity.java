@@ -31,12 +31,17 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 我的分组页面
+ */
 public class MyGroupActivity extends AppCompatActivity {
     private List<PgGroup> mList;
     @Bind(R.id.recycler)
     RecyclerView recycler;
+    //错误文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误页面
     @Bind(R.id.lLError)
     LinearLayout lLError;
     private MyAdapter mAdapter;
@@ -62,18 +67,18 @@ public class MyGroupActivity extends AppCompatActivity {
         displayGroup();
     }
 
-
+    //错误页面监听
     @OnClick(R.id.lLError)
     public void onErrorClick() {
 
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_my_group, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
@@ -84,7 +89,7 @@ public class MyGroupActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //创建组
     private void createGroup() {
         final EditText editText = new EditText(this);
         editText.setHint("输入分组名");
@@ -122,7 +127,7 @@ public class MyGroupActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-
+    //显示组
     private void displayGroup() {
         mList = BookshelfManager.getInstance().queryAllGroup();
 
@@ -136,7 +141,7 @@ public class MyGroupActivity extends AppCompatActivity {
 
         mAdapter.notifyDataSetChanged();
     }
-
+    //重复的
     private boolean isRepeat(String name) {
         Ln.d("MyGroupActivity:isRepeat:name:" + name);
 
@@ -152,13 +157,13 @@ public class MyGroupActivity extends AppCompatActivity {
 
         return false;
     }
-
+    //发送广播到主主页数据
     private void sendBroadcastToHomeData() {
         Intent intent = new Intent();
         intent.setAction(Constant.ACTION_REFRESH_DATA);
         sendBroadcast(intent);
     }
-
+    //显示吐司弹框
     private void showToast(final String text) {
         mHandler.post(new Runnable() {
             @Override
@@ -172,7 +177,7 @@ public class MyGroupActivity extends AppCompatActivity {
 //            }
 //        });
     }
-
+    //适配器
     public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         @Override
@@ -206,7 +211,6 @@ public class MyGroupActivity extends AppCompatActivity {
         }
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.group_name)
         TextView groupName;
@@ -229,13 +233,13 @@ public class MyGroupActivity extends AppCompatActivity {
 //            });
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("我的分组页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("我的分组页");

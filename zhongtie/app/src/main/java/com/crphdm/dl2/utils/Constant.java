@@ -54,7 +54,9 @@ public class Constant {
     public static final int CLOUD_BOOKSTORE_POD = 2;
 
     public static final String CLOUD_BOOKSTORE_TYPE_ID = "CLOUD_BOOKSTORE_TYPE_ID";
+    //专业分类
     public static final int CLOUD_BOOKSTORE_FIGURE = 1;
+    //中图分类
     public static final int CLOUD_BOOKSTORE_PROFESSIONAL = 2;
 
     public static final String CLOUD_BOOKSTORE_PARENT_ID = "CLOUD_BOOKSTORE_PARENT_ID";

@@ -27,7 +27,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
-
+/**
+ * 采选详情页面
+ */
 public class ApprovalPickDetailActivity extends AppCompatActivity {
     //采选详情页面
     @Bind(R.id.tv_id)
@@ -56,7 +58,7 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
     private String mToken;
 
     private PgMiningMenuDetail mMiningMenuDetail;
-
+    //日期格式化类
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
@@ -73,6 +75,7 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
         initMembers();
     }
 
+    //初始化成员
     private void initMembers() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -119,7 +122,7 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
         }
 
     }
-
+    //初始化数据
     private void initData() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(this, null, "加载中...");
@@ -157,7 +160,7 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //刷新数据
     private void refreshData() {
         if (mMiningMenuDetail != null) {
 
@@ -182,11 +185,14 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 处理操作栏项目点击此处。
+     * 只要您在AndroidManifest.xml中指定父活动，
+     * 操作栏就会自动处理Home / Up按钮上的点击。
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -196,13 +202,13 @@ public class ApprovalPickDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选详情页面");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选详情页面");

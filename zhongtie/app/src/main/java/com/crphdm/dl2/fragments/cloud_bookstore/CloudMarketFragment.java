@@ -54,10 +54,9 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by sunbaochun on 15/9/25.
+ * 云书城下面的fragment
  */
 public class CloudMarketFragment extends Fragment {
-    //云书城下面的fragment
     private static final String BUNDLE_CARD_ID = "BUNDLE_CARD_ID";
 
     @Bind(R.id.rcl_fragment_book_market_list)
@@ -89,7 +88,7 @@ public class CloudMarketFragment extends Fragment {
         cloudMarketFragment.setArguments(bundle);
         return cloudMarketFragment;
     }
-
+    //初始化Fragment。
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +97,7 @@ public class CloudMarketFragment extends Fragment {
             Ln.d("CloudMarketFragment:onCreate:" +mCardId);
         }
     }
-
+    //初始化Fragment的布局。
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,13 +110,13 @@ public class CloudMarketFragment extends Fragment {
 
         return mParentView;
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
+    //初始化成员
     private void initMembers() {
         mCloudBookstoreManager = CloudBookstoreManager.getInstance();
         mParallaxAdapter = new ParallaxRecyclerAdapter();
@@ -161,7 +160,7 @@ public class CloudMarketFragment extends Fragment {
                     }
                 });
     }
-
+    //初始化数据
     private void initData() {
         mCloudBookstoreManager.getBookForLibraryListEntityByPromotionTagId(mCardId, mToken)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -234,7 +233,7 @@ public class CloudMarketFragment extends Fragment {
                     }
                 });
     }
-
+    //设置类型
     private void setupType() {
         LinearLayout zhongtufenlei = (LinearLayout) mHeader.findViewById(R.id.ll_zhongtufenlei);
         LinearLayout zhuanyefenlei = (LinearLayout) mHeader.findViewById(R.id.ll_zhuanyefenlei);
@@ -259,7 +258,7 @@ public class CloudMarketFragment extends Fragment {
             }
         });
     }
-
+    //设置采选员
     private void setupRecycler() {
         mParallaxAdapter.implementRecyclerAdapterMethods(new ParallaxRecyclerAdapter.RecyclerAdapterMethods() {
             @Override
@@ -397,6 +396,7 @@ public class CloudMarketFragment extends Fragment {
     private void modifySelectState(){
 //        mParallaxAdapter.
     }
+    //加入采选单
     private void addMiningList(final int bookId, final int type, final int position) {
         if (mUserInfo != null) {
 
@@ -474,7 +474,7 @@ public class CloudMarketFragment extends Fragment {
                     });
         }
     }
-
+    //取消采选
     private void deleteMiningList(final int bookId, final int type, final int position) {
         if (mUserInfo != null) {
 //            if (mProgressDialog == null) {
@@ -544,7 +544,7 @@ public class CloudMarketFragment extends Fragment {
                     });
         }
     }
-
+    //设置头部
     private void setupHeader(List<PgAdvertisement> list) {
 
         Log.d("setupHeader : ", list.toString());
@@ -681,6 +681,7 @@ public class CloudMarketFragment extends Fragment {
         }
     }
 
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_tag)
         TextView tvTag;
@@ -716,13 +717,13 @@ public class CloudMarketFragment extends Fragment {
             ButterKnife.bind(this, view);
         }
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("云书城页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();

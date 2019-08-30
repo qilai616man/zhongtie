@@ -31,13 +31,18 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+/**
+ * 中图分类的activity  和专业分类公用一个
+ */
 
 public class SelectClassifyActivity extends AppCompatActivity {
     //中图分类的activity  和专业分类公用一个
     @Bind(R.id.tag_select_view)
     TagCloudView mTagSelectView;
+    //错误提示文字
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误提示布局
     @Bind(R.id.lLError)
     LinearLayout lLError;
 
@@ -50,7 +55,7 @@ public class SelectClassifyActivity extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     private UserInfo mUserInfo;
     private String mToken;
-
+    //创建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +80,12 @@ public class SelectClassifyActivity extends AppCompatActivity {
         initMembers();
         setListener();
     }
-
+    //错误布局事件
     @OnClick(R.id.lLError)
     public void onErrorClick(){
         initMembers();
     }
-
+    //初始化成员
     private void initMembers() {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(SelectClassifyActivity.this, null, "加载中...");
@@ -114,7 +119,7 @@ public class SelectClassifyActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //初始化数据
     private void initData() {
         if (mUserInfo != null) {
             if (mProgressDialog == null) {
@@ -161,7 +166,7 @@ public class SelectClassifyActivity extends AppCompatActivity {
             }
         }
     }
-
+    //设置监听
     private void setListener() {
         mTagSelectView.setOnTagClickListener(new TagCloudView.OnTagClickListener() {
             @Override
@@ -178,7 +183,7 @@ public class SelectClassifyActivity extends AppCompatActivity {
             }
         });
     }
-
+    //获取传递的数据
     private List<String> getList(List<PgSelectBookCategory> pgBookCategories) {
         List<String> list = new ArrayList<>();
 
@@ -190,7 +195,7 @@ public class SelectClassifyActivity extends AppCompatActivity {
 
         return list;
     }
-
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -198,13 +203,13 @@ public class SelectClassifyActivity extends AppCompatActivity {
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("采选页一级分类页");
         MobclickAgent.onResume(this);
     }
-
+    //停止
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("采选页一级分类页");

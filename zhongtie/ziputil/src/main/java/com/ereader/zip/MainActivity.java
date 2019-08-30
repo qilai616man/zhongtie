@@ -45,18 +45,7 @@ public class MainActivity extends Activity {
 					}
 					int i = bytes[0];
 				}
-				
-//				InputStream inpdfInputStream =  zip.getpdf();
-//				if(inpdfInputStream != null){				
-//					byte[] bytes = new byte[10];
-//					try{
-//						inpdfInputStream.read(bytes);
-//					}
-//					catch(IOException e){
-//					
-//					}
-//					int i = bytes[0];
-//				}
+
 			}
 		}
 	};

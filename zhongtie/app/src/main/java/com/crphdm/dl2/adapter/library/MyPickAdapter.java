@@ -44,12 +44,13 @@ public class MyPickAdapter extends RecyclerView.Adapter<MyPickAdapter.ViewHolder
         mListData = infoList;
     }
 
+    //负责承载每个子项的布局。
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_my_pick_layout, parent, false);
         return new ViewHolder(view);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final PgMiningMenuListEntity item = mListData.get(position);
@@ -116,12 +117,12 @@ public class MyPickAdapter extends RecyclerView.Adapter<MyPickAdapter.ViewHolder
 //        }
 
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         return mListData == null ? 0 : mListData.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_id)
         TextView mId;

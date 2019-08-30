@@ -39,8 +39,11 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 用户推荐采选
+ */
+
 public class UserRecommendSelectListActivity extends AppCompatActivity {
-    //用户推荐采选
     public static final int COUNT = 30;
 
     private List<PgRecommendMiningMenuEntity> mList = new ArrayList<>();
@@ -75,12 +78,12 @@ public class UserRecommendSelectListActivity extends AppCompatActivity {
         initMembers();
         refreshData(1);
     }
-
+    //初始化失败页面监听
     @OnClick(R.id.lLError)
     public void onErrorClick() {
         initMembers();
     }
-
+    //初始化成员变量
     private void initMembers() {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
@@ -103,7 +106,7 @@ public class UserRecommendSelectListActivity extends AppCompatActivity {
             }
         });
     }
-
+    //刷新数据
     private void refreshData(final int page) {
         if (mUserInfo != null) {
             if (mProgressDialog == null) {
@@ -191,13 +194,14 @@ public class UserRecommendSelectListActivity extends AppCompatActivity {
                     });
         }
     }
-
+    //创建Menu菜单的项目
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user_recommend_select_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    //处理菜单被选中运行后的事件处理
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -260,7 +264,7 @@ public class UserRecommendSelectListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //用户推荐采选适配器
     public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         @Override
@@ -386,13 +390,13 @@ public class UserRecommendSelectListActivity extends AppCompatActivity {
             ButterKnife.bind(this, view);
         }
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("用户推荐采选");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("用户推荐采选");

@@ -34,6 +34,9 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+/**
+ * 个人中心
+ */
 public class PersonalInfoActivity extends AppCompatActivity {
     //个人中心
     @Bind(R.id.toolbar)

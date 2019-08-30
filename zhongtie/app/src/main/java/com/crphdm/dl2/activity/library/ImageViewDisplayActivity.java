@@ -17,9 +17,10 @@ import com.umeng.analytics.MobclickAgent;
 
 
 import java.io.File;
-
+/**
+ * 试读列表页
+ */
 public class ImageViewDisplayActivity extends ActionBarActivity {
-    //试读列表页
     public static final String INTENT_IMAGE_PATH = "INTENT_IMAGE_PATH";
     private SubsamplingScaleImageView mImageView;
     private ProgressDialog mProgressDialog ;
@@ -60,17 +61,17 @@ public class ImageViewDisplayActivity extends ActionBarActivity {
                 public void onImageLoaded() {
                     mProgressDialog.dismiss();
                 }
-
+                        //错误
                 @Override
                 public void onPreviewLoadError(Exception e) {
                     mProgressDialog.dismiss();
                 }
-
+                        //错误
                 @Override
                 public void onImageLoadError(Exception e) {
                     mProgressDialog.dismiss();
                 }
-
+                        //错误
                 @Override
                 public void onTileLoadError(Exception e) {
                     mProgressDialog.dismiss();
@@ -85,13 +86,13 @@ public class ImageViewDisplayActivity extends ActionBarActivity {
             }
         });
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("试读列表页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("试读列表页");

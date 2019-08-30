@@ -46,16 +46,22 @@ import rx.schedulers.Schedulers;
  * 图书分类页面
  */
 public class ClassifyDetailActivity extends AppCompatActivity {
+    //滚动条
     @Bind(R.id.sv_classify_detail)
     ScrollView mScrollView;
+    //书籍列表
     @Bind(R.id.rcl_classify_detail_list)
     RecyclerView mRclClassifyDetailList;
+    //分类信息滚动条内容
     @Bind(R.id.label_view)
     TagCloudView mLabelView;
+    //加载
     @Bind(R.id.load)
     FrameLayout load;
+    //错误提示内容
     @Bind(R.id.tvError)
     TextView tvError;
+    //错误提示页面
     @Bind(R.id.lLError)
     LinearLayout lLError;
 
@@ -70,7 +76,7 @@ public class ClassifyDetailActivity extends AppCompatActivity {
     private int mParentId;
     private int mIsHaveTag;
     private String mParentName;
-
+    //分类详情适配器
     private ClassifyDetailAdapter mClassifyDetailAdapter;
 
     private ProgressDialog mProgressDialog;
@@ -85,7 +91,8 @@ public class ClassifyDetailActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            if (mParentName != null) {//专业分类
+            //专业分类
+            if (mParentName != null) {
                 getSupportActionBar().setTitle(mParentName);
             }
         }
@@ -136,13 +143,14 @@ public class ClassifyDetailActivity extends AppCompatActivity {
                     public void call() {
                         refreshData(mParentId);
                         if (mIsHaveTag == Constant.CLOUD_MARKET_TAG_YES) {
+                            //初始化数据
                             initData(mParentId);
                         }
                     }
                 });
     }
 
-    //初始化数据
+       //初始化数据
     private void initData(int parentId) {
         mScrollView.setVisibility(View.VISIBLE);
         mCloudBookstoreManager.getBookCategoryById(mUserInfo.getUserid(), mToken, mCardId, mTypeId, parentId)
@@ -188,7 +196,7 @@ public class ClassifyDetailActivity extends AppCompatActivity {
             }
         });
     }
-
+        //刷新数据
     private void refreshData(int parentId) {
         if (mProgressDialog == null) {
             mProgressDialog = ProgressDialog.show(ClassifyDetailActivity.this, null, "加载中...");
@@ -282,7 +290,7 @@ public class ClassifyDetailActivity extends AppCompatActivity {
                     });
     }
 
-
+       //初始化
     private void initMembers() {
         mCloudBookstoreManager = CloudBookstoreManager.getInstance();
 
@@ -295,7 +303,9 @@ public class ClassifyDetailActivity extends AppCompatActivity {
         mRclClassifyDetailList.setAdapter(mClassifyDetailAdapter);
 
     }
+
     private NetResult result=new NetResult();
+        //设置监听
     private void setLintener() {
         Ln.d("ClassifyDetailActivity:setListener");
         mClassifyDetailAdapter.setListener(new OnClassDetailChangeListener() {
@@ -449,7 +459,7 @@ public class ClassifyDetailActivity extends AppCompatActivity {
             }
         });
     }
-
+        //添加采选
     private void addMiningList(final int position, final int bookId, final int type) {
         if (mUserInfo != null) {
             if (mCardId == Constant.CLOUD_BOOKSTORE_BOOK && mProgressDialog == null) {
@@ -520,7 +530,7 @@ public class ClassifyDetailActivity extends AppCompatActivity {
                     });
         }
     }
-
+        //取消采选
     private void deleteMiningList(final int position, final int bookId, final int type) {
         if (mUserInfo != null) {
 
@@ -620,13 +630,13 @@ public class ClassifyDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    //恢复
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("云书城二级分类页");
         MobclickAgent.onResume(this);
     }
-
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("云书城二级分类页");

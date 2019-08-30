@@ -44,7 +44,6 @@ import rx.schedulers.Schedulers;
  * 登录页
  */
 public class LoginActivity extends AppCompatActivity {
-    //
     public static final String ACTIVITY_FROM = "ACTIVITY_FROM";
 
     public static final int ACTIVITY_FROM_WELCOME_ACTIVITY = 1;
@@ -168,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-   //选择项目选项
+    //选择项目选项
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -182,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
 //        super.onBackPressed();
     }
-  //恢复
+    //恢复
     public void onResume() {
         super.onResume();
 
@@ -191,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
         MobclickAgent.onPageStart("登录页");
 
     }
-//暂停
+    //暂停
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

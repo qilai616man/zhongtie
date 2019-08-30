@@ -15,18 +15,10 @@ public abstract class UserModule {
     public static final int NET_STATE_FIRST_LEVEL = 0x01;
     public static final int NET_STATE_SECOND_LEVEL = 0x02;
     public static final int NET_STATE_ALL = 0x03;
-
-    public static final int USER_TYPE_PHONE = 0x1;
     public static final int USER_TYPE_EMAIL = 0x2;
-    public static final int USER_TYPE_JOB_NUMBER = 0x3;
-
     public static final int NET_CENTER_FIRST = 0x01;
     public static final int NET_CENTER_SECOND = 0x02;
 
-    public static final int ROLE_NORMAL = 6;
-    public static final int ROLE_ORG = 8;
-    public static final int ROLE_ORG_SELECTOR = 9;
-    public static final int ROLE_ORG_BOSS = 10;
 
     private static UserModule module;
 

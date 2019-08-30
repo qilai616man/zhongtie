@@ -47,7 +47,7 @@ public class LibraryFragmentFirst extends Fragment {
     private LibraryElectronicBookFragmentFirst mLibraryElectronicBookFragment;
 
     private int mNetState;
-
+    //初始化Fragment。可通过参数savedInstanceState获取之前保存的值
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +64,12 @@ public class LibraryFragmentFirst extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
+    //参数savedInstanceState获取之前保存的值
     @Override
     public void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);
     }
-
+    //初始化Fragment的布局。
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class LibraryFragmentFirst extends Fragment {
         ButterKnife.bind(this, view);
         return view;
     }
-
+    //执行该方法时，与Fragment绑定的Activity的onCreate方法已经执行完成并返回
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -186,7 +186,7 @@ public class LibraryFragmentFirst extends Fragment {
         getChildFragmentManager().beginTransaction().replace(
                 R.id.frame_layout, LibraryResourceListFragment.newInstance(LibraryResourceListFragment.TYPE_SHARE)).commit();
     }
-
+    //显示对话框
     private void showDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("提示");
@@ -207,20 +207,20 @@ public class LibraryFragmentFirst extends Fragment {
         builder.create();
         builder.show();
     }
-
+    //执行该方法时，Fragment处于活动状态，用户可与之交互。
     @Override
     public void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("图书馆首页");
     }
-
+    //执行该方法时，Fragment处于暂停状态，但依然可见，用户不能与之交互。
     @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("图书馆首页");
     }
 
-
+   //解除与Activity的绑定。在onDestroy方法之后调用
     @Override
     public void onDetach() {
         super.onDetach();
@@ -229,7 +229,7 @@ public class LibraryFragmentFirst extends Fragment {
     }
 
     private OnInstitutionLibraryListFragmentListener mListener;
-
+    //执行该方法时，Fragment与Activity已经完成绑定，该方法有一个Activity类型的参数，代表绑定的Activity
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -244,7 +244,7 @@ public class LibraryFragmentFirst extends Fragment {
     public interface OnInstitutionLibraryListFragmentListener {
         void onClickInstitutionLibraryList(int i);
     }
-
+    //销毁与Fragment有关的视图，但未与Activity解除绑定
     @Override
     public void onDestroyView() {
         super.onDestroyView();

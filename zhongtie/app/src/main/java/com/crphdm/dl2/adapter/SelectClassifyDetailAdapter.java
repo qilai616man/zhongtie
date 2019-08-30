@@ -29,10 +29,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by sunbaochun on 15/10/6.
+ * //采选页分类详情recyclerView页面
  */
 public class SelectClassifyDetailAdapter extends RecyclerView.Adapter<SelectClassifyDetailAdapter.ViewHolder> {
-    //采选页分类详情recyclerView页面
     private View mView;
     private Context mContext;
     private int mSelectType;
@@ -47,23 +46,23 @@ public class SelectClassifyDetailAdapter extends RecyclerView.Adapter<SelectClas
         mContext = context;
         mSelectType = selectType;
     }
-
+    //设置数据
     public void setData(List<PgBookForLibraryListEntity> bookList){
         mBookList = bookList;
     }
-
+    //设置监听
     public void setListener(OnClassDetailChangeListener listener) {
         Ln.d("SelectClassifyDetailAdapter:setListener");
         mListener = listener;
     }
-
+    //负责承载每个子项的布局。
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mView = LayoutInflater.from(mContext).inflate(R.layout.item_select_classify_detail, parent, false);
         mUserInfo = UserModule.getInstance().getUserInfoLocal(UserModule.NET_CENTER_FIRST);
         return new ViewHolder(mView);
     }
-
+    //负责将每个子项holder绑定数据。
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if(mBookList != null && !mBookList.isEmpty()){
@@ -152,12 +151,12 @@ public class SelectClassifyDetailAdapter extends RecyclerView.Adapter<SelectClas
             });
         }
     }
-
+    //得到列表项个数
     @Override
     public int getItemCount() {
         return mBookList == null ? 0 : mBookList.size();
     }
-
+    //listview滚动的时候快速设置值，而不必每次都重新创建很多对象，从而提升性能。
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.bookCover)
         ImageView bookCover;

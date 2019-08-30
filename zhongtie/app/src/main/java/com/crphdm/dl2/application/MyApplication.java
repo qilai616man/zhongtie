@@ -39,7 +39,7 @@ import java.lang.reflect.Field;
 import io.paperdb.Paper;
 
 /**
- * Created by gaoyufei on 15/10/10.
+ *
  */
 //@ReportsCrashes(
 //        mailTo = "yuyx@brainsoon.com",
